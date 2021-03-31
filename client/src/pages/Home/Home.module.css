@@ -13,4 +13,6 @@
 }
 .Home header {
     height: 33vh;
+    display: flex;
+    justify-content: center;
 }

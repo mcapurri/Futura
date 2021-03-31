@@ -14,6 +14,7 @@ const userSchema = new Schema(
         },
 
         phoneNumber: String,
+        avatar: String,
     },
     {
         timestamps: true,
