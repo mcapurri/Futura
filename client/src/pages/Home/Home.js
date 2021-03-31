@@ -6,6 +6,7 @@ import Signup from '../../components/Signup/Signup';
 import Profile from '../../components/Profile/Profile';
 const Home = ({ user, setUser }) => {
     const [isSignup, setIsSignup] = useState(false);
+    const [isLogin, setIsLogin] = useState(true);
 
     return (
         <div className={style.Home}>
@@ -14,9 +15,17 @@ const Home = ({ user, setUser }) => {
             </header>
             {user === '' ? (
                 isSignup ? (
-                    <Login setUser={setUser} />
+                    <Signup
+                        setUser={setUser}
+                        setIsSignup={setIsSignup}
+                        setIsLogin={setIsLogin}
+                    />
                 ) : (
-                    <Signup setUser={setUser} />
+                    <Login
+                        setUser={setUser}
+                        setIsSignup={setIsSignup}
+                        setIsLogin={setIsLogin}
+                    />
                 )
             ) : (
                 <Profile user={user} />

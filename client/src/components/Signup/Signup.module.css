@@ -30,3 +30,11 @@
     font-size: 1.2rem;
     margin-bottom: 10%;
 }
+.Form button:nth-child(1) {
+    border: none;
+    width: auto;
+    height: auto;
+    font-size: 0.9rem;
+    background-color: transparent;
+    color: rgb(28, 99, 221);
+}

@@ -4,7 +4,7 @@ import { Form, Button } from 'bootstrap-4-react';
 import { signup } from '../../utils/auth';
 import { Link } from 'react-router-dom';
 
-const Signup = (props) => {
+const Signup = ({ setIsLogin, setIsSignup, setUser }) => {
     const [message, setMessage] = useState('');
 
     const [signupForm, setSignupForm] = useState({
@@ -58,8 +58,8 @@ const Signup = (props) => {
                 }
             } else {
                 // signup was successful
-                props.setUser(user);
-                props.history.push('/');
+                setUser(user);
+                // props.history.push('/');
             }
         });
     };
@@ -131,7 +131,14 @@ const Signup = (props) => {
             {message && <p style={{ color: 'red' }}>{message}</p>}
             <p>
                 Do you already have an account?
-                <Link to="/"> Log in</Link>
+                <button
+                    onClick={() => {
+                        setIsLogin(true);
+                        setIsSignup(false);
+                    }}
+                >
+                    Log in
+                </button>
             </p>
             <Button primary type="submit">
                 Sign up
