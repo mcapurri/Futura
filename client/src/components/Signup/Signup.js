@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import style from './Signup.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { signup } from '../../utils/auth';
-import { Link } from 'react-router-dom';
 
-const Signup = ({ setIsLogin, setIsSignup, setUser }) => {
+const Signup = ({ setIsSignup, setUser }) => {
     const [message, setMessage] = useState('');
 
     const [signupForm, setSignupForm] = useState({
@@ -127,13 +126,52 @@ const Signup = ({ setIsLogin, setIsSignup, setUser }) => {
                     onChange={handleChange}
                 />
             </Form.Group>
+            <Form.Group>
+                <label htmlFor="street">Street</label>
+                <Form.Input
+                    name="street"
+                    type="text"
+                    placeholder="Street"
+                    value={signupForm.address.street}
+                    onChange={handleChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <label htmlFor="city">City</label>
+                <Form.Input
+                    name="city"
+                    type="text"
+                    placeholder="City"
+                    value={signupForm.address.city}
+                    onChange={handleChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <label htmlFor="zipCode">ZIP Code</label>
+                <Form.Input
+                    name="zipCode"
+                    type="text"
+                    placeholder="ZIP Code"
+                    value={signupForm.address.zipCode}
+                    onChange={handleChange}
+                />
+            </Form.Group>
+            <Form.Group>
+                <label htmlFor="state">State</label>
+                <Form.Input
+                    name="state"
+                    type="text"
+                    placeholder="State"
+                    value={signupForm.address.state}
+                    onChange={handleChange}
+                />
+            </Form.Group>
 
             {message && <p style={{ color: 'red' }}>{message}</p>}
             <p>
                 Do you already have an account?
                 <button
                     onClick={() => {
-                        setIsLogin(true);
                         setIsSignup(false);
                     }}
                 >

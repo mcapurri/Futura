@@ -33,25 +33,34 @@ passport.deserializeUser((id, done) => {
 });
 
 passport.use(
-    new LocalStrategy((username, password, done) => {
-        // login
-        User.findOne({ username: username })
-            .then((userFromDB) => {
-                if (userFromDB === null) {
-                    // there is no user with this username
-                    done(null, false, { message: 'Wrong Credentials' });
-                } else if (!bcrypt.compareSync(password, userFromDB.password)) {
-                    // the password is not matching
-                    done(null, false, { message: 'Wrong Credentials' });
-                } else {
-                    // the userFromDB should now be logged in
-                    done(null, userFromDB);
-                }
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    })
+    new LocalStrategy(
+        {
+            usernameField: 'email',
+            passwordField: 'password',
+        },
+        (email, password, done) => {
+            console.log('credentials', email, password);
+            // login
+            User.findOne({ email })
+                .then((userFromDB) => {
+                    if (!userFromDB) {
+                        // there is no user with this username
+                        done(null, false, { message: 'Wrong Credentials' });
+                    } else if (
+                        !bcrypt.compareSync(password, userFromDB.password)
+                    ) {
+                        // the password is not matching
+                        done(null, false, { message: 'Wrong Credentials' });
+                    } else {
+                        // the userFromDB should now be logged in
+                        done(null, userFromDB);
+                    }
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+        }
+    )
 );
 
 app.use(passport.initialize());

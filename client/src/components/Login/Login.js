@@ -4,7 +4,7 @@ import { Form, Button } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import { login } from '../../utils/auth';
 
-const Login = ({ setUser, setIsSignup, setIsLogin }) => {
+const Login = ({ setUser, setIsSignup }) => {
     const [message, setMessage] = useState('');
 
     const [loginForm, setLoginForm] = useState({
@@ -24,8 +24,8 @@ const Login = ({ setUser, setIsSignup, setIsLogin }) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         login({
-            email: loginForm.email.value,
-            password: loginForm.password.value,
+            email: loginForm.email,
+            password: loginForm.password,
         }).then((user) => {
             if (user.message) {
                 setMessage(user.message);
@@ -34,23 +34,22 @@ const Login = ({ setUser, setIsSignup, setIsLogin }) => {
                 for (let key in loginForm) {
                     setLoginForm({ ...loginForm, [key]: '' });
                 }
-                console.log('loginForm', loginForm);
             } else {
                 //  put the user object in the state of App.js
                 console.log(user);
                 setUser(user);
-                // props.history.push('/');
             }
+            console.log('loginForm', loginForm);
         });
     };
     return (
         <Form className={style.Form} onSubmit={handleSubmit}>
             <Form.Group>
-                <label htmlFor="email">Phone or Email</label>
+                <label htmlFor="email">Email</label>
                 <Form.Input
                     name="email"
                     type="email"
-                    placeholder="Phone or Email"
+                    placeholder="Email"
                     value={loginForm.email}
                     onChange={handleChange}
                 />
@@ -74,7 +73,6 @@ const Login = ({ setUser, setIsSignup, setIsLogin }) => {
                 <button
                     onClick={() => {
                         setIsSignup(true);
-                        setIsLogin(false);
                     }}
                 >
                     Create one now

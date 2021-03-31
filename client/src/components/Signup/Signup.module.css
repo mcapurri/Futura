@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     overflow-y: auto;
-    margin-bottom: 10%;
+    margin: 10% 0;
 }
 
 .Form input {
@@ -28,7 +28,7 @@
     width: 15rem;
     height: 3rem;
     font-size: 1.2rem;
-    margin-bottom: 10%;
+    margin-top: 10%;
 }
 .Form button:nth-child(1) {
     border: none;
