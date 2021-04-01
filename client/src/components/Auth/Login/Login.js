@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import style from './Login.module.css';
 import { Form, Button } from 'bootstrap-4-react';
-import { Link } from 'react-router-dom';
-import { login } from '../../utils/auth';
+import { button } from 'react-router-dom';
+import { login } from '../../../utils/auth';
 
-const Login = ({ setUser, setIsSignup }) => {
+const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
     const [message, setMessage] = useState('');
 
     const [loginForm, setLoginForm] = useState({
@@ -65,7 +65,13 @@ const Login = ({ setUser, setIsSignup }) => {
                 />
             </Form.Group>
             <Form.Text className={style.forgPass}>
-                <Link to="#">Forgot password?</Link>
+                <button
+                    onClick={() => {
+                        setForgotPassword(true);
+                    }}
+                >
+                    Forgot password?
+                </button>
             </Form.Text>
             {message && <p style={{ color: 'red' }}>{message}</p>}
             <p>
@@ -78,9 +84,7 @@ const Login = ({ setUser, setIsSignup }) => {
                     Create one now
                 </button>
             </p>
-            <Button primary type="submit">
-                Login
-            </Button>
+            <Button type="submit">Login</Button>
         </Form>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './Signup.module.css';
 import { Form, Button } from 'bootstrap-4-react';
-import { signup } from '../../utils/auth';
+import { signup } from '../../../utils/auth';
 
 const Signup = ({ setIsSignup, setUser }) => {
     const [message, setMessage] = useState('');
@@ -13,12 +13,10 @@ const Signup = ({ setIsSignup, setUser }) => {
         email: '',
         password: '',
         confirm: '',
-        address: {
-            street: '',
-            city: '',
-            zipCode: '',
-            state: '',
-        },
+        street: '',
+        city: '',
+        zipCode: '',
+        state: '',
     });
 
     const handleChange = (event) => {
@@ -28,7 +26,7 @@ const Signup = ({ setIsSignup, setUser }) => {
             [name]: value,
         });
     };
-    // console.log('signupForm', signupForm);
+    console.log('signupForm', signupForm);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -39,10 +37,10 @@ const Signup = ({ setIsSignup, setUser }) => {
             email: signupForm.email,
             password: signupForm.password,
             confirm: signupForm.confirm,
-            street: signupForm.address.street,
-            zipCode: signupForm.address.zipCode,
-            city: signupForm.address.city,
-            state: signupForm.address.state,
+            street: signupForm.street,
+            zipCode: signupForm.zipCode,
+            city: signupForm.city,
+            state: signupForm.state,
             phoneNumber: signupForm.phoneNumber,
         }).then((user) => {
             if (user.message) {
@@ -58,7 +56,6 @@ const Signup = ({ setIsSignup, setUser }) => {
             } else {
                 // signup was successful
                 setUser(user);
-                // props.history.push('/');
             }
         });
     };
@@ -132,7 +129,7 @@ const Signup = ({ setIsSignup, setUser }) => {
                     name="street"
                     type="text"
                     placeholder="Street"
-                    value={signupForm.address.street}
+                    value={signupForm.street}
                     onChange={handleChange}
                 />
             </Form.Group>
@@ -142,7 +139,7 @@ const Signup = ({ setIsSignup, setUser }) => {
                     name="city"
                     type="text"
                     placeholder="City"
-                    value={signupForm.address.city}
+                    value={signupForm.city}
                     onChange={handleChange}
                 />
             </Form.Group>
@@ -152,7 +149,7 @@ const Signup = ({ setIsSignup, setUser }) => {
                     name="zipCode"
                     type="text"
                     placeholder="ZIP Code"
-                    value={signupForm.address.zipCode}
+                    value={signupForm.zipCode}
                     onChange={handleChange}
                 />
             </Form.Group>
@@ -162,7 +159,7 @@ const Signup = ({ setIsSignup, setUser }) => {
                     name="state"
                     type="text"
                     placeholder="State"
-                    value={signupForm.address.state}
+                    value={signupForm.state}
                     onChange={handleChange}
                 />
             </Form.Group>

@@ -97,6 +97,39 @@ router.post('/signup', (req, res, next) => {
     });
 });
 
+// @desc      Forgot Password
+// @route     POST /forgotPassord
+// @access    Public
+router.post('/forgotPassword', (req, res, next) => {
+    console.log('req.body', req.body.email);
+    // const { email } = req.body;
+    // console.log('email', email);
+    User.findOne({ email: req.body.email })
+        .then((user) => {
+            console.log('userDb', user);
+            if (!user) {
+                res.status(403).json("User doesn't exist");
+            } else {
+                // Get reset token
+                const resetToken = user.getResetPasswordToken();
+                // Create reset url
+                const resetUrl = `${req.protocol}://${req.get(
+                    'host'
+                )}/api/auth/resetpassword/${resetToken}`;
+                const message = `You are receiving this email because you (or someone else) has requested the reset of the password. Please make a PUT request to: \n\n ${resetUrl}`;
+                user.sendEmail({
+                    email: user.email,
+                    subject: 'Password reset token',
+                    message,
+                });
+            }
+        })
+        .then(() => {
+            res.status(200).json('Email sent');
+        })
+        .catch((err) => next(err));
+});
+
 // @desc      Log out
 // @route     DELETE /logout
 // @access    Private

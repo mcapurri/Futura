@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import style from './Home.module.css';
 
-import Login from '../../components/Login/Login';
-import Signup from '../../components/Signup/Signup';
+import Login from '../../components/Auth/Login/Login';
+import Signup from '../../components/Auth/Signup/Signup';
+import ForgotPassword from '../../components/Auth/ForgotPassword/ForgotPassword';
 import Profile from '../../components/Profile/Profile';
 
 import { logout } from '../../utils/auth';
@@ -10,6 +11,7 @@ import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
 
 const Home = ({ user, setUser }) => {
     const [isSignup, setIsSignup] = useState(false);
+    const [forgotPassword, setForgotPassword] = useState(false);
 
     const handleLogout = () =>
         logout()
@@ -57,8 +59,14 @@ const Home = ({ user, setUser }) => {
             {!user ? (
                 isSignup ? (
                     <Signup setUser={setUser} setIsSignup={setIsSignup} />
+                ) : forgotPassword ? (
+                    <ForgotPassword />
                 ) : (
-                    <Login setUser={setUser} setIsSignup={setIsSignup} />
+                    <Login
+                        setUser={setUser}
+                        setIsSignup={setIsSignup}
+                        setForgotPassword={setForgotPassword}
+                    />
                 )
             ) : (
                 <Profile user={user} />
