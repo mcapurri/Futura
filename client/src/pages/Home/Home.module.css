@@ -9,10 +9,27 @@
 }
 .Home img {
     height: 33vh;
-    margin-bottom: 10%;
+    /* margin-bottom: 10%; */
 }
 .Home header {
     height: 33vh;
     display: flex;
     justify-content: center;
+}
+.Avatar {
+    width: 10rem;
+    height: 10rem;
+    border: 10px solid #fff;
+    background-color: transparent;
+    position: fixed;
+    top: 5%;
+    border-radius: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.Avatar h1 {
+    font-weight: bold;
+    font-size: 4rem;
 }

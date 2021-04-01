@@ -36,10 +36,10 @@ const Login = ({ setUser, setIsSignup }) => {
                 }
             } else {
                 //  put the user object in the state of App.js
-                console.log(user);
                 setUser(user);
+                // console.log(user);
             }
-            console.log('loginForm', loginForm);
+            // console.log('loginForm', loginForm);
         });
     };
     return (
