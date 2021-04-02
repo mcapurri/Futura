@@ -65,25 +65,11 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                 />
             </Form.Group>
             <Form.Text className={style.forgPass}>
-                {/* <button
-                    onClick={() => {
-                        setForgotPassword(true);
-                    }}
-                >
-                    Forgot password?
-                </button> */}
                 <Link to="/forgotpassword">Forgot password?</Link>
             </Form.Text>
-            {message && <p style={{ color: 'red' }}>{message}</p>}
+            <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
             <p>
-                Don't have an account?{' '}
-                {/* <button
-                    onClick={() => {
-                        setIsSignup(true);
-                    }}
-                >
-                    Create one now
-                </button> */}
+                Don't have an account? &nbsp;
                 <Link to="/signup">Create one now</Link>
             </p>
             <Button type="submit">Login</Button>

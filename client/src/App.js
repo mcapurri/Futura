@@ -5,11 +5,12 @@ import { logout } from './utils/auth';
 
 import Home from './pages/Home/Home';
 import Signup from './components/Auth/Signup/Signup';
-import ForgotPassword from './components/Auth/ForgotPassword/ForgotPassword';
+import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
+import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 
 function App(props) {
     const [user, setUser] = useState(props.user || '');
-    const [isSignup, setIsSignup] = useState(false);
+    // const [isSignup, setIsSignup] = useState(false);
 
     console.log('user', user);
 
@@ -43,7 +44,6 @@ function App(props) {
                     <Signup
                         {...props}
                         setUser={setUser}
-                        isSignup={isSignup}
                         handleLogout={handleLogout}
                     />
                 )}
@@ -51,9 +51,12 @@ function App(props) {
             <Route
                 exact
                 path="/forgotpassword"
-                render={(props) => (
-                    <ForgotPassword {...props} handleLogout={handleLogout} />
-                )}
+                render={(props) => <ForgotPassword {...props} />}
+            />
+            <Route
+                exact
+                path="/resetpassword/:resettoken"
+                render={(props) => <ResetPassword {...props} />}
             />
         </Switch>
     );

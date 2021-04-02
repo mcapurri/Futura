@@ -1,19 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './Home.module.css';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Login from '../../components/Auth/Login/Login';
-import Signup from '../../components/Auth/Signup/Signup';
-import ForgotPassword from '../../components/Auth/ForgotPassword/ForgotPassword';
+// import Signup from '../../components/Auth/Signup/Signup';
+// import ForgotPassword from '../../components/Auth/ForgotPassword/ForgotPassword';
 import Profile from '../../components/Profile/Profile';
 
 import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
 
-const Home = ({ user, setUser, handleLogout, ...props }) => {
-    console.log('home props', props);
-
+const Home = ({ user, setUser, handleLogout }) => {
     // const [isSignup, setIsSignup] = useState(false);
-    const [forgotPassword, setForgotPassword] = useState(false);
+    // const [forgotPassword, setForgotPassword] = useState(false);
 
     return (
         <div className={style.Home}>
@@ -49,45 +47,6 @@ const Home = ({ user, setUser, handleLogout, ...props }) => {
                 )}
                 <img src="assets/sea-img.png" alt="sea-img" />
             </header>
-            {/* {!user ? (
-                isSignup ? (
-                    <Route
-                        exact
-                        path="/signup"
-                        render={(props) => (
-                            <Signup
-                                {...props}
-                                setUser={setUser}
-                                setIsSignup={setIsSignup}
-                            />
-                        )}
-                    />
-                ) : forgotPassword ? (
-                    <Route
-                        exact
-                        path="/forgotpassword"
-                        render={(props) => (
-                            <ForgotPassword history={props.history} />
-                        )}
-                    />
-                ) : (
-                    <Route
-                        exact
-                        path="/login"
-                        render={(props) => (
-                            <Login
-                                {...props}
-                                setUser={setUser}
-                                setIsSignup={setIsSignup}
-                                setForgotPassword={setForgotPassword}
-                            />
-                        )}
-                    />
-                )
-            ) : (
-                <Profile user={user} />
-            )} */}
-            {/* <Switch> */}
 
             {!user ? (
                 <Route
@@ -98,7 +57,7 @@ const Home = ({ user, setUser, handleLogout, ...props }) => {
                             {...props}
                             setUser={setUser}
                             // setIsSignup={setIsSignup}
-                            setForgotPassword={setForgotPassword}
+                            // setForgotPassword={setForgotPassword}
                         />
                     )}
                 />
@@ -109,8 +68,6 @@ const Home = ({ user, setUser, handleLogout, ...props }) => {
                     render={(props) => <Profile {...props} user={user} />}
                 />
             )}
-
-            {/* </Switch> */}
         </div>
     );
 };

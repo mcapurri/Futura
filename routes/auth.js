@@ -119,9 +119,6 @@ router.post('/signup', (req, res, next) => {
 // @route     POST /api/auth/forgotpassword
 // @access    Public
 router.post('/forgotpassword', (req, res, next) => {
-    console.log('req.body', req.body.email);
-    // const { email } = req.body;
-    // console.log('email', email);
     User.findOne({ email: req.body.email })
         .then((user) => {
             console.log('userDb', user);
@@ -131,12 +128,8 @@ router.post('/forgotpassword', (req, res, next) => {
                 // Get reset token
                 const resetToken = user.getResetPasswordToken();
                 // Create reset url
-                const resetUrl = `${req.protocol}://${req.get(
-                    'host'
-                )}/api/auth/resetpassword/${resetToken}`;
-                const message = `We received a request to reset your password for your account. We're here to help!
-                
-                Simply click the link to reset your password: \n\n ${resetUrl}
+                const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
+                const message = `We received a request to reset your password for your account. We're here to help!<br/>Simply click the link below to reset your password:<br/> \n\n ${resetUrl}
                 
                 If you didn't ask any changes, please ignore this email`;
                 user.sendEmail({
@@ -155,7 +148,7 @@ router.post('/forgotpassword', (req, res, next) => {
 // @desc      Reset password
 // @route     PUT /api/auth/resetpassword/:resettoken
 // @access    Public
-router.put('resetpassword/:resettoken', async (req, res, next) => {
+router.put('/resetpassword/:resettoken', async (req, res, next) => {
     // Get hashed token
     const resetPasswordToken = crypto
         .createHash('sha256')

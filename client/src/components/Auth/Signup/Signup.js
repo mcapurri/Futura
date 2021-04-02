@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import style from './Signup.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { signup } from '../../../utils/auth';
-import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
 
 const Signup = ({ setIsSignup, user, setUser, handleLogout, ...props }) => {
     const [message, setMessage] = useState('');
@@ -64,35 +63,6 @@ const Signup = ({ setIsSignup, user, setUser, handleLogout, ...props }) => {
     return (
         <div className={style.Home}>
             <header>
-                {user && (
-                    <>
-                        <div className={style.Avatar}>
-                            {user.avatar ? (
-                                <img src={user.avatar} alt="user-avatar" />
-                            ) : (
-                                <h1
-                                    style={{
-                                        fontWeight: 'bold',
-                                        fontSize: '4rem',
-                                    }}
-                                >
-                                    +
-                                </h1>
-                            )}
-                        </div>
-                        <LogoutIcon
-                            style={{
-                                fontSize: '2rem',
-                                display: 'flex',
-                                justifySelf: 'flex-start',
-                                position: 'fixed',
-                                right: '7%',
-                                top: '3%',
-                            }}
-                            onClick={handleLogout}
-                        />
-                    </>
-                )}
                 <img src="assets/sea-img.png" alt="sea-img" />
             </header>
             <Form className={style.Form} onSubmit={handleSubmit}>
@@ -198,7 +168,7 @@ const Signup = ({ setIsSignup, user, setUser, handleLogout, ...props }) => {
                     />
                 </Form.Group>
 
-                {message && <p style={{ color: 'red' }}>{message}</p>}
+                <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
                 <p>
                     Do you already have an account?
                     <button
