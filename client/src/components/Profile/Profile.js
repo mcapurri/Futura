@@ -6,7 +6,9 @@ const Profile = ({ user }) => {
     return (
         <div className={style.Profile}>
             <section className={style.Showcase}>
-                <h3 style={{ marginLeft: '10%' }}>Hello {user.firstName},</h3>
+                <h3 style={{ marginLeft: '10%' }}>
+                    Hello {user.user.firstName},
+                </h3>
                 <div
                     style={{
                         display: 'flex',

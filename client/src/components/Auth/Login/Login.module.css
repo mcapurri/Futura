@@ -10,10 +10,10 @@
     color: blanchedalmond;
     border: none;
     border-bottom: 3px solid #fff;
-    box-shadow: none;
     width: 80vw;
 }
 .Form input:focus {
+    box-shadow: none;
     background-color: transparent;
 }
 .Form p {
@@ -28,6 +28,7 @@
     height: 3rem;
     font-size: 1.2rem;
     margin-top: 10%;
+    color: #fff;
 }
 .Form button:nth-child(1) {
     border: none;

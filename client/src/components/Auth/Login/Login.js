@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import style from './Login.module.css';
 import { Form, Button } from 'bootstrap-4-react';
-import { button } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { login } from '../../../utils/auth';
 
 const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
@@ -65,24 +65,26 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                 />
             </Form.Group>
             <Form.Text className={style.forgPass}>
-                <button
+                {/* <button
                     onClick={() => {
                         setForgotPassword(true);
                     }}
                 >
                     Forgot password?
-                </button>
+                </button> */}
+                <Link to="/forgotpassword">Forgot password?</Link>
             </Form.Text>
             {message && <p style={{ color: 'red' }}>{message}</p>}
             <p>
                 Don't have an account?{' '}
-                <button
+                {/* <button
                     onClick={() => {
                         setIsSignup(true);
                     }}
                 >
                     Create one now
-                </button>
+                </button> */}
+                <Link to="/signup">Create one now</Link>
             </p>
             <Button type="submit">Login</Button>
         </Form>

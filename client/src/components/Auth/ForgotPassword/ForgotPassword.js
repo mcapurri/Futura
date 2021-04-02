@@ -1,11 +1,13 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 import style from './ForgotPassword.module.css';
+import Login from '../../Auth/Login/Login';
+import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 import { Form, Button } from 'bootstrap-4-react';
 import axios from 'axios';
 
-const ForgotPassword = () => {
-    const [, updateState] = useState();
-    const forceUpdate = useCallback(() => updateState({}), []);
+const ForgotPassword = (user, handleLogout, ...props) => {
+    console.log('props', props);
     const [message, setMessage] = useState('');
     const [email, setEmail] = useState('');
 
@@ -18,18 +20,52 @@ const ForgotPassword = () => {
         {
             email !== '' &&
                 axios
-                    .post('/api/auth/forgotPassword', { email: email })
+                    .post('/api/auth/forgotpassword', { email: email })
                     .then((response) => {
                         setMessage(response.data);
                         setEmail('');
-                        forceUpdate();
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 3000);
                     })
                     .catch((err) => console.log(err));
         }
     };
 
     return (
-        <div>
+        <div className={style.Home}>
+            <header>
+                {user && (
+                    <>
+                        <div className={style.Avatar}>
+                            {user.avatar ? (
+                                <img src={user.avatar} alt="user-avatar" />
+                            ) : (
+                                <h1
+                                    style={{
+                                        fontWeight: 'bold',
+                                        fontSize: '4rem',
+                                    }}
+                                >
+                                    +
+                                </h1>
+                            )}
+                        </div>
+                        <LogoutIcon
+                            style={{
+                                fontSize: '2rem',
+                                display: 'flex',
+                                justifySelf: 'flex-start',
+                                position: 'fixed',
+                                right: '7%',
+                                top: '3%',
+                            }}
+                            onClick={handleLogout}
+                        />
+                    </>
+                )}
+                <img src="assets/sea-img.png" alt="sea-img" />
+            </header>
             <Form onSubmit={sendEmail} className={style.Form}>
                 <Form.Group>
                     <label htmlFor="email">Email</label>
@@ -46,8 +82,9 @@ const ForgotPassword = () => {
                         <p style={{ color: 'red' }}>{message}</p>
                     </Form.Text>
                 )}
-                <Button type="submit">Reset password</Button>
+                <Button type="submit">Send recovery email</Button>
             </Form>
+            <Link to="/">Back</Link>
         </div>
     );
 };

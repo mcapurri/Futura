@@ -1,3 +1,22 @@
+.Home {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(45, 174, 184);
+    color: #fff;
+}
+.Home img {
+    height: 33vh;
+    /* margin-bottom: 10%; */
+}
+.Home header {
+    height: 33vh;
+    display: flex;
+    justify-content: center;
+}
+
 .Form {
     display: flex;
     flex-direction: column;
@@ -11,10 +30,10 @@
     color: blanchedalmond;
     border: none;
     border-bottom: 3px solid #fff;
-    box-shadow: none;
     width: 80vw;
 }
 .Form input:focus {
+    box-shadow: none;
     background-color: transparent;
 }
 .Form p {
@@ -29,6 +48,7 @@
     height: 3rem;
     font-size: 1.2rem;
     margin-top: 10%;
+    color: #fff;
 }
 .Form button:nth-child(1) {
     border: none;

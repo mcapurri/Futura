@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import style from './Signup.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { signup } from '../../../utils/auth';
+import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
 
-const Signup = ({ setIsSignup, setUser }) => {
+const Signup = ({ setIsSignup, user, setUser, handleLogout, ...props }) => {
     const [message, setMessage] = useState('');
 
     const [signupForm, setSignupForm] = useState({
@@ -26,7 +27,7 @@ const Signup = ({ setIsSignup, setUser }) => {
             [name]: value,
         });
     };
-    console.log('signupForm', signupForm);
+    // console.log('signupForm', signupForm);
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -61,124 +62,159 @@ const Signup = ({ setIsSignup, setUser }) => {
     };
 
     return (
-        <Form className={style.Form} onSubmit={handleSubmit}>
-            <Form.Group>
-                <label htmlFor="firstName">Name</label>
-                <Form.Input
-                    name="firstName"
-                    type="firstName"
-                    placeholder="Name"
-                    value={signupForm.firstName}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="lastName">Last name</label>
-                <Form.Input
-                    name="lastName"
-                    type="lastName"
-                    placeholder="Last name"
-                    value={signupForm.lastName}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="phoneNumber">Phone number</label>
-                <Form.Input
-                    name="phoneNumber"
-                    type="phoneNumber"
-                    placeholder="Phone number"
-                    value={signupForm.phoneNum}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="email">Email</label>
-                <Form.Input
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    value={signupForm.email}
-                    onChange={handleChange}
-                />
-            </Form.Group>
+        <div className={style.Home}>
+            <header>
+                {user && (
+                    <>
+                        <div className={style.Avatar}>
+                            {user.avatar ? (
+                                <img src={user.avatar} alt="user-avatar" />
+                            ) : (
+                                <h1
+                                    style={{
+                                        fontWeight: 'bold',
+                                        fontSize: '4rem',
+                                    }}
+                                >
+                                    +
+                                </h1>
+                            )}
+                        </div>
+                        <LogoutIcon
+                            style={{
+                                fontSize: '2rem',
+                                display: 'flex',
+                                justifySelf: 'flex-start',
+                                position: 'fixed',
+                                right: '7%',
+                                top: '3%',
+                            }}
+                            onClick={handleLogout}
+                        />
+                    </>
+                )}
+                <img src="assets/sea-img.png" alt="sea-img" />
+            </header>
+            <Form className={style.Form} onSubmit={handleSubmit}>
+                <Form.Group>
+                    <label htmlFor="firstName">Name</label>
+                    <Form.Input
+                        name="firstName"
+                        type="firstName"
+                        placeholder="Name"
+                        value={signupForm.firstName}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="lastName">Last name</label>
+                    <Form.Input
+                        name="lastName"
+                        type="lastName"
+                        placeholder="Last name"
+                        value={signupForm.lastName}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="phoneNumber">Phone number</label>
+                    <Form.Input
+                        name="phoneNumber"
+                        type="phoneNumber"
+                        placeholder="Phone number"
+                        value={signupForm.phoneNum}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="email">Email</label>
+                    <Form.Input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        value={signupForm.email}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
 
-            <Form.Group>
-                <label htmlFor="password">Password</label>
-                <Form.Input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={signupForm.password}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="password">Confirm password</label>
-                <Form.Input
-                    name="confirm"
-                    type="password"
-                    placeholder="confirm password"
-                    value={signupForm.confirm}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="street">Street</label>
-                <Form.Input
-                    name="street"
-                    type="text"
-                    placeholder="Street"
-                    value={signupForm.street}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="city">City</label>
-                <Form.Input
-                    name="city"
-                    type="text"
-                    placeholder="City"
-                    value={signupForm.city}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="zipCode">ZIP Code</label>
-                <Form.Input
-                    name="zipCode"
-                    type="text"
-                    placeholder="ZIP Code"
-                    value={signupForm.zipCode}
-                    onChange={handleChange}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="state">State</label>
-                <Form.Input
-                    name="state"
-                    type="text"
-                    placeholder="State"
-                    value={signupForm.state}
-                    onChange={handleChange}
-                />
-            </Form.Group>
+                <Form.Group>
+                    <label htmlFor="password">Password</label>
+                    <Form.Input
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        value={signupForm.password}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="password">Confirm password</label>
+                    <Form.Input
+                        name="confirm"
+                        type="password"
+                        placeholder="confirm password"
+                        value={signupForm.confirm}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="street">Street</label>
+                    <Form.Input
+                        name="street"
+                        type="text"
+                        placeholder="Street"
+                        value={signupForm.street}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="city">City</label>
+                    <Form.Input
+                        name="city"
+                        type="text"
+                        placeholder="City"
+                        value={signupForm.city}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="zipCode">ZIP Code</label>
+                    <Form.Input
+                        name="zipCode"
+                        type="text"
+                        placeholder="ZIP Code"
+                        value={signupForm.zipCode}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="state">State</label>
+                    <Form.Input
+                        name="state"
+                        type="text"
+                        placeholder="State"
+                        value={signupForm.state}
+                        onChange={handleChange}
+                    />
+                </Form.Group>
 
-            {message && <p style={{ color: 'red' }}>{message}</p>}
-            <p>
-                Do you already have an account?
-                <button
-                    onClick={() => {
-                        setIsSignup(false);
-                    }}
-                >
-                    Log in
-                </button>
-            </p>
-            <Button primary type="submit">
-                Sign up
-            </Button>
-        </Form>
+                {message && <p style={{ color: 'red' }}>{message}</p>}
+                <p>
+                    Do you already have an account?
+                    <button
+                        onClick={() => {
+                            // setIsSignup(false);
+                            props.history.push('/');
+                        }}
+                    >
+                        Log in
+                    </button>
+                </p>
+                <Button primary type="submit">
+                    Sign up
+                </Button>
+            </Form>
+        </div>
     );
 };
 

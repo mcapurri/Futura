@@ -32,6 +32,7 @@ passport.deserializeUser((id, done) => {
         });
 });
 
+// local config
 passport.use(
     new LocalStrategy(
         {
@@ -40,6 +41,7 @@ passport.use(
         },
         (email, password, done) => {
             console.log('credentials', email, password);
+
             // login
             User.findOne({ email })
                 .then((userFromDB) => {
@@ -66,38 +68,35 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-// passport - github config
-const GithubStrategy = require('passport-github').Strategy;
+// Passport JWT config
+const JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt;
+const options = {
+    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+    secretOrKey: process.env.JWT_SECRET,
+    // issuer: 'accounts.examplesoft.com',
+    // audience: 'yoursite.net',
+};
+
 passport.use(
-    new GithubStrategy(
-        {
-            clientID: process.env.GITHUB_ID,
-            clientSecret: process.env.GITHUB_SECRET,
-            callbackURL: 'http://127.0.0.1:3000/auth/github/callback',
-        },
-        (accessToken, refreshToken, profile, done) => {
-            console.log('profile', profile);
-            // find or create user
-            User.findOne({ githubId: profile.id })
-                .then((userFromDB) => {
-                    if (userFromDB !== null) {
-                        done(null, userFromDB);
-                    } else {
-                        User.create({
-                            githubId: profile.id,
-                            username: profile._json.login,
-                            avatar: profile._json.avatar_url,
-                        }).then((userFromDB) => {
-                            done(null, userFromDB);
-                        });
-                    }
-                })
-                .catch((err) => {
-                    done(err);
-                });
-        }
-    )
+    new JwtStrategy(options, (jwt_payload, done) => {
+        User.findOne({ id: jwt_payload.sub })
+            .then((err, user) => {
+                if (err) {
+                    return done(err, false);
+                }
+                if (user) {
+                    return done(null, user);
+                } else {
+                    return done(null, false);
+                    // or you could create a new account
+                }
+            })
+            .catch((err) => console.log(err));
+    })
 );
+
+app.use(passport.initialize());
 
 // end of passport
 
