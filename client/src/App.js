@@ -58,9 +58,7 @@ function App(props) {
             <Route
                 exact
                 path="/resources"
-                render={(props) => (
-                    <Resources {...props} handleLogout={handleLogout} />
-                )}
+                render={(props) => <Resources {...props} />}
             />
         </Switch>
     );

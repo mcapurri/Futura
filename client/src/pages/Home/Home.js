@@ -10,7 +10,7 @@ import Profile from '../../components/Profile/Profile';
 
 import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
 
-const Home = ({ user, setUser, handleLogout }) => {
+const Home = ({ user, setUser, handleLogout, ...props }) => {
     // const [isSignup, setIsSignup] = useState(false);
     // const [forgotPassword, setForgotPassword] = useState(false);
 
@@ -69,7 +69,7 @@ const Home = ({ user, setUser, handleLogout }) => {
                         path="/"
                         render={(props) => <Profile {...props} user={user} />}
                     />
-                    <Footer />
+                    <Footer history={props.history} />
                 </>
             )}
         </div>
