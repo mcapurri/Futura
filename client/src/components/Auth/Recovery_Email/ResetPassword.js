@@ -3,6 +3,7 @@ import style from './ResetPassword.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { RiArrowGoBackLine as BackArrow } from 'react-icons/ri';
 
 const ResetPassword = (props) => {
     const [message, setMessage] = useState('');
@@ -25,7 +26,10 @@ const ResetPassword = (props) => {
         event.preventDefault();
         axios
             .post(`/api/auth/resetpassword/${resetForm.token}`)
-            .then((res) => console.log('response', res))
+            .then((res) => {
+                console.log('response', res);
+                setMessage(res);
+            })
             .catch((err) => console.log(err));
     };
 
@@ -59,7 +63,10 @@ const ResetPassword = (props) => {
                 <Button type="submit">Reset Password</Button>
             </Form>
 
-            <Link to="/">Back</Link>
+            <Link to="/">
+                {' '}
+                <BackArrow style={{ fontSize: '2rem' }} />
+            </Link>
         </div>
     );
 };

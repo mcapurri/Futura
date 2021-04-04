@@ -3,7 +3,7 @@ import style from './Signup.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { signup } from '../../../utils/auth';
 
-const Signup = ({ setIsSignup, user, setUser, handleLogout, ...props }) => {
+const Signup = ({ setIsSignup, user, setUser, ...props }) => {
     const [message, setMessage] = useState('');
 
     const [signupForm, setSignupForm] = useState({

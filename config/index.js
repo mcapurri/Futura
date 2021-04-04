@@ -7,7 +7,7 @@ const logger = require('morgan');
 
 // ℹ️ Needed when we deal with cookies (we will when dealing with authentication)
 // https://www.npmjs.com/package/cookie-parser
-// const cookieParser = require('cookie-parser');
+const cookieParser = require('cookie-parser');
 
 // ℹ️ Needed to accept from requests from 'the outside'. CORS stands for cross origin resource sharing
 // unless the request if from the same domain, by default express wont accept POST requests
@@ -26,27 +26,18 @@ module.exports = (app) => {
             origin: process.env.ORIGIN || 'http://localhost:3000',
         })
     );
-    // app.use((req, res, next) => {
-    //     res.setHeader('Access-Control-Allow-Origin', '*');
-    //     res.setHeader(
-    //         'Access-Control-Allow-Methods',
-    //         'GET, POST, PATCH, DELETE'
-    //     );
-    //     res.setHeader(
-    //         'Access-Control-Allow-Headers',
-    //         // 'Content-Type, Authorization'
-    //         'Content-Type: application/json'
-    //     );
-    //     next();
-    // });
 
     // In development environment the app logs
     app.use(logger('dev'));
 
-    // To have access to `body` property in the request
+    // Body parser
     app.use(express.json());
     app.use(express.urlencoded({ extended: true }));
-    // app.use(cookieParser());
+
+    //Cookie parser
+    app.use(cookieParser());
+
+    // File uploading
 
     // Handles access to the favicon
 };

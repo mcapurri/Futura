@@ -10,6 +10,31 @@ const app = express();
 // This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
 
+// session configuration
+const session = require('express-session');
+// // session store using mongo
+const MongoStore = require('connect-mongo');
+
+const mongoose = require('mongoose');
+
+app.use(
+    session({
+        secret: process.env.SESSION_SECRET,
+        cookie: {
+            // samesite: 'none',
+            httpOnly: true,
+            maxAge: 1000 * 60 * 60 * 24,
+        },
+        saveUninitialized: false,
+        resave: true,
+        store: new MongoStore({
+            mongooseConnection: mongoose.connection,
+            mongoUrl: 'mongodb://localhost/Vet-clinic-project',
+        }),
+    })
+);
+// end of session configuration
+
 // passport configuration
 const User = require('./models/User');
 const passport = require('passport');
@@ -86,6 +111,7 @@ passport.use(
                     return done(err, false);
                 }
                 if (user) {
+                    console.log('user jwt', user);
                     return done(null, user);
                 } else {
                     return done(null, false);
@@ -97,6 +123,7 @@ passport.use(
 );
 
 app.use(passport.initialize());
+// passport.authenticate('jwt', cfg.jwtSession);
 
 // end of passport
 

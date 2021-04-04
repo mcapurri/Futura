@@ -15,44 +15,50 @@ router.get('/loggedin', (req, res, next) => {
 // @desc      Log in
 // @route     POST /api/auth//login
 // @access    Public
-// router.post('/login', (req, res, next) => {
-//     passport.authenticate('local', (err, user) => {
-//         if (err) {
-//             return res
-//                 .status(500)
-//                 .json({ message: 'Error while attempting to login' });
-//         }
-//         if (!user) {
-//             return res.status(400).json({ message: 'Wrong credentials' });
-//         }
-//         req.login(user, (err) => {
-//             if (err) {
-//                 return res
-//                     .status(500)
-//                     .json({ message: 'Error while attempting to login' });
-//             }
-//             return res.status(200).json(user);
-//         });
-//     })(req, res);
-// });
-
-router.post('/login', function (req, res, next) {
-    passport.authenticate('local', { session: false }, (err, user, info) => {
-        if (err || !user) {
-            return res.status(400).json({
-                message: 'Something is not right',
-                user: user,
-            });
+router.post('/login', (req, res, next) => {
+    passport.authenticate('local', (err, user) => {
+        if (err) {
+            return res
+                .status(500)
+                .json({ message: 'Error while attempting to login' });
         }
-        req.login(user, { session: false }, (err) => {
+        if (!user) {
+            return res.status(400).json({ message: 'Wrong credentials' });
+        }
+        req.login(user, (err) => {
             if (err) {
-                res.send(err);
-            } // generate a signed son web token with the contents of user object and return it in the response
-            const token = user.getSignedJwtToken();
-            return res.json({ user, token });
+                return res
+                    .status(500)
+                    .json({ message: 'Error while attempting to login' });
+            }
+            return res.status(200).json(user);
         });
     })(req, res);
 });
+
+// router.post('/login', function (req, res, next) {
+//     passport.authenticate('local', { session: false }, (err, user, info) => {
+//         if (err || !user) {
+//             return res.status(400).json({
+//                 message: 'Wrong credentials',
+//                 user: user,
+//             });
+//         }
+//         // if (err) {
+//         //     return res.status(500).json('Error while attempting to login');
+//         // }
+//         // if (!user) {
+//         //     return res.status(400).json('Wrong credentials');
+//         // }
+//         req.login(user, { session: false }, (err) => {
+//             if (err) {
+//                 res.send(err);
+//             } // generate a signed son web token with the contents of user object and return it in the response
+//             const token = user.getSignedJwtToken();
+//             return res.json({ user, token });
+//         });
+//     })(req, res);
+// });
 
 // @desc      Sign up
 // @route     POST /api/auth//signup
@@ -129,8 +135,10 @@ router.post('/forgotpassword', (req, res, next) => {
                 const resetToken = user.getResetPasswordToken();
                 // Create reset url
                 const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
-                const message = `We received a request to reset your password for your account. We're here to help!<br/>Simply click the link below to reset your password:<br/> \n\n ${resetUrl}
-                
+                // const resetUrl = `${process.env.ORIGIN}/api/auth/resetpassword/${resetToken}`;
+
+                const message = `We received a request to reset your password for your account. We're here to help! \n\n 
+                Simply click the link below to reset your password: \n\n ${resetUrl} \n\n 
                 If you didn't ask any changes, please ignore this email`;
                 user.sendEmail({
                     email: user.email,
@@ -149,6 +157,7 @@ router.post('/forgotpassword', (req, res, next) => {
 // @route     PUT /api/auth/resetpassword/:resettoken
 // @access    Public
 router.put('/resetpassword/:resettoken', async (req, res, next) => {
+    console.log('req.body', req.body);
     // Get hashed token
     const resetPasswordToken = crypto
         .createHash('sha256')

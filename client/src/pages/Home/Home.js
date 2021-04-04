@@ -3,6 +3,7 @@ import style from './Home.module.css';
 import { Route } from 'react-router-dom';
 
 import Login from '../../components/Auth/Login/Login';
+import Footer from '../../components/Footer/Footer';
 // import Signup from '../../components/Auth/Signup/Signup';
 // import ForgotPassword from '../../components/Auth/ForgotPassword/ForgotPassword';
 import Profile from '../../components/Profile/Profile';
@@ -62,11 +63,14 @@ const Home = ({ user, setUser, handleLogout }) => {
                     )}
                 />
             ) : (
-                <Route
-                    exact
-                    path="/"
-                    render={(props) => <Profile {...props} user={user} />}
-                />
+                <>
+                    <Route
+                        exact
+                        path="/"
+                        render={(props) => <Profile {...props} user={user} />}
+                    />
+                    <Footer />
+                </>
             )}
         </div>
     );

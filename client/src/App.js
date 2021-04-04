@@ -9,7 +9,7 @@ import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 
 function App(props) {
-    const [user, setUser] = useState(props.user || '');
+    const [user, setUser] = useState(props.user);
     // const [isSignup, setIsSignup] = useState(false);
 
     console.log('user', user);
@@ -40,23 +40,19 @@ function App(props) {
             <Route
                 exact
                 path="/signup"
-                render={(props) => (
-                    <Signup
-                        {...props}
-                        setUser={setUser}
-                        handleLogout={handleLogout}
-                    />
-                )}
+                render={(props) => <Signup {...props} setUser={setUser} />}
             />
             <Route
                 exact
                 path="/forgotpassword"
                 render={(props) => <ForgotPassword {...props} />}
+                // component={ForgotPassword}
             />
             <Route
                 exact
                 path="/resetpassword/:resettoken"
                 render={(props) => <ResetPassword {...props} />}
+                // component={ResetPassword}
             />
         </Switch>
     );
