@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
 
 import Home from './pages/Home/Home';
+import Resources from './pages/Resources/Resources';
 import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
@@ -53,6 +54,13 @@ function App(props) {
                 path="/resetpassword/:resettoken"
                 render={(props) => <ResetPassword {...props} />}
                 // component={ResetPassword}
+            />
+            <Route
+                exact
+                path="/resources"
+                render={(props) => (
+                    <Resources {...props} handleLogout={handleLogout} />
+                )}
             />
         </Switch>
     );

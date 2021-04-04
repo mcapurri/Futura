@@ -2,7 +2,7 @@ import React from 'react';
 import { AiFillHome as HomeLogo } from 'react-icons/ai';
 import { BsChatFill as ChatLogo } from 'react-icons/bs';
 import { FaBookOpen as ResourcesLogo } from 'react-icons/fa';
-
+import { Link, NavLink } from 'react-router-dom';
 const Footer = () => {
     return (
         <div
@@ -18,24 +18,32 @@ const Footer = () => {
                 backgroundColor: 'rgb(13, 122, 177)',
             }}
         >
-            <HomeLogo
-                style={{
-                    fontSize: '2rem',
-                }}
-                // onClick={}
-            />
-            <ChatLogo
-                style={{
-                    fontSize: '2rem',
-                }}
-                // onClick={}
-            />
-            <ResourcesLogo
-                style={{
-                    fontSize: '2rem',
-                }}
-                // onClick={}
-            />
+            {/* <NavLink> */}
+            <Link to="/">
+                <HomeLogo
+                    style={{
+                        fontSize: '2rem',
+                    }}
+                    // onClick={}
+                />
+            </Link>
+            <Link to="/chat">
+                <ChatLogo
+                    style={{
+                        fontSize: '2rem',
+                    }}
+                    // onClick={}
+                />
+            </Link>
+            <Link to="/resources">
+                <ResourcesLogo
+                    style={{
+                        fontSize: '2rem',
+                    }}
+                    // onClick={}
+                />
+            </Link>
+            {/* </NavLink> */}
         </div>
     );
 };
