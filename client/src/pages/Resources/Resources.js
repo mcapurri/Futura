@@ -13,10 +13,12 @@ const Resources = () => {
             method: 'GET',
             url: 'https://bing-news-search1.p.rapidapi.com/news/search',
             params: {
-                q: 'recycling africa',
-                freshness: 'Day',
+                q: ' renewable energy nigeria' && 'recycling nigeria',
+                freshness: 'Week',
                 textFormat: 'Raw',
                 safeSearch: 'Off',
+                count: 50,
+                offset: 5,
             },
             headers: {
                 'x-bingapis-sdk': 'true',
@@ -29,7 +31,7 @@ const Resources = () => {
         axios
             .request(options)
             .then(function (response) {
-                // console.log(response.data);
+                console.log(response.data);
                 setNewsList(response.data.value);
             })
             .catch(function (error) {
@@ -45,13 +47,12 @@ const Resources = () => {
 
     const displayNews = (newsArr) => {
         return newsArr.map((news) => {
-            console.log('news', news);
             return (
                 <Card key={news.url} style={{ width: '18rem', margin: '5% 0' }}>
                     {news.image && (
                         <img
                             src={news.image.thumbnail.contentUrl}
-                            style={{ maxHeight: '15rem' }}
+                            style={{ maxHeight: '15rem', objectFit: 'contain' }}
                         />
                     )}
                     <Card.Body>
