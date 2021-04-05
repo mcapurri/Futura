@@ -34,7 +34,7 @@ const Footer = (props) => {
                     }}
                 />
             </Link>
-            <Link to="/resources">
+            <Link to="/resources/news">
                 <ResourcesLogo
                     style={{
                         fontSize: '2rem',

@@ -4,7 +4,9 @@ import { Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
 
 import Home from './pages/Home/Home';
-import Resources from './pages/Resources/Resources';
+// import Resources from './pages/Resources/Resources';
+import Website from './pages/Resources/Website';
+import News from './pages/Resources/News';
 import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
@@ -57,8 +59,14 @@ function App(props) {
             />
             <Route
                 exact
-                path="/resources"
-                render={(props) => <Resources {...props} />}
+                path="/resources/website"
+                render={(props) => <Website {...props} />}
+            />
+
+            <Route
+                exact
+                path="/resources/news"
+                render={(props) => <News {...props} />}
             />
         </Switch>
     );
