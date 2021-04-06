@@ -3,8 +3,6 @@ import style from './Map.module.css';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
-import { RiArrowGoBackLine as BackArrow } from 'react-icons/ri';
-import { Link } from 'react-router-dom';
 
 import Footer from '../../components/Footer/Footer';
 
@@ -13,11 +11,18 @@ mapboxgl.accessToken =
 
 const Map = () => {
     const mapContainer = useRef();
-    const [berlin, setBerlin] = useState({
+
+    const [viewport, setViewport] = useState({
         lng: 13.405,
         lat: 52.52,
         zoom: 10,
     });
+
+    // const [current, setcurrent] = useState({
+    //     lng: currentPosition.lng,
+    //     lat: currentPosition.lat,
+    //     zoom: 10,
+    // });
 
     let lngLat;
 
@@ -36,8 +41,8 @@ const Map = () => {
         const map = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
-            center: [berlin.lng, berlin.lat],
-            zoom: berlin.zoom,
+            center: [viewport.lng, viewport.lat],
+            zoom: viewport.zoom,
         });
         map.addControl(
             new mapboxgl.GeolocateControl({
@@ -45,18 +50,19 @@ const Map = () => {
                     enableHighAccuracy: true,
                 },
                 trackUserLocation: true,
+                // showUserLocation: true,
             })
         );
 
         // setting a popup
-        const popup = new mapboxgl.Popup({
-            closeButton: false,
-        });
-        popup
-            .setLngLat([13.455, 52.45])
-            .setHTML('<span>Drop-off</span>')
-            .setMaxWidth('200px')
-            .addTo(map);
+        // const popup = new mapboxgl.Popup({
+        //     closeButton: false,
+        // });
+        // popup
+        //     .setLngLat([13.455, 52.45])
+        //     .setHTML('<span>Drop-off</span>')
+        //     .setMaxWidth('200px')
+        //     .addTo(map);
 
         // Geocoder
         // map.addControl(
@@ -66,7 +72,7 @@ const Map = () => {
         //     })
         // );
         map.on('move', () => {
-            setBerlin({
+            setViewport({
                 lng: map.getCenter().lng.toFixed(4),
                 lat: map.getCenter().lng.toFixed(4),
                 zoom: map.getZoom().toFixed(2),
@@ -79,7 +85,14 @@ const Map = () => {
         });
         const addMarker = (event) => {
             // console.log(event.lngLat);
-            marker.setLngLat(event.lngLat).addTo(map);
+            marker
+                .setLngLat(event.lngLat)
+                .setPopup(
+                    new mapboxgl.Popup({ closeButton: false }).setHTML(
+                        '<h6>Drop-off</h6>'
+                    )
+                )
+                .addTo(map);
             address(event.lngLat);
         };
         map.on('click', addMarker);

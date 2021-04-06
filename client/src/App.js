@@ -14,9 +14,11 @@ import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 import Map from './components/Map/Map';
 
 function App(props) {
-    const [user, setUser] = useState(props.user);
+    const [user, setUser] = useState({
+        ...props.user,
+        avatar: props.user.avatar,
+    });
     // const [isSignup, setIsSignup] = useState(false);
-
     console.log('user', user);
 
     const handleLogout = () =>

@@ -56,6 +56,7 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
             } else {
                 // signup was successful
                 setUser(user);
+                props.history.push('/');
             }
         });
     };
