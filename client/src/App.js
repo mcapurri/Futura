@@ -7,6 +7,7 @@ import Home from './pages/Home/Home';
 // import Resources from './pages/Resources/Resources';
 import Website from './pages/Resources/Website';
 import News from './pages/Resources/News';
+import Chat from './pages/Chat/Chat';
 import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
@@ -57,6 +58,7 @@ function App(props) {
                 render={(props) => <ResetPassword {...props} />}
                 // component={ResetPassword}
             />
+            <Route exact path="/chat" render={(props) => <Chat {...props} />} />
             <Route
                 exact
                 path="/resources/website"

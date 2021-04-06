@@ -21,7 +21,7 @@ app.use(
     session({
         secret: process.env.SESSION_SECRET,
         cookie: {
-            // samesite: 'none',
+            SameSite: ' none',
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24,
         },
@@ -126,6 +126,28 @@ app.use(passport.initialize());
 // passport.authenticate('jwt', cfg.jwtSession);
 
 // end of passport
+
+// Socket.io
+// const socketIo = require('socket.io');
+// const http = require('http');
+// const server = http.createServer(app);
+// const io = socketIo(server, {
+//     cors: {
+//         origin: 'http://localhost:3000',
+//         methods: ['GET', 'POST'],
+//         credentials: true,
+//     },
+// });
+
+// io.on('connection', (socket) => {
+//     const { id } = socket.client;
+//     console.log(`User Connected: ${id}`);
+//     socket.on('chat message', ({ nickname, msg }) => {
+//         io.emit('chat message', { nickname, msg });
+//     });
+// });
+
+// End Socket.io
 
 // Routes
 const allRoutes = require('./routes');

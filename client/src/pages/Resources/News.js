@@ -3,6 +3,7 @@ import style from './News.module.css';
 import axios from 'axios';
 import { Card, Container, Col } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
+import Spinner from '../../components/UI/Spinner/Spinner';
 import Footer from '../../components/Footer/Footer';
 import { rapidKey } from '../../rapidKey.json';
 const News = (props) => {
@@ -69,6 +70,7 @@ const News = (props) => {
                                 pathname: '/resources/website',
                                 state: {
                                     url: news.url,
+                                    title: news.name,
                                 },
                             }}
                         >
@@ -80,6 +82,7 @@ const News = (props) => {
         });
     };
 
+    if (!newsList) return <Spinner />;
     return (
         <div className={style.News}>
             <Container fluid={true}>
