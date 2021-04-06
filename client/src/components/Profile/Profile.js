@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from 'bootstrap-4-react';
 import style from './Profile.module.css';
 
-const Profile = ({ user }) => {
+const Profile = ({ user, ...props }) => {
     return (
         <div className={style.Profile}>
             <section className={style.Showcase}>
@@ -28,7 +28,9 @@ const Profile = ({ user }) => {
                     </div>
                 </div>
             </section>
-            <Button>Drop-offs near you</Button>
+            <Button onClick={() => props.history.push('/map')}>
+                Drop-offs near you
+            </Button>
         </div>
     );
 };

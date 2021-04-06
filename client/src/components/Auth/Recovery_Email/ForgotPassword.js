@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import style from './ForgotPassword.module.css';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'bootstrap-4-react';
+import { RiArrowGoBackLine as BackArrow } from 'react-icons/ri';
 import axios from 'axios';
 
 const ForgotPassword = (props) => {
@@ -54,7 +55,10 @@ const ForgotPassword = (props) => {
                 <Button type="submit">Send recovery email</Button>
             </Form>
 
-            <Link to="/">Back</Link>
+            <Link to="/">
+                {' '}
+                <BackArrow style={{ fontSize: '2rem' }} />
+            </Link>
         </div>
     );
 };

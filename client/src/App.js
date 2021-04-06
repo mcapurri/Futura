@@ -11,6 +11,7 @@ import Chat from './pages/Chat/Chat';
 import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
+import Map from './components/Map/Map';
 
 function App(props) {
     const [user, setUser] = useState(props.user);
@@ -70,6 +71,7 @@ function App(props) {
                 path="/resources/news"
                 render={(props) => <News {...props} />}
             />
+            <Route exact path="/map" render={(props) => <Map {...props} />} />
         </Switch>
     );
 }
