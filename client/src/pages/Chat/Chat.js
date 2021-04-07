@@ -1,6 +1,5 @@
 // import React, { useState, useEffect } from 'react';
 // import io from 'socket.io-client';
-import Footer from '../../components/Footer/Footer';
 
 // const socket = io.connect('http://localhost:5005');
 
@@ -46,7 +45,6 @@ const Chat = () => {
             <input name="msg" onChange={handleChange} value={state.msg} />
             <button onClick={handleSubmit}>Send</button>
             <div>{renderChat}</div> */}
-            <Footer />
         </div>
     );
 };

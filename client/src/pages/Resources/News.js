@@ -4,7 +4,6 @@ import axios from 'axios';
 import { Card, Container, Col } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import Footer from '../../components/Footer/Footer';
 import { rapidKey } from '../../rapidKey.json';
 const News = (props) => {
     const [newsList, setNewsList] = useState('');
@@ -90,7 +89,6 @@ const News = (props) => {
                     {displayNews([...newsList])}
                 </Col>
             </Container>
-            <Footer />
         </div>
     );
 };

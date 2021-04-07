@@ -4,18 +4,14 @@ import { Route } from 'react-router-dom';
 import service from '../../utils/service';
 import axios from 'axios';
 import Login from '../../components/Auth/Login/Login';
-import Footer from '../../components/Footer/Footer';
-// import Signup from '../../components/Auth/Signup/Signup';
-// import ForgotPassword from '../../components/Auth/ForgotPassword/ForgotPassword';
 import Profile from '../../components/Profile/Profile';
 
-import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
+// import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
+import { TiThMenu as MenuIcon } from 'react-icons/ti';
 import { ImUserPlus } from 'react-icons/im';
 
-const Home = ({ user, setUser, handleLogout, ...props }) => {
+const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
     console.log('user', user);
-    // const [isSignup, setIsSignup] = useState(false);
-    // const [forgotPassword, setForgotPassword] = useState(false);
 
     // const handleSubmit = () => {
     //     // event.preventDefault();
@@ -30,19 +26,6 @@ const Home = ({ user, setUser, handleLogout, ...props }) => {
     //         })
     //         .catch((err) => {
     //             console.log(err);
-    //         });
-    // };
-    // const handleSubmit = () => {
-    //     // event.preventDefault();
-
-    //     console.log('data im sending', user);
-    //     service
-    //         .saveNewThing(user)
-    //         .then((res) => {
-    //             console.log('added: ', res.message);
-    //         })
-    //         .catch((err) => {
-    //             console.log('Error while adding the thing: ', err);
     //         });
     // };
 
@@ -126,7 +109,7 @@ const Home = ({ user, setUser, handleLogout, ...props }) => {
                                 </h1>
                             )}
                         </div>
-                        <LogoutIcon
+                        <MenuIcon
                             style={{
                                 fontSize: '2rem',
                                 display: 'flex',
@@ -135,7 +118,7 @@ const Home = ({ user, setUser, handleLogout, ...props }) => {
                                 right: '7%',
                                 top: '3%',
                             }}
-                            onClick={handleLogout}
+                            onClick={toggleDrawer}
                         />
                     </>
                 )}
@@ -156,14 +139,11 @@ const Home = ({ user, setUser, handleLogout, ...props }) => {
                     )}
                 />
             ) : (
-                <>
-                    <Route
-                        exact
-                        path="/"
-                        render={(props) => <Profile {...props} user={user} />}
-                    />
-                    <Footer history={props.history} />
-                </>
+                <Route
+                    exact
+                    path="/"
+                    render={(props) => <Profile {...props} user={user} />}
+                />
             )}
         </div>
     );

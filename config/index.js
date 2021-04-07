@@ -46,7 +46,5 @@ module.exports = (app) => {
     //Cookie parser
     app.use(cookieParser());
 
-    // File uploading
-
     // Handles access to the favicon
 };

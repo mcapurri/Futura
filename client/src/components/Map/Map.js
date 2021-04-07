@@ -4,8 +4,6 @@ import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
 
-import Footer from '../../components/Footer/Footer';
-
 mapboxgl.accessToken =
     'pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A';
 
@@ -108,16 +106,13 @@ const Map = () => {
     }, [lngLat]);
 
     return (
-        <>
-            <div>
-                {/* <div className={style.Sidebar}>
+        <div>
+            {/* <div className={style.Sidebar}>
                     Longitude: {berlin.lng} | Latitude: {berlin.lat} | Zoom:{' '}
                     {berlin.zoom}
                 </div> */}
-                <div className={style.Map} ref={mapContainer}></div>
-            </div>
-            <Footer />
-        </>
+            <div className={style.Map} ref={mapContainer}></div>
+        </div>
     );
 };
 

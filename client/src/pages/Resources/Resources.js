@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 // import style from './Resources.module.css';
-import Footer from '../../components/Footer/Footer';
 import News from './News';
 import Website from './Website';
 
@@ -23,7 +22,6 @@ const Resources = (props) => {
             ) : (
                 <Website url={url} />
             )}
-            <Footer />
         </>
     );
 };

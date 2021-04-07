@@ -1,5 +1,4 @@
 import React from 'react';
-import Footer from '../../components/Footer/Footer';
 
 const Website = (props) => {
     const url = props.location.state.url;
@@ -13,7 +12,6 @@ const Website = (props) => {
                 style={{ width: '100%', height: '100vh' }}
                 title={title}
             ></iframe>
-            <Footer />
         </div>
     );
 };
