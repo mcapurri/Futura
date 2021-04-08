@@ -14,19 +14,17 @@ import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import Map from './components/Map/Map';
+import { Modal, Button } from 'bootstrap-4-react';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [user, setUser] = useState({
-        ...props.user,
-        avatar: props.user.avatar,
-    });
+
+    const [user, setUser] = useState(props.user);
     console.log('user', user);
     console.log('drawerOpen', drawerOpen);
 
     const toggleDrawer = () => {
         setDrawerOpen(() => !drawerOpen);
-        console.log('toggleDrawer');
     };
     const handleLogout = () =>
         logout()
@@ -41,8 +39,10 @@ function App(props) {
         <>
             {drawerOpen && (
                 <SideDrawer
+                    user={user}
                     drawerOpen={drawerOpen}
                     toggleDrawer={toggleDrawer}
+                    handleLogout={handleLogout}
                 />
             )}
 

@@ -8,7 +8,7 @@ const Backdrop = ({ toggleDrawer }) => {
                 height: '100%',
                 position: 'fixed',
                 zIndex: '100',
-                left: '0',
+                right: '0',
                 top: '0',
                 backgroundColor: 'rgba(0, 0, 0, 0.5)',
             }}
