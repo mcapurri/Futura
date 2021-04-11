@@ -2,6 +2,7 @@ const router = require('express').Router();
 const User = require('../models/User');
 const bcrypt = require('bcrypt');
 const passport = require('passport');
+const crypto = require('crypto');
 
 // @desc      Check logged in user
 // @route     GET /api/auth/loggedin
@@ -168,9 +169,10 @@ router.put('/resetpassword/:resettoken', async (req, res, next) => {
         resetPasswordToken,
         getResetPasswordExpire: { $gt: Date.now() },
     });
+    console.log('user', user);
 
     if (!user) {
-        return next(err);
+        return next();
     }
 
     // Set new password

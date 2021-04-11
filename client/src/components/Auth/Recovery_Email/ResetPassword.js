@@ -16,7 +16,7 @@ const ResetPassword = (props) => {
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
-            .post(`/api/auth/resetpassword/${token}`)
+            .put(`/api/auth/resetpassword/${token}`, { password, confirm })
             .then((res) => {
                 console.log('response', res);
                 setMessage(res);
