@@ -29,6 +29,10 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                 // console.log(user);
             }
         });
+        // const user = await login({ email: email, password: password });
+        // user.message
+        //     ? (setMessage(user.message), setEmail(''), setPassword(''))
+        //     : setUser(user);
     };
     return (
         <Form className={style.Form} onSubmit={handleSubmit}>
