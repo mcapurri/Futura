@@ -2,16 +2,13 @@ import React, { useState } from 'react';
 import style from './ForgotPassword.module.css';
 import { Link } from 'react-router-dom';
 import { Form, Button } from 'bootstrap-4-react';
+import useInput from '../../../utils/useInput';
 import { RiArrowGoBackLine as BackArrow } from 'react-icons/ri';
 import axios from 'axios';
 
 const ForgotPassword = (props) => {
     const [message, setMessage] = useState('');
-    const [email, setEmail] = useState('');
-
-    const handleChange = (event) => {
-        setEmail(event.target.value);
-    };
+    const [email, setEmail] = useInput('');
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -42,7 +39,7 @@ const ForgotPassword = (props) => {
                         type="email"
                         placeholder="Email"
                         value={email}
-                        onChange={handleChange}
+                        onChange={setEmail}
                     />
                 </Form.Group>
                 {message && (

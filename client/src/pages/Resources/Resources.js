@@ -5,12 +5,7 @@ import Website from './Website';
 
 const Resources = (props) => {
     console.log('propsResources', props.location);
-    // let url;
-    // {
-    //     props.location.state !== undefined && (url = props.location.state.url);
-    // }
-    // console.log('urlResources', url);
-    // const [isNews, setIsNews] = useState(true);
+
     const [url, setUrl] = useState('');
 
     console.log('url', url);

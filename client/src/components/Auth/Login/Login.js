@@ -3,43 +3,31 @@ import style from './Login.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import { login } from '../../../utils/auth';
+import useInput from '../../../utils/useInput';
 
 const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
     const [message, setMessage] = useState('');
 
-    const [loginForm, setLoginForm] = useState({
-        email: '',
-        password: '',
-    });
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setLoginForm({
-            ...loginForm,
-            [name]: value,
-        });
-    };
-    // console.log('loginForm', loginForm);
+    const [email, setEmail] = useInput('');
+    const [password, setPassword] = useInput('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
         login({
-            email: loginForm.email,
-            password: loginForm.password,
+            email: email,
+            password: password,
         }).then((user) => {
             if (user.message) {
                 setMessage(user.message);
 
                 //Reset input values
-                for (let key in loginForm) {
-                    setLoginForm({ ...loginForm, [key]: '' });
-                }
+                setEmail('');
+                setPassword('');
             } else {
                 //  put the user object in the state of App.js
                 setUser(user);
                 // console.log(user);
             }
-            // console.log('loginForm', loginForm);
         });
     };
     return (
@@ -50,8 +38,8 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                     name="email"
                     type="email"
                     placeholder="Email"
-                    value={loginForm.email}
-                    onChange={handleChange}
+                    value={email}
+                    onChange={setEmail}
                 />
             </Form.Group>
             <Form.Group>
@@ -60,8 +48,8 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                     name="password"
                     type="password"
                     placeholder="Password"
-                    value={loginForm.password}
-                    onChange={handleChange}
+                    value={password}
+                    onChange={setPassword}
                 />
             </Form.Group>
             <Form.Text className={style.forgPass}>

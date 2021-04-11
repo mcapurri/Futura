@@ -1,27 +1,19 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const SendMessageForm = (props) => {
-    const [message, setMessage] = useState('');
-
-    const handleChange = (e) => {
-        setMessage(e.target.value);
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        props.sendMessage(message);
-        setMessage('');
-    };
+const MessageList = (props) => {
+    console.log('props', props);
     return (
-        <form onSubmit={handleSubmit} className="send-message-form">
-            <input
-                onChange={handleChange}
-                value={message}
-                placeholder="Type your message and hit ENTER"
-                type="text"
-            />
-        </form>
+        <ul className="message-list">
+            {/* {props.messages.map((message, index) => {
+                return (
+                    <li key={message.id} className="message">
+                        <div>{message.senderId}</div>
+                        <div>{message.text}</div>
+                    </li>
+                );
+            })} */}
+        </ul>
     );
 };
 
-export default SendMessageForm;
+export default MessageList;

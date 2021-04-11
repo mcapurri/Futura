@@ -16,12 +16,6 @@ const Map = () => {
         zoom: 10,
     });
 
-    // const [current, setcurrent] = useState({
-    //     lng: currentPosition.lng,
-    //     lat: currentPosition.lat,
-    //     zoom: 10,
-    // });
-
     let lngLat;
 
     let address = async (lnglat) => {

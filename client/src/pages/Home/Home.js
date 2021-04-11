@@ -15,52 +15,6 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
 
     const [showModal, setShowModal] = useState(false);
 
-    // const handleSubmit = () => {
-    //     // event.preventDefault();
-    //     console.log('update');
-    //     axios
-    //         .put(`/api/user/${user._id}`, {
-    //             ...user,
-    //         })
-    //         .then((response) => {
-    //             // props.history.push(/);
-    //             console.log('User successfully updated');
-    //         })
-    //         .catch((err) => {
-    //             console.log(err);
-    //         });
-    // };
-
-    // const handleFileUpload = (e) => {
-    //     console.log('The file to be uploaded is: ', e.target.files[0]);
-
-    //     const uploadData = new FormData();
-    //     // imageUrl => this name has to be the same as in the model since we pass
-    //     // req.body to .create() method when creating a new thing in '/api/things/create' POST route
-    //     uploadData.append('avatar', e.target.files[0]);
-
-    //     service
-    //         .handleUpload(uploadData)
-    //         .then((response) => {
-    //             console.log('response is: ', response);
-    //             // after the console.log we can see that response carries 'secure_url' which we can use to update the state
-    //             setUser({ ...user, avatar: response.secure_url });
-    //         })
-    //         .then(() => {
-    //             console.log('avatar', user.avatar);
-    //             service
-    //                 .saveNewThing(user._id, user.avatar)
-    //                 .then((res) => {
-    //                     console.log('added: ', res.message);
-    //                 })
-    //                 .catch((err) => {
-    //                     console.log('Error while adding the thing: ', err);
-    //                 });
-    //         })
-    //         .catch((err) => {
-    //             console.log('Error while uploading the file: ', err);
-    //         });
-    // };
     const handleSubmit = (e) => {
         e.preventDefault();
         service
@@ -80,8 +34,8 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
         console.log('The file to be uploaded is: ', e.target.files[0]);
 
         const uploadData = new FormData();
-        // imageUrl => this name has to be the same as in the model since we pass
-        // req.body to .create() method when creating a new thing in '/api/things/create' POST route
+        // avatar => this name has to be the same as in the model since I pass
+        // req.body to .create() method
         uploadData.append('avatar', e.target.files[0]);
         try {
             const responseDB = await service.handleUpload(uploadData);

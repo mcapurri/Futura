@@ -2,30 +2,21 @@ import React, { useState } from 'react';
 import style from './ResetPassword.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
+import useInput from '../../../utils/useInput';
 import axios from 'axios';
 import { RiArrowGoBackLine as BackArrow } from 'react-icons/ri';
 
 const ResetPassword = (props) => {
     const [message, setMessage] = useState('');
-    const [resetForm, setResetForm] = useState({
-        password: '',
-        confirm: '',
-        token: props.match.params.resettoken,
-    });
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setResetForm({
-            ...resetForm,
-            [name]: value,
-        });
-    };
-    // console.log('resetform', resetForm);
+    const [password, setPassword] = useInput('');
+    const [confirm, setConfirm] = useInput('');
+    const [token] = useState(props.match.params.resettoken);
 
     const handleSubmit = (event) => {
         event.preventDefault();
         axios
-            .post(`/api/auth/resetpassword/${resetForm.token}`)
+            .post(`/api/auth/resetpassword/${token}`)
             .then((res) => {
                 console.log('response', res);
                 setMessage(res);
@@ -45,8 +36,8 @@ const ResetPassword = (props) => {
                         name="password"
                         type="password"
                         placeholder="Password"
-                        value={resetForm.password}
-                        onChange={handleChange}
+                        value={password}
+                        onChange={setPassword}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -55,8 +46,8 @@ const ResetPassword = (props) => {
                         name="confirm"
                         type="password"
                         placeholder="Confirm Password"
-                        value={resetForm.confirm}
-                        onChange={handleChange}
+                        value={confirm}
+                        onChange={setConfirm}
                     />
                 </Form.Group>
                 <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>

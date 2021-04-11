@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Website = (props) => {
+    // props sent via Link tag
     const url = props.location.state.url;
     const title = props.location.state.title;
 

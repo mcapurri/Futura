@@ -8,13 +8,13 @@ import Footer from './components/Footer/Footer';
 // import Resources from './pages/Resources/Resources';
 import Website from './pages/Resources/Website';
 import News from './pages/Resources/News';
-import Chat from './pages/Chat/Chat';
+import UserPortal from './pages/UserPortal/UserPortal';
+import CreateDropOff from './pages/CreateDropOff/CreateDropOff';
 import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import Map from './components/Map/Map';
-import { Modal, Button } from 'bootstrap-4-react';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -79,8 +79,8 @@ function App(props) {
                 />
                 <Route
                     exact
-                    path="/chat"
-                    render={(props) => <Chat {...props} />}
+                    path="/user-portal"
+                    render={(props) => <UserPortal {...props} />}
                 />
                 <Route
                     exact
@@ -97,6 +97,11 @@ function App(props) {
                     exact
                     path="/map"
                     render={(props) => <Map {...props} />}
+                />
+                <Route
+                    exact
+                    path="/create-dropoff"
+                    render={(props) => <CreateDropOff {...props} user={user} />}
                 />
             </Switch>
             {user && <Footer history={props.history} drawerOpen={drawerOpen} />}

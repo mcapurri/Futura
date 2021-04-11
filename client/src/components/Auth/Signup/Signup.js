@@ -2,57 +2,51 @@ import React, { useState } from 'react';
 import style from './Signup.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { signup } from '../../../utils/auth';
+import useInput from '../../../utils/useInput';
 
 const Signup = ({ setIsSignup, user, setUser, ...props }) => {
     const [message, setMessage] = useState('');
 
-    const [signupForm, setSignupForm] = useState({
-        firstName: '',
-        lastName: '',
-        phoneNumber: '',
-        email: '',
-        password: '',
-        confirm: '',
-        street: '',
-        city: '',
-        zipCode: '',
-        state: '',
-    });
-
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setSignupForm({
-            ...signupForm,
-            [name]: value,
-        });
-    };
-    // console.log('signupForm', signupForm);
+    const [firstName, setFirstName] = useInput('');
+    const [lastName, setLastName] = useInput('');
+    const [phoneNumber, setPhoneNumber] = useInput('');
+    const [email, setEmail] = useInput('');
+    const [password, setPassword] = useInput('');
+    const [confirm, setConfirm] = useInput('');
+    const [street, setStreet] = useInput('');
+    const [city, setCity] = useInput('');
+    const [zipCode, setZipCode] = useInput('');
+    const [state, setState] = useInput('');
 
     const handleSubmit = (event) => {
         event.preventDefault();
 
         signup({
-            firstName: signupForm.firstName,
-            lastName: signupForm.lastName,
-            email: signupForm.email,
-            password: signupForm.password,
-            confirm: signupForm.confirm,
-            street: signupForm.street,
-            zipCode: signupForm.zipCode,
-            city: signupForm.city,
-            state: signupForm.state,
-            phoneNumber: signupForm.phoneNumber,
+            firstName: firstName,
+            lastName: lastName,
+            email: email,
+            password: password,
+            confirm: confirm,
+            street: street,
+            zipCode: zipCode,
+            city: city,
+            state: state,
+            phoneNumber: phoneNumber,
         }).then((user) => {
             if (user.message) {
                 setMessage(user.message);
 
                 // Reset input values
-                for (let key in signupForm) {
-                    setSignupForm({
-                        ...signupForm,
-                        [key]: '',
-                    });
-                }
+                setFirstName('');
+                setLastName('');
+                setPhoneNumber('');
+                setEmail('');
+                setPassword('');
+                setConfirm('');
+                setStreet('');
+                setCity('');
+                setZipCode('');
+                setState('');
             } else {
                 // signup was successful
                 setUser(user);
@@ -73,8 +67,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="firstName"
                         type="firstName"
                         placeholder="Name"
-                        value={signupForm.firstName}
-                        onChange={handleChange}
+                        value={firstName}
+                        onChange={setFirstName}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -83,8 +77,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="lastName"
                         type="lastName"
                         placeholder="Last name"
-                        value={signupForm.lastName}
-                        onChange={handleChange}
+                        value={lastName}
+                        onChange={setLastName}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -93,8 +87,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="phoneNumber"
                         type="phoneNumber"
                         placeholder="Phone number"
-                        value={signupForm.phoneNum}
-                        onChange={handleChange}
+                        value={phoneNumber}
+                        onChange={setPhoneNumber}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -103,8 +97,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        value={signupForm.email}
-                        onChange={handleChange}
+                        value={email}
+                        onChange={setEmail}
                     />
                 </Form.Group>
 
@@ -114,8 +108,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="password"
                         type="password"
                         placeholder="Password"
-                        value={signupForm.password}
-                        onChange={handleChange}
+                        value={password}
+                        onChange={setPassword}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -124,8 +118,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="confirm"
                         type="password"
                         placeholder="confirm password"
-                        value={signupForm.confirm}
-                        onChange={handleChange}
+                        value={confirm}
+                        onChange={setConfirm}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -134,8 +128,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="street"
                         type="text"
                         placeholder="Street"
-                        value={signupForm.street}
-                        onChange={handleChange}
+                        value={street}
+                        onChange={setStreet}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -144,8 +138,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="city"
                         type="text"
                         placeholder="City"
-                        value={signupForm.city}
-                        onChange={handleChange}
+                        value={city}
+                        onChange={setCity}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -154,8 +148,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="zipCode"
                         type="text"
                         placeholder="ZIP Code"
-                        value={signupForm.zipCode}
-                        onChange={handleChange}
+                        value={zipCode}
+                        onChange={setZipCode}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -164,8 +158,8 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         name="state"
                         type="text"
                         placeholder="State"
-                        value={signupForm.state}
-                        onChange={handleChange}
+                        value={state}
+                        onChange={setState}
                     />
                 </Form.Group>
 
