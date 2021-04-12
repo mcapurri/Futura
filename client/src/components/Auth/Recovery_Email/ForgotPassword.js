@@ -42,11 +42,19 @@ const ForgotPassword = (props) => {
                         onChange={setEmail}
                     />
                 </Form.Group>
+                <Form.Text>
+                    {' '}
+                    <p>
+                        A verification code will be sent to your email address.
+                        <br />
+                        Please verify your email has been entered correctly
+                    </p>
+                </Form.Text>
                 {message && (
                     <Form.Text>
-                        <p style={{ color: '#fff', fontSize: '1rem' }}>
+                        <span style={{ color: 'blue', fontSize: '1rem' }}>
                             {message}
-                        </p>
+                        </span>
                     </Form.Text>
                 )}
                 <Button type="submit">Send recovery email</Button>

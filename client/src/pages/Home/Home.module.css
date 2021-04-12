@@ -17,6 +17,22 @@
     display: flex;
     justify-content: center;
 }
+
+.Home #FileLoader {
+    position: relative;
+    /* display: flex;
+    justify-content: center;
+    align-items: center; */
+    width: 0;
+    height: 0;
+    top: 0;
+    left: 0;
+    margin: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0;
+    cursor: pointer;
+}
 .Avatar {
     width: 10rem;
     height: 10rem;

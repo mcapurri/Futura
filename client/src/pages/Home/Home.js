@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import style from './Home.module.css';
 import { Route } from 'react-router-dom';
 import service from '../../utils/service';
-import axios from 'axios';
 import Login from '../../components/Auth/Login/Login';
 import Profile from '../../components/Profile/Profile';
 import ConfirmationModal from '../../components/UI/Modal/ConfirmationModal';
@@ -65,14 +64,6 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                 {user !== '' && (
                     <>
                         <div className={style.Avatar}>
-                            <input
-                                type="file"
-                                name="avatar"
-                                // style={{ display: 'none' }}
-                                // className={style.Avatar}
-                                value={''}
-                                onChange={(e) => handleFileUpload(e)}
-                            />
                             {user.avatar ? (
                                 <img src={user.avatar} alt="user-avatar" />
                             ) : (
@@ -83,6 +74,13 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                                     }}
                                 >
                                     <ImUserPlus />
+                                    <input
+                                        id={style.FileLoader}
+                                        type="file"
+                                        name="avatar"
+                                        value={user.avatar}
+                                        onChange={(e) => handleFileUpload(e)}
+                                    />
                                 </h1>
                             )}
                         </div>

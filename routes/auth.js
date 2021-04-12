@@ -103,6 +103,8 @@ router.post('/signup', (req, res, next) => {
                 password: hash,
                 address: { street, zipCode, city, state },
                 phoneNumber,
+                // resetPasswordToken,
+                // resetPasswordExpire,
             })
                 .then((dbUser) => {
                     // login with passport:
@@ -139,7 +141,7 @@ router.post('/forgotpassword', (req, res, next) => {
                 // const resetUrl = `${process.env.ORIGIN}/api/auth/resetpassword/${resetToken}`;
 
                 const message = `We received a request to reset your password for your account. We're here to help! \n\n 
-                Simply click the link below to reset your password: \n\n ${resetUrl} \n\n 
+                Simply click the link below to reset your password: \n\n ${resetUrl} \n
                 If you didn't ask any changes, please ignore this email`;
                 user.sendEmail({
                     email: user.email,
@@ -149,7 +151,7 @@ router.post('/forgotpassword', (req, res, next) => {
             }
         })
         .then(() => {
-            res.status(200).json('Password Reset Email Successfully Sent!');
+            res.status(200).json('Reset link successfully sent!');
         })
         .catch((err) => next(err));
 });
