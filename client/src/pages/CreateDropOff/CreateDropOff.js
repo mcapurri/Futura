@@ -13,16 +13,15 @@ const CreateDropOff = ({ user, ...props }) => {
     const [houseNumber, setHouseNumber] = useInput('');
     const [city, setCity] = useInput('');
     const [zipCode, setZipCode] = useInput('');
-    const [lngLat, setLngLat] = useState('');
-    console.log('lngLat', lngLat);
+    // const [lngLat, setLngLat] = useState('');
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const coordsQuery = await axios.get(
             ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${accessToken}`
         );
-
-        setLngLat(coordsQuery.data.features[0].center);
+        const lngLat = coordsQuery.data.features[0].center;
+        // setLngLat(coordsQuery.data.features[0].center);
 
         const response = await axios.post('/api/dropoffs/add', {
             name,
@@ -35,10 +34,10 @@ const CreateDropOff = ({ user, ...props }) => {
         });
         console.log('response', response.data);
         setMessage(response.data.message);
-        setName('');
-        setStreet('');
-        setCity('');
-        setZipCode('');
+        // setName('');
+        // setStreet('');
+        // setCity('');
+        // setZipCode('');
         setTimeout(() => {
             setMessage('');
             props.history.push('/');
