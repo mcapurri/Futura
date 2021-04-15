@@ -65,7 +65,11 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                     <>
                         <div className={style.Avatar}>
                             {user.avatar ? (
-                                <img src={user.avatar} alt="user-avatar" />
+                                <img
+                                    src={user.avatar}
+                                    alt="user-avatar"
+                                    onClick={(e) => handleFileUpload(e)}
+                                />
                             ) : (
                                 <h1
                                     style={{
@@ -73,7 +77,9 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                                         fontSize: '2.5rem',
                                     }}
                                 >
-                                    <ImUserPlus />
+                                    <label htmlFor={style.FileLoader}>
+                                        <ImUserPlus />
+                                    </label>
                                     <input
                                         id={style.FileLoader}
                                         type="file"

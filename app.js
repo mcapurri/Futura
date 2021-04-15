@@ -107,6 +107,7 @@ passport.use(
     new JwtStrategy(options, (jwt_payload, done) => {
         User.findOne({ id: jwt_payload.sub })
             .then((err, user) => {
+                console.log('userJWTstr', user);
                 if (err) {
                     return done(err, false);
                 }

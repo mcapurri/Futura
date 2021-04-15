@@ -15,19 +15,29 @@ router.get('/', loginCheck(), async (req, res, next) => {
 // @route     POST /api/dropoffs/add
 // @access    Private
 router.post('/add', async (req, res, next) => {
-    const { name, street, city, zipCode, createdBy } = req.body;
+    const {
+        name,
+        street,
+        houseNumber,
+        city,
+        zipCode,
+        lngLat,
+        createdBy,
+    } = req.body;
     console.log('req.body', req.body);
     try {
         const addDropOff = DropOff.create({
             name,
             street,
             city,
+            houseNumber,
             zipCode,
+            lngLat,
             createdBy,
         });
         res.status(201).json({ message: 'Drop-off successfully added' });
     } catch (err) {
-        res.status(400).json({ message: errorMessage });
+        res.status(400).json({ message: 'Error in adding drop-off' }, err);
 
         next(err);
     }

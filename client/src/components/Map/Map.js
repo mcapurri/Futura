@@ -9,28 +9,55 @@ mapboxgl.accessToken =
 
 const Map = () => {
     const mapContainer = useRef();
-
+    const [dropOffs, setDropOffs] = useState('');
     const [viewport, setViewport] = useState({
         lng: 13.405,
         lat: 52.52,
-        zoom: 10,
+        zoom: 13,
     });
 
-    let lngLat;
+    console.log('viewport', viewport);
+    console.log('dropOffs', dropOffs);
 
-    let address = async (lnglat) => {
-        console.log('lngLat', lnglat);
-        await axios
-            .get(
-                `https://api.mapbox.com/geocoding/v5/mapbox.places/${lnglat.lng},${lnglat.lat}.json?access_token=${mapboxgl.accessToken}&cachebuster=1616347496121&autocomplete=true&types=address&types=place&`
-            )
-            .then((resAddress) => {
-                console.log('resAddress', resAddress);
-            })
-            .catch((err) => console.log(err));
+    // let lngLat;
+
+    // let address = async (lnglat) => {
+    //     console.log('lngLat', lnglat);
+    //     await axios
+    //         .get(
+    //             `https://api.mapbox.com/geocoding/v5/mapbox.places/${lnglat.lng},${lnglat.lat}.json?access_token=${mapboxgl.accessToken}&cachebuster=1616347496121&autocomplete=true&types=address&types=place&`
+    //         )
+    //         .then((resAddress) => {
+    //             console.log('resAddress', resAddress);
+    //         })
+    //         .catch((err) => console.log(err));
+    // };
+
+    const fetchDropOffs = async () => {
+        try {
+            const dropOffsFromDB = await axios.get('/api/dropoffs');
+            dropOffsFromDB.data.map((el) => {
+                return console.log('el', el);
+            });
+            setDropOffs(dropOffsFromDB.data);
+        } catch (err) {
+            console.error(err);
+        }
     };
+
     useEffect(() => {
-        const map = new mapboxgl.Map({
+        fetchDropOffs();
+    }, []);
+
+    // const displayDropOffs = () => {
+    //     dropOffs.map((dropOff) => {
+    //         return console.log('dropOff', dropOff);
+    //         // addMarker(dropOff)
+    //     });
+    // };
+
+    useEffect(() => {
+        let map = new mapboxgl.Map({
             container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [viewport.lng, viewport.lat],
@@ -45,6 +72,32 @@ const Map = () => {
                 // showUserLocation: true,
             })
         );
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (data) => {
+                    console.log('data', data);
+                    setViewport({
+                        lng: data.coords.longitude,
+                        lat: data.coords.latitude,
+                    });
+                    map.remove();
+                    // map.locate()
+                    map = new mapboxgl.Map({
+                        container: mapContainer.current,
+                        style: 'mapbox://styles/mapbox/streets-v11',
+                        center: [viewport.lng, viewport.lat],
+                        zoom: viewport.zoom,
+                        positionOptions: {
+                            enableHighAccuracy: true,
+                        },
+                        trackUserLocation: true,
+                    });
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        }
 
         // setting a popup
         // const popup = new mapboxgl.Popup({
@@ -66,10 +119,11 @@ const Map = () => {
         map.on('move', () => {
             setViewport({
                 lng: map.getCenter().lng.toFixed(4),
-                lat: map.getCenter().lng.toFixed(4),
+                lat: map.getCenter().lat.toFixed(4),
                 zoom: map.getZoom().toFixed(2),
             });
         });
+
         const marker = new mapboxgl.Marker({
             scale: 1,
             color: 'red',
@@ -78,26 +132,20 @@ const Map = () => {
         const addMarker = (event) => {
             // console.log(event.lngLat);
             marker
-                .setLngLat(event.lngLat)
+                .setLngLat([event.lng, event.lat])
                 .setPopup(
                     new mapboxgl.Popup({ closeButton: false }).setHTML(
                         '<h6>Drop-off</h6>'
                     )
                 )
                 .addTo(map);
-            address(event.lngLat);
+            // address(event.lngLat);
         };
-        map.on('click', addMarker);
-
-        const onDragEnd = () => {
-            lngLat = marker.getLngLat();
-            address(lngLat);
-        };
-
-        marker.on('dragend', onDragEnd);
+        // map.on('click', addMarker);
+        // displayDropOffs();
 
         return () => map.remove();
-    }, [lngLat]);
+    }, []);
 
     return (
         <div>

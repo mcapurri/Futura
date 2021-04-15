@@ -38,7 +38,7 @@ router.post('/login', (req, res, next) => {
 });
 
 // router.post('/login', function (req, res, next) {
-//     passport.authenticate('local', { session: false }, (err, user, info) => {
+//     passport.authenticate('local', { session: false }, (err, user) => {
 //         if (err || !user) {
 //             return res.status(400).json({
 //                 message: 'Wrong credentials',
@@ -129,16 +129,15 @@ router.post('/signup', (req, res, next) => {
 // @access    Public
 router.post('/forgotpassword', (req, res, next) => {
     User.findOne({ email: req.body.email })
-        .then((user) => {
+        .then(async (user) => {
             console.log('userDb', user);
             if (!user) {
                 res.status(403).json("User doesn't exist");
             } else {
                 // Get reset token
-                const resetToken = user.getResetPasswordToken();
+                const resetToken = await user.getResetPasswordToken();
                 // Create reset url
                 const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
-                // const resetUrl = `${process.env.ORIGIN}/api/auth/resetpassword/${resetToken}`;
 
                 const message = `We received a request to reset your password for your account. We're here to help! \n\n 
                 Simply click the link below to reset your password: \n\n ${resetUrl} \n
@@ -151,7 +150,7 @@ router.post('/forgotpassword', (req, res, next) => {
             }
         })
         .then(() => {
-            res.status(200).json('Reset link successfully sent!');
+            res.status(200).json('Reset link successfully sent');
         })
         .catch((err) => next(err));
 });
@@ -161,24 +160,22 @@ router.post('/forgotpassword', (req, res, next) => {
 // @access    Public
 router.put('/resetpassword/:resettoken', async (req, res, next) => {
     console.log('req.body', req.body);
-    // Get hashed token
-    const resetPasswordToken = crypto
-        .createHash('sha256')
-        .update(req.params.resettoken)
-        .digest('hex');
 
     const user = await User.findOne({
-        resetPasswordToken,
-        getResetPasswordExpire: { $gt: Date.now() },
+        resetPasswordToken: req.params.resettoken,
+        // resetPasswordExpire: { $gt: Date.now() },
     });
     console.log('user', user);
+    console.log('resetPassToken', req.params.resettoken);
 
     if (!user) {
         return next();
     }
 
     // Set new password
-    user.password = req.body.password;
+    const salt = bcrypt.genSaltSync();
+    const hash = bcrypt.hashSync(req.body.password, salt);
+    user.password = hash;
     user.resetPasswordToken = undefined;
     user.resetPasswordExpire = undefined;
     await user.save();

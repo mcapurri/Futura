@@ -18,8 +18,8 @@ const ResetPassword = (props) => {
         axios
             .put(`/api/auth/resetpassword/${token}`, { password, confirm })
             .then((res) => {
-                console.log('response', res);
-                setMessage(res);
+                console.log('response', res.data.message);
+                setMessage(res.data.message);
             })
             .catch((err) => console.log(err));
     };

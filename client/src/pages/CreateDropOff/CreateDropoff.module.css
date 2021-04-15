@@ -30,6 +30,7 @@
     width: 80vw;
     margin-bottom: 5%;
 }
+
 .Form input:focus {
     box-shadow: none;
     background-color: transparent;

@@ -4,8 +4,10 @@ const dropOffSchema = new Schema(
     {
         name: String,
         street: String,
+        houseNumber: String,
         zipCode: String,
         city: String,
+        lngLat: [String],
         createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
     },
     {
