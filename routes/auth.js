@@ -26,6 +26,7 @@ router.post('/login', (req, res, next) => {
         if (!user) {
             return res.status(400).json({ message: 'Wrong credentials' });
         }
+
         req.login(user, (err) => {
             if (err) {
                 return res
@@ -34,11 +35,12 @@ router.post('/login', (req, res, next) => {
             }
             return res.status(200).json(user);
         });
+        user.sendTokenResponse(user, 200, res);
     })(req, res);
 });
 
 // router.post('/login', function (req, res, next) {
-//     passport.authenticate('local', { session: false }, (err, user) => {
+//     passport.authenticate('jwt', { session: false }, (err, user) => {
 //         if (err || !user) {
 //             return res.status(400).json({
 //                 message: 'Wrong credentials',

@@ -91,7 +91,8 @@ userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
     }
     res.status(statusCode).cookie('token', token, options).json({
         token,
-        message: 'Password Successfully Updated',
+        // message: 'Password Successfully Updated',
+        message: 'Token Successfully Updated',
     });
 };
 
