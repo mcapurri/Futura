@@ -25,7 +25,11 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                 setPassword('');
             } else {
                 //  put the user object in the state of App.js
-                setUser(user);
+                if (user.token) {
+                    // console.log('cookie', document.cookie);
+                    localStorage.setItem('token', user.token);
+                }
+                setUser(user.user);
                 // console.log(user);
             }
         });

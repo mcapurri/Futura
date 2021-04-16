@@ -1,11 +1,10 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
 
 import Home from './pages/Home/Home';
 import Footer from './components/Footer/Footer';
-// import Resources from './pages/Resources/Resources';
 import Website from './pages/Resources/Website';
 import News from './pages/Resources/News';
 import UserPortal from './pages/UserPortal/UserPortal';
@@ -18,6 +17,7 @@ import Map from './components/Map/Map';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [width, setWidth] = useState(window.innerWidth);
 
     const [user, setUser] = useState(props.user);
     console.log('user', user);
@@ -35,8 +35,20 @@ function App(props) {
                 console.log(err);
             });
 
+    // Check if mobile
+    const handleWindowSizeChange = () => {
+        setWidth(window.innerWidth);
+    };
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        };
+    }, []);
+
+    let isMobile = width <= 360;
     return (
-        <>
+        <div style={{ width: isMobile ? '100%' : '360px' }}>
             {drawerOpen && (
                 <SideDrawer
                     user={user}
@@ -105,7 +117,7 @@ function App(props) {
                 />
             </Switch>
             {user && <Footer history={props.history} drawerOpen={drawerOpen} />}
-        </>
+        </div>
     );
 }
 

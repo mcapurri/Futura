@@ -33,9 +33,11 @@ router.post('/login', (req, res, next) => {
                     .status(500)
                     .json({ message: 'Error while attempting to login' });
             }
-            return res.status(200).json(user);
+
+            // return res.status(200).json(user);
+            const token = user.getSignedJwtToken();
+            return res.json({ user, token });
         });
-        user.sendTokenResponse(user, 200, res);
     })(req, res);
 });
 
@@ -105,8 +107,6 @@ router.post('/signup', (req, res, next) => {
                 password: hash,
                 address: { street, zipCode, city, state },
                 phoneNumber,
-                // resetPasswordToken,
-                // resetPasswordExpire,
             })
                 .then((dbUser) => {
                     // login with passport:

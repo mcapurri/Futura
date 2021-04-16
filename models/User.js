@@ -77,6 +77,8 @@ userSchema.methods.sendEmail = async (options) => {
 
 // Get token from model, create cookie and send response
 userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
+    console.log('sendtokenResponse running');
+
     // Create token
     const token = user.getSignedJwtToken();
 
@@ -89,19 +91,26 @@ userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
     if (process.env.NODE_ENV === 'production') {
         options.secure = true;
     }
-    res.status(statusCode).cookie('token', token, options).json({
-        token,
-        // message: 'Password Successfully Updated',
-        message: 'Token Successfully Updated',
-    });
+    // res.status(statusCode).cookie('token', token, options).json({
+    //     token,
+    //     message: 'Password Successfully Updated',
+    // });
+    res.cookie(('token', token, options));
+    return token;
 };
 
 // Sign JWT and return
 userSchema.methods.getSignedJwtToken = () => {
-    return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+    console.log('getSignedToken running');
+    return jwt.sign({ email: this.email }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRE,
     });
 };
+// userSchema.methods.getSignedJwtToken = () => {
+//     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
+//         expiresIn: process.env.JWT_EXPIRE,
+//     });
+// };
 
 const User = model('User', userSchema);
 

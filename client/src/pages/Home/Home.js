@@ -4,30 +4,12 @@ import { Route } from 'react-router-dom';
 import service from '../../utils/service';
 import Login from '../../components/Auth/Login/Login';
 import Profile from '../../components/Profile/Profile';
-import ConfirmationModal from '../../components/UI/Modal/ConfirmationModal';
 
 import { TiThMenu as MenuIcon } from 'react-icons/ti';
 import { ImUserPlus } from 'react-icons/im';
 
 const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
     console.log('user', user);
-
-    const [showModal, setShowModal] = useState(false);
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        service
-            .saveNewThing(user._id, user.avatar)
-            .then((res) => {
-                console.log('added: ', res.message);
-            })
-            .catch((err) => {
-                console.log('Error while adding the thing: ', err);
-            });
-    };
-    const handleClose = () => {
-        setShowModal(false);
-    };
 
     const handleFileUpload = async (e) => {
         console.log('The file to be uploaded is: ', e.target.files[0]);
@@ -41,12 +23,6 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
             console.log('response is: ', responseDB);
             setUser({ ...user, avatar: responseDB.secure_url });
             console.log('avatar', user.avatar);
-            // const responsePut = await service.saveNewThing(
-            //     user._id,
-            //     user.avatar
-            // );
-            // console.log('added: ', responsePut.message);
-            setShowModal(true);
         } catch (err) {
             console.log('Error while adding the thing: ', err);
         }
@@ -54,22 +30,32 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
 
     return (
         <div className={style.Home}>
-            {showModal && (
-                <ConfirmationModal
-                    handleSubmit={handleSubmit}
-                    handleClose={handleClose}
-                />
-            )}
             <header>
                 {user !== '' && (
                     <>
                         <div className={style.Avatar}>
                             {user.avatar ? (
-                                <img
-                                    src={user.avatar}
-                                    alt="user-avatar"
-                                    onClick={(e) => handleFileUpload(e)}
-                                />
+                                <>
+                                    <img
+                                        src={user.avatar}
+                                        alt="user-avatar"
+                                        onClick={(e) => handleFileUpload(e)}
+                                    />
+                                    {/* <label htmlFor="avatar">
+                                        <img
+                                            src={user.avatar}
+                                            alt="user-avatar"
+                                            onClick={(e) => handleFileUpload(e)}
+                                        />
+                                    </label>
+                                    <input
+                                        id={style.FileLoader}
+                                        type="file"
+                                        name="avatar"
+                                        value={user.avatar}
+                                        onChange={(e) => handleFileUpload(e)}
+                                    /> */}
+                                </>
                             ) : (
                                 <h1
                                     style={{
