@@ -80,7 +80,7 @@ userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
     console.log('sendtokenResponse running');
 
     // Create token
-    const token = user.getSignedJwtToken();
+    const token = user.getSignedJwtToken(user);
 
     const options = {
         expires: new Date(
@@ -95,16 +95,21 @@ userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
     //     token,
     //     message: 'Password Successfully Updated',
     // });
-    res.cookie(('token', token, options));
+    // res.cookie(('token', token, options));
     return token;
 };
 
 // Sign JWT and return
-userSchema.methods.getSignedJwtToken = () => {
+userSchema.methods.getSignedJwtToken = (user) => {
+    let temp = user || this;
     console.log('getSignedToken running');
-    return jwt.sign({ email: this.email }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRE,
-    });
+    return jwt.sign(
+        { email: temp.email, _id: temp._id },
+        process.env.JWT_SECRET,
+        {
+            expiresIn: process.env.JWT_EXPIRE,
+        }
+    );
 };
 // userSchema.methods.getSignedJwtToken = () => {
 //     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {

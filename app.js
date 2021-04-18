@@ -73,14 +73,20 @@ passport.use(
                     if (!userFromDB) {
                         // there is no user with this username
                         done(null, false, { message: 'Wrong Credentials' });
-                    } else if (
-                        !bcrypt.compareSync(password, userFromDB.password)
-                    ) {
-                        // the password is not matching
-                        done(null, false, { message: 'Wrong Credentials' });
                     } else {
-                        // the userFromDB should now be logged in
-                        done(null, userFromDB);
+                        bcrypt.compare(
+                            password,
+                            userFromDB.password,
+                            function (err, valid) {
+                                if (err) {
+                                    done(null, false, {
+                                        message: 'Wrong Credentials',
+                                    });
+                                } else {
+                                    done(null, userFromDB);
+                                }
+                            }
+                        );
                     }
                 })
                 .catch((err) => {
@@ -123,7 +129,7 @@ passport.use(
     })
 );
 
-app.use(passport.initialize());
+// app.use(passport.initialize());
 // passport.authenticate('jwt', cfg.jwtSession);
 
 // end of passport

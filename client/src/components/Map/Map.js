@@ -6,6 +6,7 @@ import axios from 'axios';
 
 mapboxgl.accessToken =
     'pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A';
+const token = localStorage.getItem('token');
 
 const Map = () => {
     const mapContainer = useRef();
@@ -35,7 +36,11 @@ const Map = () => {
 
     const fetchDropOffs = async () => {
         try {
-            const dropOffsFromDB = await axios.get('/api/dropoffs');
+            const dropOffsFromDB = await axios.get('/api/dropoffs', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            });
             setDropOffs(dropOffsFromDB.data);
             // dropOffsFromDB.data.map((el) => {
             //     return console.log('el', el);

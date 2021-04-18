@@ -17,7 +17,7 @@ router.get('/loggedin', (req, res, next) => {
 // @route     POST /api/auth//login
 // @access    Public
 router.post('/login', (req, res, next) => {
-    passport.authenticate('local', (err, user) => {
+    passport.authenticate('local', { session: false }, (err, user) => {
         if (err) {
             return res
                 .status(500)
@@ -96,32 +96,37 @@ router.post('/signup', (req, res, next) => {
         if (found) {
             return res.status(400).json({ message: 'This user already exist' });
         } else {
+            console.log(password);
             // we can create a user with the username and password pair
-            const salt = bcrypt.genSaltSync();
-            const hash = bcrypt.hashSync(password, salt);
+            // const salt = bcrypt.genSaltSync();
+            // const hash = bcrypt.hashSync(password, salt);
 
-            User.create({
-                firstName,
-                lastName,
-                email,
-                password: hash,
-                address: { street, zipCode, city, state },
-                phoneNumber,
-            })
-                .then((dbUser) => {
-                    // login with passport:
-                    req.login(dbUser, (err) => {
-                        if (err) {
-                            return res.status(500).json({
-                                message: 'Error while attempting to login',
-                            });
-                        }
-                        return res.status(200).json(dbUser);
-                    });
+            bcrypt.hash(req.body.password, 8, function (err, hash) {
+                if (err) return res.json(err);
+
+                User.create({
+                    firstName,
+                    lastName,
+                    email,
+                    password: hash,
+                    address: { street, zipCode, city, state },
+                    phoneNumber,
                 })
-                .catch((err) => {
-                    res.json(err);
-                });
+                    .then((dbUser) => {
+                        // login with passport:
+                        req.login(dbUser, (err) => {
+                            if (err) {
+                                return res.status(500).json({
+                                    message: 'Error while attempting to login',
+                                });
+                            }
+                            return res.status(200).json(dbUser);
+                        });
+                    })
+                    .catch((err) => {
+                        res.json(err);
+                    });
+            });
         }
     });
 });
