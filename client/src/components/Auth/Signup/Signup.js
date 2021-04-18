@@ -162,13 +162,21 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         onChange={setState}
                     />
                 </Form.Group>
+                <Form.Text>
+                    <p style={{ fontSize: '0.8rem', padding: '0 10%' }}>
+                        By clicking Sign Up, you agree to our Terms. Learn how
+                        we collect, use and share your data in our Data Policy
+                        and how we use cookies and similar technology in our
+                        Cookie Policy. You may receive SMS notifications from us
+                        and can opt out at any time.
+                    </p>
+                </Form.Text>
 
                 <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
                 <p>
                     Do you already have an account?
                     <button
                         onClick={() => {
-                            // setIsSignup(false);
                             props.history.push('/');
                         }}
                     >

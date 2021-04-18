@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import style from './Home.module.css';
 import { Route } from 'react-router-dom';
 import service from '../../utils/service';
@@ -41,7 +41,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                                         alt="user-avatar"
                                         onClick={(e) => handleFileUpload(e)}
                                     />
-                                    {/* <label htmlFor="avatar">
+                                    {/* <label htmlFor={style.FileLoader}>
                                         <img
                                             src={user.avatar}
                                             alt="user-avatar"

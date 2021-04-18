@@ -29,7 +29,7 @@ app.use(
         resave: true,
         store: new MongoStore({
             mongooseConnection: mongoose.connection,
-            mongoUrl: 'mongodb://localhost/Vet-clinic-project',
+            mongoUrl: 'mongodb://localhost/recycling-app',
         }),
     })
 );

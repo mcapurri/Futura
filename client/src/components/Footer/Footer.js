@@ -12,12 +12,11 @@ const Footer = (props) => {
                 display: 'flex',
                 justifyContent: 'space-around',
                 alignItems: 'center',
-                width: '100%',
-                // position: 'fixed',
                 bottom: '0',
                 height: '50px',
                 position: 'absolute',
                 backgroundColor: 'rgb(13, 122, 177)',
+                width: !props.isMobile ? '360px' : '100%',
             }}
         >
             <Link to="/">

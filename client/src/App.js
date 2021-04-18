@@ -48,7 +48,12 @@ function App(props) {
 
     let isMobile = width <= 360;
     return (
-        <div style={{ width: isMobile ? '100%' : '360px' }}>
+        <div
+            style={{
+                width: isMobile ? '100%' : '360px',
+                height: isMobile ? '100%' : '740px',
+            }}
+        >
             {drawerOpen && (
                 <SideDrawer
                     user={user}
@@ -116,7 +121,13 @@ function App(props) {
                     render={(props) => <CreateDropOff {...props} user={user} />}
                 />
             </Switch>
-            {user && <Footer history={props.history} drawerOpen={drawerOpen} />}
+            {user && (
+                <Footer
+                    isMobile={isMobile}
+                    history={props.history}
+                    drawerOpen={drawerOpen}
+                />
+            )}
         </div>
     );
 }

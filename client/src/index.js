@@ -11,7 +11,6 @@ import axios from 'axios';
 axios
     .get('/api/auth/loggedin')
     .then((response) => {
-        console.log('response index', response);
         const user = response.data;
         ReactDOM.render(
             <BrowserRouter>
