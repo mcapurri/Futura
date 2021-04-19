@@ -4,12 +4,8 @@ const token = localStorage.getItem('token');
 const instance = axios.create({
     baseURL: process.env.ORIGIN,
     headers: {
-        // Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
     },
-    // url: props.url, // must have a starting backslash:
-    // params: props.params,
-    // data: props.data,
     withCredentials: true,
 });
 
@@ -31,14 +27,29 @@ instance.interceptors.request.use(
     }
 );
 
+// axios.interceptors.request.use(
+//     (config) => {
+//         const { origin } = new URL(config.url);
+//         const allowedOrigins = ['http://localhost:3000'];
+//         const token = localStorage.getItem('token');
+//         if (allowedOrigins.includes(origin)) {
+//             config.headers.authorization = `Bearer ${token}`;
+//         }
+//         return config;
+//     },
+//     (error) => {
+//         return Promise.reject(error);
+//     }
+// );
+
 //on successful response
 instance.interceptors.response.use(
     (response) => response,
     (error) => {
         const fallbackValue = [
             {
-                userId: 'Not authorized',
-                id: 'aerw15311sq',
+                userId: 'Not authorized to access this route',
+                // id: 'aerw15311sq',
                 title: 'Please try again',
                 completed: false,
             },

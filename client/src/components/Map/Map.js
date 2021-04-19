@@ -3,6 +3,7 @@ import style from './Map.module.css';
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 import axios from 'axios';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 mapboxgl.accessToken =
     'pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A';
@@ -42,9 +43,6 @@ const Map = () => {
                 },
             });
             setDropOffs(dropOffsFromDB.data);
-            // dropOffsFromDB.data.map((el) => {
-            //     return console.log('el', el);
-            // });
         } catch (err) {
             console.error(err);
         }
@@ -53,6 +51,26 @@ const Map = () => {
     useEffect(() => {
         fetchDropOffs();
     }, []);
+
+    const marker = new mapboxgl.Marker({
+        scale: 1,
+        color: 'red',
+        // draggable: true,
+    });
+    const displayDropOffs = () => {
+        dropOffs?.map((dropOff) => {
+            return console.log('dropOff', dropOff);
+            // addMarker(dropOff);
+            marker
+                .setLngLat(dropOff.lngLat)
+                .setPopup(
+                    new mapboxgl.Popup({ closeButton: false }).setHTML(
+                        '<h6>Drop-off</h6>'
+                    )
+                );
+            // .addTo(map);
+        });
+    };
 
     useEffect(() => {
         let map = new mapboxgl.Map({
@@ -121,13 +139,13 @@ const Map = () => {
             });
         });
 
-        const marker = new mapboxgl.Marker({
-            scale: 1,
-            color: 'red',
-            // draggable: true,
-        });
+        // const marker = new mapboxgl.Marker({
+        //     scale: 1,
+        //     color: 'red',
+        //     // draggable: true,
+        // });
         const addMarker = (event) => {
-            console.log(event.lngLat);
+            console.log('addMarker', event.lngLat);
             marker
                 .setLngLat(event.lngLat)
                 .setPopup(
@@ -139,13 +157,6 @@ const Map = () => {
             // address(event.lngLat);
         };
         map.on('click', addMarker);
-
-        const displayDropOffs = () => {
-            dropOffs.map((dropOff) => {
-                return console.log('dropOff', dropOff);
-                addMarker(dropOff);
-            });
-        };
 
         // dropOffs?.map((dropOff) => {
         //     return console.log('dropOff', dropOff);
@@ -163,12 +174,10 @@ const Map = () => {
         return () => map.remove();
     }, []);
 
+    if (!viewport) return <Spinner />;
+
     return (
         <div>
-            {/* <div className={style.Sidebar}>
-                    Longitude: {berlin.lng} | Latitude: {berlin.lat} | Zoom:{' '}
-                    {berlin.zoom}
-                </div> */}
             <div className={style.Map} ref={mapContainer}></div>
         </div>
     );

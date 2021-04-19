@@ -6,22 +6,6 @@ import axios from 'axios';
 // import axios from '../../utils/axios';
 const mapBoxAccessToken =
     'pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A';
-
-// axios.interceptors.request.use(
-//     (config) => {
-//         const { origin } = new URL(config.url);
-//         const allowedOrigins = ['http://localhost:3000'];
-//         const token = localStorage.getItem('token');
-//         if (allowedOrigins.includes(origin)) {
-//             config.headers.authorization = `Bearer ${token}`;
-//         }
-//         return config;
-//     },
-//     (error) => {
-//         return Promise.reject(error);
-//     }
-// );
-
 const token = localStorage.getItem('token');
 
 const CreateDropOff = ({ user, ...props }) => {
