@@ -52,26 +52,6 @@ const Map = () => {
         fetchDropOffs();
     }, []);
 
-    const marker = new mapboxgl.Marker({
-        scale: 1,
-        color: 'red',
-        // draggable: true,
-    });
-    const displayDropOffs = () => {
-        dropOffs?.map((dropOff) => {
-            return console.log('dropOff', dropOff);
-            // addMarker(dropOff);
-            marker
-                .setLngLat(dropOff.lngLat)
-                .setPopup(
-                    new mapboxgl.Popup({ closeButton: false }).setHTML(
-                        '<h6>Drop-off</h6>'
-                    )
-                );
-            // .addTo(map);
-        });
-    };
-
     useEffect(() => {
         let map = new mapboxgl.Map({
             container: mapContainer.current,
@@ -85,7 +65,7 @@ const Map = () => {
                     enableHighAccuracy: true,
                 },
                 trackUserLocation: true,
-                // showUserLocation: true,
+                showUserLocation: true,
             })
         );
         if (navigator.geolocation) {
@@ -96,17 +76,13 @@ const Map = () => {
                         lng: data.coords.longitude,
                         lat: data.coords.latitude,
                     });
-                    map.remove();
-                    map = new mapboxgl.Map({
-                        container: mapContainer.current,
-                        style: 'mapbox://styles/mapbox/streets-v11',
-                        center: [data.coords.longitude, data.coords.latitude],
-                        zoom: viewport.zoom,
-                        positionOptions: {
-                            enableHighAccuracy: true,
-                        },
-                        trackUserLocation: true,
-                    });
+                    // map.remove();
+                    // map = new mapboxgl.Map({
+                    //     container: mapContainer.current,
+                    //     style: 'mapbox://styles/mapbox/streets-v11',
+                    //     center: [data.coords.longitude, data.coords.latitude],
+                    //     zoom: viewport.zoom,
+                    // });
                 },
                 (error) => {
                     console.log(error);
@@ -114,23 +90,6 @@ const Map = () => {
             );
         }
 
-        // setting a popup
-        // const popup = new mapboxgl.Popup({
-        //     closeButton: false,
-        // });
-        // popup
-        //     .setLngLat([13.455, 52.45])
-        //     .setHTML('<span>Drop-off</span>')
-        //     .setMaxWidth('200px')
-        //     .addTo(map);
-
-        // Geocoder
-        // map.addControl(
-        //     new MapboxGeocoder({
-        //         accessToken: mapboxgl.accessToken,
-        //         mapboxgl: mapboxgl,
-        //     })
-        // );
         map.on('move', () => {
             setViewport({
                 lng: map.getCenter().lng.toFixed(4),
@@ -139,35 +98,34 @@ const Map = () => {
             });
         });
 
-        // const marker = new mapboxgl.Marker({
-        //     scale: 1,
-        //     color: 'red',
-        //     // draggable: true,
-        // });
-        const addMarker = (event) => {
-            console.log('addMarker', event.lngLat);
-            marker
-                .setLngLat(event.lngLat)
-                .setPopup(
-                    new mapboxgl.Popup({ closeButton: false }).setHTML(
-                        '<h6>Drop-off</h6>'
-                    )
-                )
-                .addTo(map);
-            // address(event.lngLat);
-        };
-        map.on('click', addMarker);
+        const marker = new mapboxgl.Marker({
+            scale: 1,
+            color: 'red',
+            // draggable: true,
+        });
 
-        // dropOffs?.map((dropOff) => {
-        //     return console.log('dropOff', dropOff);
-        //     // addMarker(dropOff);
-        //     marker
-        //         .setLngLat(dropOff.lngLat)
-        //         .setPopup(
-        //             new mapboxgl.Popup({ closeButton: false }).setHTML(
-        //                 '<h6>Drop-off</h6>'
-        //             )
-        //         )
+        // const features = dropOffs?.map((dropOff) => {
+        //     return {
+        //         type: 'Feature',
+        //         properties: {
+        //             message: 'Drop-Off',
+        //             iconSize: [60, 60],
+        //         },
+        //         geometry: {
+        //             type: 'Point',
+        //             coordinates: [dropOff.lngLat[0], dropOff.lngLat[1]],
+        //         },
+        //     };
+        // });
+
+        // const geojson = {
+        //     type: 'FeatureCollection',
+        //     features: features,
+        // };
+
+        // geojson.features.forEach((marker) => {
+        //     new mapboxgl.Marker()
+        //         .setLngLat(marker.geometry.coordinates)
         //         .addTo(map);
         // });
 
