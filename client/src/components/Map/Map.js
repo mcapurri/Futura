@@ -1,66 +1,62 @@
-import React, { useRef, useEffect, useState } from 'react';
-import style from './Map.module.css';
-import mapboxgl from 'mapbox-gl';
-import 'mapbox-gl/dist/mapbox-gl.css';
-import axios from 'axios';
-import Spinner from '../../components/UI/Spinner/Spinner';
+import React, { useState, useEffect, useCallback } from 'react';
 
-mapboxgl.accessToken =
-    'pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A';
-const token = localStorage.getItem('token');
+import * as MapBoxGL from 'mapbox-gl';
+import ReactMapboxGl, { Source, Layer } from 'react-mapbox-gl';
+
+import axios from 'axios';
+
+import config from '../../utils/config.json';
+
+import 'mapbox-gl/dist/mapbox-gl.css';
+import './Map.module.css';
+
+import { getBounds, getGeoJson } from '../../utils/map';
+import { AiOutlineLogout } from 'react-icons/ai';
+
+const MapBox = ReactMapboxGl({ accessToken: config.mapboxtoken });
+const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
+
+const layerStyle = {
+    'circle-radius': 8,
+    // 'circle-color': 'black',
+    'backgroung-image': "src('/assets/recycling-logo.png')",
+};
 
 const Map = () => {
-    const mapContainer = useRef();
-    const [dropOffs, setDropOffs] = useState('');
-    const [viewport, setViewport] = useState({
-        lng: 13.405,
-        lat: 52.52,
-        zoom: 13,
-    });
+    const [map, setMap] = useState();
+    const [mapHeight, setMapHeight] = useState('680px');
+    const [dropOffs, setDropOffs] = useState([]);
+    const [geojson, setGeojson] = useState();
 
-    console.log('viewport', viewport);
-    console.log('dropOffs', dropOffs);
-
-    // let lngLat;
-
-    // let address = async (lnglat) => {
-    //     console.log('lngLat', lnglat);
-    //     await axios
-    //         .get(
-    //             `https://api.mapbox.com/geocoding/v5/mapbox.places/${lnglat.lng},${lnglat.lat}.json?access_token=${mapboxgl.accessToken}&cachebuster=1616347496121&autocomplete=true&types=address&types=place&`
-    //         )
-    //         .then((resAddress) => {
-    //             console.log('resAddress', resAddress);
-    //         })
-    //         .catch((err) => console.log(err));
-    // };
-
-    const fetchDropOffs = async () => {
+    const fetchDropOffs = useCallback(async () => {
         try {
-            const dropOffsFromDB = await axios.get('/api/dropoffs', {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
+            const token = localStorage.getItem('token');
+            const { data } = await axios.get('/api/dropoffs', {
+                headers: { Authorization: `Bearer ${token}` },
             });
-            setDropOffs(dropOffsFromDB.data);
-        } catch (err) {
-            console.error(err);
-        }
-    };
 
-    useEffect(() => {
-        fetchDropOffs();
+            setDropOffs(data);
+        } catch (err) {
+            console.log('fetchDropOffs: ', err);
+        }
+    }, []);
+
+    const onLoadMap = useCallback((e) => {
+        setMap(e);
     }, []);
 
     useEffect(() => {
-        let map = new mapboxgl.Map({
-            container: mapContainer.current,
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [viewport.lng, viewport.lat],
-            zoom: viewport.zoom,
-        });
-        map.addControl(
-            new mapboxgl.GeolocateControl({
+        const height = window.innerHeight - 50;
+        setMapHeight(`${height}px`);
+    }, []);
+
+    useEffect(() => {
+        fetchDropOffs();
+    }, [fetchDropOffs]);
+
+    useEffect(() => {
+        map?.addControl(
+            new MapBoxGL.GeolocateControl({
                 positionOptions: {
                     enableHighAccuracy: true,
                 },
@@ -68,76 +64,60 @@ const Map = () => {
                 showUserLocation: true,
             })
         );
+    }, [map]);
+
+    useEffect(() => {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 (data) => {
-                    // console.log('data', data);
-                    setViewport({
-                        lng: data.coords.longitude,
-                        lat: data.coords.latitude,
-                    });
-                    // map.remove();
-                    // map = new mapboxgl.Map({
-                    //     container: mapContainer.current,
-                    //     style: 'mapbox://styles/mapbox/streets-v11',
-                    //     center: [data.coords.longitude, data.coords.latitude],
-                    //     zoom: viewport.zoom,
-                    // });
+                    const {
+                        coords: { longitude: lng, latitude: lat },
+                    } = data;
+
+                    map?.setCenter([lng, lat]);
                 },
-                (error) => {
-                    console.log(error);
+                (err) => {
+                    console.log('err: ', err);
                 }
             );
         }
+    }, [map]);
 
-        map.on('move', () => {
-            setViewport({
-                lng: map.getCenter().lng.toFixed(4),
-                lat: map.getCenter().lat.toFixed(4),
-                zoom: map.getZoom().toFixed(2),
-            });
-        });
+    useEffect(() => {
+        const data = getGeoJson(dropOffs);
+        setGeojson({ type: 'geojson', data: data });
+    }, [dropOffs]);
 
-        const marker = new mapboxgl.Marker({
-            scale: 1,
-            color: 'red',
-            // draggable: true,
-        });
+    useEffect(() => {
+        if (dropOffs.length <= 1) return;
 
-        // const features = dropOffs?.map((dropOff) => {
-        //     return {
-        //         type: 'Feature',
-        //         properties: {
-        //             message: 'Drop-Off',
-        //             iconSize: [60, 60],
-        //         },
-        //         geometry: {
-        //             type: 'Point',
-        //             coordinates: [dropOff.lngLat[0], dropOff.lngLat[1]],
-        //         },
-        //     };
-        // });
-
-        // const geojson = {
-        //     type: 'FeatureCollection',
-        //     features: features,
-        // };
-
-        // geojson.features.forEach((marker) => {
-        //     new mapboxgl.Marker()
-        //         .setLngLat(marker.geometry.coordinates)
-        //         .addTo(map);
-        // });
-
-        return () => map.remove();
-    }, []);
-
-    if (!viewport) return <Spinner />;
+        const bounds = getBounds(dropOffs);
+        map?.fitBounds(bounds);
+        console.log('bounds: ', bounds);
+    }, [map, dropOffs]);
 
     return (
-        <div>
-            <div className={style.Map} ref={mapContainer}></div>
-        </div>
+        <>
+            <MapBox
+                // eslint-disable-next-line react/style-prop-object
+                style={MapBoxStyle}
+                containerStyle={{
+                    height: mapHeight,
+                    width: '100%',
+                }}
+                onStyleLoad={onLoadMap}
+            >
+                <Source id="drop-off-src" geoJsonSource={geojson} />
+                <Layer
+                    type="circle"
+                    id="drop-off-layer"
+                    sourceId="drop-off-src"
+                    // paint={layerStyle}
+                >
+                    <img src="/assets/recynglic-logo" alt="recycling-logo" />
+                </Layer>
+            </MapBox>
+        </>
     );
 };
 
