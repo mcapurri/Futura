@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-
+import style from './Map.module.css';
 import * as MapBoxGL from 'mapbox-gl';
 import ReactMapboxGl, { Source, Layer } from 'react-mapbox-gl';
 
@@ -11,22 +11,21 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import './Map.module.css';
 
 import { getBounds, getGeoJson } from '../../utils/map';
-import { AiOutlineLogout } from 'react-icons/ai';
 
 const MapBox = ReactMapboxGl({ accessToken: config.mapboxtoken });
 const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
 const layerStyle = {
     'circle-radius': 8,
-    // 'circle-color': 'black',
-    'backgroung-image': "src('/assets/recycling-logo.png')",
+    'circle-color': 'black',
 };
 
 const Map = () => {
     const [map, setMap] = useState();
-    const [mapHeight, setMapHeight] = useState('680px');
+    const [mapHeight, setMapHeight] = useState('740px');
     const [dropOffs, setDropOffs] = useState([]);
     const [geojson, setGeojson] = useState();
+    console.log('geojson', geojson);
 
     const fetchDropOffs = useCallback(async () => {
         try {
@@ -42,6 +41,7 @@ const Map = () => {
     }, []);
 
     const onLoadMap = useCallback((e) => {
+        console.log('e', e);
         setMap(e);
     }, []);
 
@@ -101,21 +101,25 @@ const Map = () => {
             <MapBox
                 // eslint-disable-next-line react/style-prop-object
                 style={MapBoxStyle}
-                containerStyle={{
-                    height: mapHeight,
-                    width: '100%',
-                }}
+                // containerStyle={{
+                //     height: mapHeight,
+                //     width: '100%',
+                // }}
+                zoom={[15]}
+                className={style.Container}
                 onStyleLoad={onLoadMap}
             >
-                <Source id="drop-off-src" geoJsonSource={geojson} />
+                <Source
+                    id="drop-off-src"
+                    geoJsonSource={geojson}
+                    className={style.Marker}
+                />
                 <Layer
                     type="circle"
                     id="drop-off-layer"
                     sourceId="drop-off-src"
                     // paint={layerStyle}
-                >
-                    <img src="/assets/recynglic-logo" alt="recycling-logo" />
-                </Layer>
+                />
             </MapBox>
         </>
     );

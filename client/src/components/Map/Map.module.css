@@ -1,31 +1,14 @@
 .Container {
-    margin: 5% 0 5% 0;
-    background-color: rgb(5, 58, 32);
+    margin: 0% 0 0% 0;
     width: 100vw;
-    height: 90vh;
-    color: #fff;
-    display: flex;
-    align-items: center;
+    height: 93vh;
 }
-.Container .infos {
-    padding: 0 10% 0% 3%;
-    font-size: 1rem;
-    font-weight: bold;
-}
-.Map {
-    width: 100vw;
-    height: 94vh;
-}
-.Map input {
-    height: 2rem;
-    width: 10rem;
-}
-.Sidebar {
-    background-color: rgba(35, 55, 75, 0.9);
-    color: #ffffff;
-    padding: 6px 12px;
-    font: 15px/24px monospace;
-    z-index: 1;
-    margin: 12px;
-    border-radius: 4px;
+
+.Marker {
+    /* background-image: url('recycling-logo.png'); */
+    background-size: cover;
+    background-color: green;
+    width: 30px;
+    border-radius: 50px;
+    cursor: pointer;
 }
