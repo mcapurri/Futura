@@ -4,11 +4,12 @@
     height: 93vh;
 }
 
-.Container #Marker {
-    /* background-image: url('/recycling-logo.png'); */
-    /* background-size: cover; */
+.Marker {
+    /* background-image: url('assets/recycling-logo.png'); */
+    background-size: cover;
     background-color: green;
-    width: 30px;
-    border-radius: 50px;
+    border-radius: 50%;
+    width: 24px;
+    color: green;
     cursor: pointer;
 }

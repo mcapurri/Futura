@@ -43,8 +43,13 @@ const Map = () => {
     const markerRenderer = useMemo(
         () =>
             dropOffs.map((el) => (
-                <Marker key={el._id} coordinates={el.lngLat} id={style.Marker}>
-                    RECYCLING Point
+                <Marker
+                    key={el._id}
+                    coordinates={el.lngLat}
+                    className={style.Marker}
+                >
+                    {/* RECYCLING Point */}
+                    <img src="assets/recycling-15.svg" alt="recycling-logo" />
                 </Marker>
             )),
         [dropOffs]
@@ -54,7 +59,6 @@ const Map = () => {
         const height = window.innerHeight - 50;
         setMapHeight(`${height}px`);
     }, []);
-
     useEffect(() => {
         fetchDropOffs();
     }, [fetchDropOffs]);
