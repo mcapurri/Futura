@@ -41,6 +41,7 @@ function App(props) {
     };
     useEffect(() => {
         window.addEventListener('resize', handleWindowSizeChange);
+        window.resizeTo(360, 740);
         return () => {
             window.removeEventListener('resize', handleWindowSizeChange);
         };
@@ -49,10 +50,10 @@ function App(props) {
     let isMobile = width <= 360;
     return (
         <div
-            style={{
-                width: isMobile ? '100%' : '360px',
-                height: isMobile ? '100%' : '740px',
-            }}
+        // style={{
+        //     width: isMobile ? '100%' : '360px',
+        //     height: isMobile ? '100%' : '740px',
+        // }}
         >
             {drawerOpen && (
                 <SideDrawer

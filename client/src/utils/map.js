@@ -12,12 +12,12 @@ export const getBounds = (points) => {
 export const getGeoJson = (list) => {
     console.log('Geojson list', list);
     const features = [...list].map((marker) => {
-        console.log('marker', marker);
+        // console.log('marker', marker);
         const feature = {
             type: 'Feature',
             properties: {
                 title: marker.name,
-                description: `${marker.street}, ${marker.houseNumber}, ${marker.zipCode}`,
+                description: `${marker.street}  ${marker.houseNumber}, ${marker.zipCode}`,
             },
             geometry: { type: 'Point', coordinates: marker.lngLat },
         };

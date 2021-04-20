@@ -1,31 +1,25 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import style from './Map.module.css';
+
 import * as MapBoxGL from 'mapbox-gl';
-import ReactMapboxGl, { Source, Layer } from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
 
 import axios from 'axios';
 
 import config from '../../utils/config.json';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
-import './Map.module.css';
 
 import { getBounds, getGeoJson } from '../../utils/map';
 
 const MapBox = ReactMapboxGl({ accessToken: config.mapboxtoken });
 const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
-const layerStyle = {
-    'circle-radius': 8,
-    'circle-color': 'black',
-};
-
 const Map = () => {
     const [map, setMap] = useState();
-    const [mapHeight, setMapHeight] = useState('740px');
+    const [mapHeight, setMapHeight] = useState('680px');
     const [dropOffs, setDropOffs] = useState([]);
     const [geojson, setGeojson] = useState();
-    console.log('geojson', geojson);
 
     const fetchDropOffs = useCallback(async () => {
         try {
@@ -35,15 +29,26 @@ const Map = () => {
             });
 
             setDropOffs(data);
+            const geojsonData = getGeoJson(data);
+            setGeojson({ type: 'geojson', data: geojsonData });
         } catch (err) {
             console.log('fetchDropOffs: ', err);
         }
     }, []);
 
-    const onLoadMap = useCallback((e) => {
-        console.log('e', e);
-        setMap(e);
+    const onLoadMap = useCallback((ev) => {
+        setMap(ev);
     }, []);
+
+    const markerRenderer = useMemo(
+        () =>
+            dropOffs.map((el) => (
+                <Marker key={el._id} coordinates={el.lngLat} id={style.Marker}>
+                    RECYCLING Point
+                </Marker>
+            )),
+        [dropOffs]
+    );
 
     useEffect(() => {
         const height = window.innerHeight - 50;
@@ -93,33 +98,18 @@ const Map = () => {
 
         const bounds = getBounds(dropOffs);
         map?.fitBounds(bounds);
-        console.log('bounds: ', bounds);
     }, [map, dropOffs]);
 
     return (
         <>
             <MapBox
-                // eslint-disable-next-line react/style-prop-object
-                style={MapBoxStyle}
-                // containerStyle={{
-                //     height: mapHeight,
-                //     width: '100%',
-                // }}
-                zoom={[15]}
                 className={style.Container}
+                style={MapBoxStyle}
+                center={[13.4, 52.52]}
+                zoom={[15]}
                 onStyleLoad={onLoadMap}
             >
-                <Source
-                    id="drop-off-src"
-                    geoJsonSource={geojson}
-                    className={style.Marker}
-                />
-                <Layer
-                    type="circle"
-                    id="drop-off-layer"
-                    sourceId="drop-off-src"
-                    // paint={layerStyle}
-                />
+                {markerRenderer}
             </MapBox>
         </>
     );
