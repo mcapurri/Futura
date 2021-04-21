@@ -36,16 +36,16 @@ function App(props) {
             });
 
     // Check if mobile
-    const handleWindowSizeChange = () => {
-        setWidth(window.innerWidth);
-    };
-    useEffect(() => {
-        window.addEventListener('resize', handleWindowSizeChange);
-        window.resizeTo(360, 740);
-        return () => {
-            window.removeEventListener('resize', handleWindowSizeChange);
-        };
-    }, []);
+    // const handleWindowSizeChange = () => {
+    //     setWidth(window.innerWidth);
+    // };
+    // useEffect(() => {
+    //     window.addEventListener('resize', handleWindowSizeChange);
+    //     window.resizeTo(360, 740);
+    //     return () => {
+    //         window.removeEventListener('resize', handleWindowSizeChange);
+    //     };
+    // }, []);
 
     let isMobile = width <= 360;
     return (

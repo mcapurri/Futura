@@ -24,9 +24,11 @@
     align-items: center;
 } */
 .Container h1 {
-    font-size: 3rem;
+    font-family: 'Pacifico', cursive;
+    font-size: 6rem;
     margin-top: 5%;
 }
+
 .Form {
     display: flex;
     flex-direction: column;

@@ -40,7 +40,18 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
     };
     return (
         <div className={style.Container}>
-            <h1>Futura</h1>
+            <h1>
+                <span>Futura</span>
+                <img
+                    src="../../../assets/recycling-logo.png"
+                    alt=""
+                    style={{
+                        width: '3rem',
+                        height: '3rem',
+                        borderRadius: '50%',
+                    }}
+                />{' '}
+            </h1>
             <Form className={style.Form} onSubmit={handleSubmit}>
                 <Form.Group>
                     <label htmlFor="email">Email</label>

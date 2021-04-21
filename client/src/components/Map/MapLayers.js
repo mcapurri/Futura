@@ -159,7 +159,7 @@ const Map = () => {
                 // eslint-disable-next-line react/style-prop-object
                 style={MapBoxStyle}
                 center={[13.4, 52.52]}
-                zoom={[15]}
+                zoom={[16]}
                 className={style.Container}
                 onStyleLoad={onLoadMap}
             >

@@ -60,7 +60,18 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
             <header>
                 <img src="assets/sea-img.png" alt="sea-img" />
             </header>
-            <h1>Futura</h1>
+            <h1>
+                <span>Futura</span>
+                <img
+                    src="../../../assets/recycling-logo.png"
+                    alt=""
+                    style={{
+                        width: '3rem',
+                        height: '3rem',
+                        borderRadius: '50%',
+                    }}
+                />{' '}
+            </h1>
             <Form className={style.Form} onSubmit={handleSubmit}>
                 <Form.Group>
                     <label htmlFor="firstName">Name</label>

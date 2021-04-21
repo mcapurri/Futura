@@ -82,20 +82,21 @@ userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
     // Create token
     const token = user.getSignedJwtToken(user);
 
-    const options = {
-        expires: new Date(
-            Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-        ),
-        httpOnly: true,
-    };
-    if (process.env.NODE_ENV === 'production') {
-        options.secure = true;
-    }
+    // Save token in a cookie
+
+    // const options = {
+    //     expires: new Date(
+    //         Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+    //     ),
+    //     httpOnly: true,
+    // };
+    // if (process.env.NODE_ENV === 'production') {
+    //     options.secure = true;
+    // }
     // res.status(statusCode).cookie('token', token, options).json({
     //     token,
     //     message: 'Password Successfully Updated',
     // });
-    // res.cookie(('token', token, options));
     return token;
 };
 
