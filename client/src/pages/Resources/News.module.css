@@ -12,6 +12,13 @@
     flex-direction: column;
     align-items: center;
 }
+.News h1 {
+    font-family: 'Prata', serif;
+    font-size: 3rem;
+    margin-top: 5%;
+    margin-left: 5%;
+    color: #fff;
+}
 .Card {
     width: 21rem;
 

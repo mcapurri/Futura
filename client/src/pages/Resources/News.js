@@ -85,6 +85,8 @@ const News = (props) => {
     if (!newsList) return <Spinner />;
     return (
         <div className={style.News}>
+            <h1>All the latest news on recyling in Africa</h1>
+
             <Container fluid={true}>
                 {/* <Col className="justify-content-around"> */}
                 <Col className={style.Col}>{displayNews([...newsList])}</Col>

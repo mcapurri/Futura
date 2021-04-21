@@ -34,7 +34,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                 {user !== '' && (
                     <>
                         <div className={style.Avatar}>
-                            {user.avatar ? (
+                            {user?.avatar ? (
                                 <>
                                     <img
                                         src={user.avatar}
