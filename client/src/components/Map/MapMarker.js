@@ -61,7 +61,7 @@ const Map = () => {
                     onClick={handleClickMarker}
                 >
                     {/* RECYCLING Point */}
-                    <img src="assets/recycling-15.svg" alt="recycling-logo" />
+                    {/* <img src="assets/recycling-15.svg" alt="recycling-logo" /> */}
                     {/* <img src="assets/recycling-logo" alt="recycling-logo" /> */}
                 </Marker>
             )),
