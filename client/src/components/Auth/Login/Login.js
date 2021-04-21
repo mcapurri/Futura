@@ -39,37 +39,40 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
         //     : setUser(user);
     };
     return (
-        <Form className={style.Form} onSubmit={handleSubmit}>
-            <Form.Group>
-                <label htmlFor="email">Email</label>
-                <Form.Input
-                    name="email"
-                    type="email"
-                    placeholder="Email"
-                    value={email}
-                    onChange={setEmail}
-                />
-            </Form.Group>
-            <Form.Group>
-                <label htmlFor="password">Password</label>
-                <Form.Input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={password}
-                    onChange={setPassword}
-                />
-            </Form.Group>
-            <Form.Text className={style.forgPass}>
-                <Link to="/forgotpassword">Forgot password?</Link>
-            </Form.Text>
-            <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
-            <p>
-                Don't have an account? &nbsp;
-                <Link to="/signup">Create one now</Link>
-            </p>
-            <Button type="submit">Login</Button>
-        </Form>
+        <div className={style.Container}>
+            <h1>Futura</h1>
+            <Form className={style.Form} onSubmit={handleSubmit}>
+                <Form.Group>
+                    <label htmlFor="email">Email</label>
+                    <Form.Input
+                        name="email"
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={setEmail}
+                    />
+                </Form.Group>
+                <Form.Group>
+                    <label htmlFor="password">Password</label>
+                    <Form.Input
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        value={password}
+                        onChange={setPassword}
+                    />
+                </Form.Group>
+                <Form.Text className={style.forgPass}>
+                    <Link to="/forgotpassword">Forgot password?</Link>
+                </Form.Text>
+                <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
+                <p>
+                    Don't have an account? &nbsp;
+                    <Link to="/signup">Create one now</Link>
+                </p>
+                <Button type="submit">Login</Button>
+            </Form>
+        </div>
     );
 };
 

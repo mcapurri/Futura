@@ -56,10 +56,11 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
     };
 
     return (
-        <div className={style.Home}>
+        <div className={style.Container}>
             <header>
                 <img src="assets/sea-img.png" alt="sea-img" />
             </header>
+            <h1>Futura</h1>
             <Form className={style.Form} onSubmit={handleSubmit}>
                 <Form.Group>
                     <label htmlFor="firstName">Name</label>
@@ -163,7 +164,7 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                     />
                 </Form.Group>
                 <Form.Text>
-                    <p style={{ fontSize: '0.8rem', padding: '0 10%' }}>
+                    <p id={style.Terms}>
                         By clicking Sign Up, you agree to our Terms. Learn how
                         we collect, use and share your data in our Data Policy
                         and how we use cookies and similar technology in our
