@@ -78,12 +78,12 @@ passport.use(
                             password,
                             userFromDB.password,
                             function (err, valid) {
-                                if (err) {
+                                if (valid) {
+                                    done(null, userFromDB);
+                                } else {
                                     done(null, false, {
                                         message: 'Wrong Credentials',
                                     });
-                                } else {
-                                    done(null, userFromDB);
                                 }
                             }
                         );

@@ -142,7 +142,7 @@ router.post('/forgotpassword', (req, res, next) => {
                 res.status(403).json("User doesn't exist");
             } else {
                 // Get reset token
-                const resetToken = await user.getResetPasswordToken();
+                const resetToken = await user.getResetPasswordToken(user);
                 // Create reset url
                 const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
 
@@ -180,12 +180,14 @@ router.put('/resetpassword/:resettoken', async function (req, res, next) {
     }
 
     // Set new password
-    const salt = bcrypt.genSaltSync();
-    const hash = bcrypt.hashSync(req.body.password, salt);
-    user.password = hash;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
-    await user.save();
+    bcrypt.hash(req.body.password, 8, async function (err, hash) {
+        if (err) return res.json(err);
+        console.log(hash);
+        user.password = hash;
+        user.resetPasswordToken = undefined;
+        user.resetPasswordExpire = undefined;
+        await user.save();
+    });
 
     user.sendTokenResponse(user, 200, res);
 });

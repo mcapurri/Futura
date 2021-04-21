@@ -20,6 +20,7 @@ const ResetPassword = (props) => {
             .then((res) => {
                 console.log('response', res.data.message);
                 setMessage(res.data.message);
+                props.history.push('/');
             })
             .catch((err) => console.log(err));
     };

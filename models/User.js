@@ -32,7 +32,7 @@ const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 
 // Generate and hash password token
-userSchema.methods.getResetPasswordToken = async function () {
+userSchema.methods.getResetPasswordToken = async function (user) {
     // Generate token
     const resetToken = crypto.randomBytes(20).toString('hex');
 
@@ -47,7 +47,7 @@ userSchema.methods.getResetPasswordToken = async function () {
 
     this.resetPasswordToken = resetPasswordToken;
     this.resetPasswordExpire = resetPasswordExpire;
-    await this.save();
+    await user.save();
 
     return resetPasswordToken;
 };

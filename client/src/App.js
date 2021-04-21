@@ -35,19 +35,19 @@ function App(props) {
                 console.log(err);
             });
 
-    // Check if mobile
-    // const handleWindowSizeChange = () => {
-    //     setWidth(window.innerWidth);
-    // };
-    // useEffect(() => {
-    //     window.addEventListener('resize', handleWindowSizeChange);
-    //     window.resizeTo(360, 740);
-    //     return () => {
-    //         window.removeEventListener('resize', handleWindowSizeChange);
-    //     };
-    // }, []);
+    // // Check if mobile
+    // // const handleWindowSizeChange = () => {
+    // //     setWidth(window.innerWidth);
+    // // };
+    // // useEffect(() => {
+    // //     window.addEventListener('resize', handleWindowSizeChange);
+    // //     window.resizeTo(360, 740);
+    // //     return () => {
+    // //         window.removeEventListener('resize', handleWindowSizeChange);
+    // //     };
+    // // }, []);
 
-    let isMobile = width <= 360;
+    // let isMobile = width <= 360;
     return (
         <div
         // style={{
@@ -124,7 +124,7 @@ function App(props) {
             </Switch>
             {user && (
                 <Footer
-                    isMobile={isMobile}
+                    // isMobile={isMobile}
                     history={props.history}
                     drawerOpen={drawerOpen}
                 />
