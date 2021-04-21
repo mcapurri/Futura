@@ -13,7 +13,7 @@ import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 import SideDrawer from './components/SideDrawer/SideDrawer';
-import Map from './components/Map/Map';
+import Map from './components/Map/MapLayers';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);

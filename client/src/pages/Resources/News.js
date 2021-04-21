@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import style from './News.module.css';
 import axios from 'axios';
-import { Card, Container, Col } from 'bootstrap-4-react';
+import { Card, Container, Col, Row } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { rapidKey } from '../../rapidKey.json';
@@ -85,9 +85,8 @@ const News = (props) => {
     return (
         <div className={style.News}>
             <Container fluid={true}>
-                <Col className="justify-content-around">
-                    {displayNews([...newsList])}
-                </Col>
+                {/* <Col className="justify-content-around"> */}
+                <Col className={style.Col}>{displayNews([...newsList])}</Col>
             </Container>
         </div>
     );

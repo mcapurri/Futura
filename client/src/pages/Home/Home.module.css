@@ -9,7 +9,8 @@
     overflow: hidden;
 }
 .Home img {
-    height: 33vh;
+    /* height: 33vh; */
+    width: 100vw;
     /* margin-bottom: 10%; */
 }
 .Home header {

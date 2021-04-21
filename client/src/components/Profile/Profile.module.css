@@ -6,7 +6,7 @@
     justify-content: space-around;
     width: 100%;
     height: 100%;
-    overflow: hidden;
+    overflow-y: scroll;
 }
 
 .Showcase {
@@ -14,7 +14,7 @@
     flex-direction: column;
     justify-content: space-around;
     width: 90%;
-    height: 35vh;
+    min-height: 35vh;
     background-color: rgb(13, 122, 177);
     border-radius: 10px;
     /* margin-top: -5%; */
@@ -43,4 +43,18 @@
     justify-content: center;
     align-items: center;
     font-weight: bold;
+}
+@media screen and (min-width: 435px) {
+    .Showcase {
+        margin: 10% 0;
+    }
+    /* .Profile {
+        padding: 10% 0;
+    } */
+}
+@media screen and (min-width: 600px) {
+    .Showcase {
+        /* margin-top: 20%; */
+        margin-bottom: 5%;
+    }
 }

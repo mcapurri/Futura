@@ -40,6 +40,17 @@ const Map = () => {
         setMap(ev);
     }, []);
 
+    const handleClickMarker = useCallback(
+        (e) => console.log('clickEvent', e)
+        //     {
+        //         new MapBoxGL.Popup()
+        //             // .setLngLat(e.lngLat)
+        //             .setHTML(<span>${'text'}</span>)
+        //             .addTo(map);
+        //     },
+        // [map]
+    );
+
     const markerRenderer = useMemo(
         () =>
             dropOffs.map((el) => (
@@ -47,9 +58,11 @@ const Map = () => {
                     key={el._id}
                     coordinates={el.lngLat}
                     className={style.Marker}
+                    onClick={handleClickMarker}
                 >
                     {/* RECYCLING Point */}
                     <img src="assets/recycling-15.svg" alt="recycling-logo" />
+                    {/* <img src="assets/recycling-logo" alt="recycling-logo" /> */}
                 </Marker>
             )),
         [dropOffs]

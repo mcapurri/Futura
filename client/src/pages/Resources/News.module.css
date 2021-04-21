@@ -8,3 +8,15 @@
     background-color: rgb(45, 174, 184);
     overflow: auto;
 }
+.News .Col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@media only screen and (max-width: 435px) {
+    .News .Col {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+}
