@@ -50,14 +50,15 @@ const News = (props) => {
     const displayNews = (newsArr) => {
         return newsArr.map((news) => {
             return (
-                <Card
-                    key={news.url}
-                    style={{ width: '18rem', margin: '10% 0' }}
-                >
+                <Card key={news.url} className={style.Card}>
                     {news.image && (
                         <img
                             src={news.image.thumbnail.contentUrl}
-                            style={{ maxHeight: '15rem', objectFit: 'contain' }}
+                            style={{
+                                maxHeight: '15rem',
+                                objectFit: 'contain',
+                                marginTop: '3%',
+                            }}
                             alt="article-img"
                         />
                     )}

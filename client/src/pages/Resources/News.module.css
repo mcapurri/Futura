@@ -4,7 +4,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    /* justify-content: space-evenly; */
     background-color: rgb(45, 174, 184);
     overflow: auto;
 }
@@ -13,6 +12,11 @@
     flex-direction: column;
     align-items: center;
 }
+.Card {
+    width: 21rem;
+
+    margin: 10% 3%;
+}
 
 @media only screen and (min-width: 435px) {
     .News .Col {
@@ -20,5 +24,10 @@
         flex-wrap: wrap;
         align-items: flex-start;
         justify-content: space-around;
+    }
+}
+@media only screen and (max-width: 825px) {
+    .Card {
+        width: 70vw;
     }
 }
