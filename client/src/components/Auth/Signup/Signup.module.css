@@ -8,8 +8,9 @@
     color: #fff;
 }
 .Home img {
-    height: 33vh;
+    /* height: 33vh; */
     /* margin-bottom: 10%; */
+    width: 100vw;
 }
 .Home header {
     height: 33vh;
@@ -57,4 +58,13 @@
     font-size: 0.9rem;
     background-color: transparent;
     color: rgb(28, 99, 221);
+}
+@media screen and (min-width: 435px) {
+    .Form input {
+        width: 30rem;
+    }
+    .Form p {
+        margin-top: 5%;
+        margin-bottom: -5%;
+    }
 }

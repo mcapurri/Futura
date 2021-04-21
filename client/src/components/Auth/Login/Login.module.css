@@ -46,3 +46,9 @@
     margin-right: 5%;
     margin-bottom: 10%;
 }
+
+@media screen and (min-width: 435px) {
+    .Form input {
+        width: 30rem;
+    }
+}
