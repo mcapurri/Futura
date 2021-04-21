@@ -165,7 +165,7 @@ router.post('/forgotpassword', (req, res, next) => {
 // @desc      Reset password
 // @route     PUT /api/auth/resetpassword/:resettoken
 // @access    Public
-router.put('/resetpassword/:resettoken', async (req, res, next) => {
+router.put('/resetpassword/:resettoken', async function (req, res, next) {
     console.log('req.body', req.body);
 
     const user = await User.findOne({

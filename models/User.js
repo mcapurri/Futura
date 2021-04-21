@@ -100,7 +100,7 @@ userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
 };
 
 // Sign JWT and return
-userSchema.methods.getSignedJwtToken = (user) => {
+userSchema.methods.getSignedJwtToken = function (user) {
     let temp = user || this;
     console.log('getSignedToken running');
     return jwt.sign(
@@ -111,11 +111,6 @@ userSchema.methods.getSignedJwtToken = (user) => {
         }
     );
 };
-// userSchema.methods.getSignedJwtToken = () => {
-//     return jwt.sign({ id: this._id }, process.env.JWT_SECRET, {
-//         expiresIn: process.env.JWT_EXPIRE,
-//     });
-// };
 
 const User = model('User', userSchema);
 

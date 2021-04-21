@@ -26,7 +26,7 @@ const ForgotPassword = (props) => {
     };
 
     return (
-        <div className={style.Home}>
+        <div className={style.Container}>
             <header>
                 <img src="assets/sea-img.png" alt="sea-img" />
             </header>
