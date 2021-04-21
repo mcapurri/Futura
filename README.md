@@ -1,8 +1,8 @@
 ## Futura
 ** UNDER DEVELOPMENT **<br/>
-Mobile only App built to promote plastic recycling in Nigeria.<br/>
-It allows to find plastic drop-offs around you.
-It keeps score of your credit, based on the amount of plastic deposited.<br/>
+This App was built to promote plastic recycling in Nigeria.<br/>
+It allows to find plastic drop-offs located around the current user position.
+It keeps score of user's credit, based on the amount of plastic deposited.<br/>
 Resources page offers an updated list of article about the recycling and sustainability in Africa.<br/>
 Database managed with MongoDB
 
