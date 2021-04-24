@@ -5,7 +5,7 @@ import {
     FaUserAlt as UserLogo,
 } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
-const Footer = (props) => {
+const Footer = () => {
     return (
         <div
             style={{
@@ -17,7 +17,6 @@ const Footer = (props) => {
                 position: 'absolute',
                 backgroundColor: 'rgb(13, 122, 177)',
                 width: '100%',
-                // width: !props.isMobile ? '360px' : '100%',
             }}
         >
             <Link to="/">
