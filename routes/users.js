@@ -1,14 +1,13 @@
 const router = require('express').Router();
 const User = require('../models/User');
 const { uploader, cloudinary } = require('../config/cloudinary');
-const passport = require('passport');
 
 // // @desc      Upload image
 // // @route     POST /upload
 // // @access    Private
 router.post(
     '/upload',
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     uploader.single('avatar'),
     (req, res, next) => {
         console.log('file is: ', req.file);
@@ -24,7 +23,7 @@ router.post(
 
 router.put(
     '/users/:id',
-    passport.authenticate('jwt', { session: false }),
+    // passport.authenticate('jwt', { session: false }),
     (req, res, next) => {
         console.log('req.body', req.body);
         // const {avatar} = req.body
