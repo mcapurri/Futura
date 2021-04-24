@@ -17,9 +17,9 @@ const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
 const Map = () => {
     const [map, setMap] = useState();
-    const [mapHeight, setMapHeight] = useState('680px');
+    // const [mapHeight, setMapHeight] = useState('680px');
     const [dropOffs, setDropOffs] = useState([]);
-    const [geojson, setGeojson] = useState();
+    const [, setGeojson] = useState();
 
     const fetchDropOffs = useCallback(async () => {
         try {
@@ -41,14 +41,12 @@ const Map = () => {
     }, []);
 
     const handleClickMarker = useCallback(
-        (e) => console.log('clickEvent', e)
-        //     {
-        //         new MapBoxGL.Popup()
-        //             // .setLngLat(e.lngLat)
-        //             .setHTML(<span>${'text'}</span>)
-        //             .addTo(map);
-        //     },
-        // [map]
+        (e) =>
+            // new MapBoxGL.Popup()
+            //     // .setLngLat(e.lngLat)
+            //     .setHTML(<span>${'text'}</span>)
+            //     .addTo(map);
+            console.log('clickEvent', e)[map]
     );
 
     const markerRenderer = useMemo(
@@ -65,13 +63,14 @@ const Map = () => {
                     {/* <img src="assets/recycling-logo" alt="recycling-logo" /> */}
                 </Marker>
             )),
-        [dropOffs]
+        [dropOffs, handleClickMarker]
     );
 
-    useEffect(() => {
-        const height = window.innerHeight - 50;
-        setMapHeight(`${height}px`);
-    }, []);
+    // useEffect(() => {
+    //     const height = window.innerHeight - 50;
+    //     setMapHeight(`${height}px`);
+    // }, []);
+
     useEffect(() => {
         fetchDropOffs();
     }, [fetchDropOffs]);

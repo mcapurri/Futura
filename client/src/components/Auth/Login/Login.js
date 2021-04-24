@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 import { login } from '../../../utils/auth';
 import useInput from '../../../utils/useInput';
 
-const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
+const Login = ({ setUser }) => {
     const [message, setMessage] = useState('');
 
     const [email, setEmail] = useInput('');
@@ -25,18 +25,12 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                 setPassword('');
             } else {
                 if (user.token) {
-                    // console.log('cookie', document.cookie);
                     localStorage.setItem('token', user.token);
                 }
                 //  put the user object in the state of App.js
                 setUser(user.user);
-                // console.log(user);
             }
         });
-        // const user = await login({ email: email, password: password });
-        // user.message
-        //     ? (setMessage(user.message), setEmail(''), setPassword(''))
-        //     : setUser(user);
     };
     return (
         <div className={style.Container}>
@@ -76,7 +70,7 @@ const Login = ({ setUser, setIsSignup, setForgotPassword }) => {
                 <Form.Text className={style.forgPass}>
                     <Link to="/forgotpassword">Forgot password?</Link>
                 </Form.Text>
-                <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
+                <p style={{ color: '#fff' }}>{message}</p>
                 <p>
                     Don't have an account? &nbsp;
                     <Link to="/signup">Create one now</Link>

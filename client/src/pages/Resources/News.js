@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import style from './News.module.css';
 import axios from 'axios';
-import { Card, Container, Col, Row } from 'bootstrap-4-react';
+import { Card, Container, Col } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import { rapidKey } from '../../rapidKey.json';

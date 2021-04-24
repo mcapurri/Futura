@@ -1,5 +1,5 @@
 import './App.css';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
 
@@ -13,15 +13,14 @@ import Signup from './components/Auth/Signup/Signup';
 import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 import SideDrawer from './components/SideDrawer/SideDrawer';
-import Map from './components/Map/MapMarker';
+import Map from './components/Map/Map';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [width, setWidth] = useState(window.innerWidth);
+    // const [width, setWidth] = useState(window.innerWidth);
 
     const [user, setUser] = useState(props.user);
     console.log('user', user);
-    console.log('drawerOpen', drawerOpen);
 
     const toggleDrawer = () => {
         setDrawerOpen(() => !drawerOpen);

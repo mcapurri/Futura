@@ -41,30 +41,6 @@ router.post('/login', (req, res, next) => {
     })(req, res);
 });
 
-// router.post('/login', function (req, res, next) {
-//     passport.authenticate('jwt', { session: false }, (err, user) => {
-//         if (err || !user) {
-//             return res.status(400).json({
-//                 message: 'Wrong credentials',
-//                 user: user,
-//             });
-//         }
-//         // if (err) {
-//         //     return res.status(500).json('Error while attempting to login');
-//         // }
-//         // if (!user) {
-//         //     return res.status(400).json('Wrong credentials');
-//         // }
-//         req.login(user, { session: false }, (err) => {
-//             if (err) {
-//                 res.send(err);
-//             } // generate a signed son web token with the contents of user object and return it in the response
-//             const token = user.getSignedJwtToken();
-//             return res.json({ user, token });
-//         });
-//     })(req, res);
-// });
-
 // @desc      Sign up
 // @route     POST /api/auth//signup
 // @access    Public
@@ -167,6 +143,7 @@ router.post('/forgotpassword', (req, res, next) => {
 // @access    Public
 router.put('/resetpassword/:resettoken', async function (req, res, next) {
     console.log('req.body', req.body);
+    const { password, confirm } = req.body;
 
     const user = await User.findOne({
         resetPasswordToken: req.params.resettoken,
@@ -178,9 +155,12 @@ router.put('/resetpassword/:resettoken', async function (req, res, next) {
     if (!user) {
         return next();
     }
+    if (password !== confirm) {
+        return res.status(400).json({ message: "Passwords don't match" });
+    }
 
     // Set new password
-    bcrypt.hash(req.body.password, 8, async function (err, hash) {
+    bcrypt.hash(password, 8, async function (err, hash) {
         if (err) return res.json(err);
         console.log(hash);
         user.password = hash;
@@ -196,8 +176,9 @@ router.put('/resetpassword/:resettoken', async function (req, res, next) {
 // @route     DELETE /logout
 // @access    Private
 router.delete('/logout', (req, res) => {
-    // passport method to log out
-    req.logout();
+    passport.authenticate('jwt', { session: false }),
+        // passport method to log out
+        req.logout();
     res.status(200).json('Logout was successful');
 });
 

@@ -21,7 +21,8 @@ app.use(
     session({
         secret: process.env.SESSION_SECRET,
         cookie: {
-            SameSite: ' none',
+            SameSite: 'none',
+            Secure: true,
             httpOnly: true,
             maxAge: 1000 * 60 * 60 * 24,
         },
@@ -128,9 +129,6 @@ passport.use(
             .catch((err) => console.log(err));
     })
 );
-
-// app.use(passport.initialize());
-// passport.authenticate('jwt', cfg.jwtSession);
 
 // end of passport
 

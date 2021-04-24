@@ -1,5 +1,4 @@
 import * as MapBoxGL from 'mapbox-gl';
-import { FaMapMarkedAlt } from 'react-icons/fa';
 
 export const getBounds = (points) => {
     const bounds = new MapBoxGL.LngLatBounds();
