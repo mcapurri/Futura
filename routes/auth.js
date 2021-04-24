@@ -27,7 +27,7 @@ router.post('/login', (req, res, next) => {
             return res.status(400).json({ message: 'Wrong credentials' });
         }
 
-        req.login(user, (err) => {
+        req.login(user, { session: false }, (err) => {
             if (err) {
                 return res
                     .status(500)
