@@ -2,7 +2,7 @@ import './App.css';
 import { useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
-
+import ProtectedRoute from './utils/ProtectedRoute';
 import Home from './pages/Home/Home';
 import Footer from './components/Footer/Footer';
 import Website from './pages/Resources/Website';
@@ -29,6 +29,7 @@ function App(props) {
         logout()
             .then(() => {
                 setUser(() => '');
+                localStorage.removeItem('token');
             })
             .catch((err) => {
                 console.log(err);
@@ -72,6 +73,7 @@ function App(props) {
                         />
                     )}
                 />
+
                 <Route
                     exact
                     path="/signup"
@@ -89,32 +91,56 @@ function App(props) {
                     render={(props) => <ResetPassword {...props} />}
                     // component={ResetPassword}
                 />
-                <Route
+                <ProtectedRoute
+                    exact
+                    path="/user-portal"
+                    component={UserPortal}
+                    user={user}
+                />
+                {/* <Route
                     exact
                     path="/user-portal"
                     render={(props) => <UserPortal {...props} />}
+                /> */}
+                <ProtectedRoute
+                    exact
+                    path="/resources/website"
+                    component={Website}
+                    user={user}
                 />
-                <Route
+                {/* <Route
                     exact
                     path="/resources/website"
                     render={(props) => <Website {...props} />}
+                /> */}
+                <ProtectedRoute
+                    exact
+                    path="/resources/news"
+                    component={News}
+                    user={user}
                 />
-
-                <Route
+                {/* <Route
                     exact
                     path="/resources/news"
                     render={(props) => <News {...props} />}
-                />
-                <Route
+                /> */}
+                <ProtectedRoute exact path="/map" component={Map} user={user} />
+                {/* <Route
                     exact
                     path="/map"
                     render={(props) => <Map {...props} />}
+                /> */}
+                <ProtectedRoute
+                    exact
+                    path="/create-dropoff"
+                    component={CreateDropOff}
+                    user={user}
                 />
-                <Route
+                {/* <Route
                     exact
                     path="/create-dropoff"
                     render={(props) => <CreateDropOff {...props} user={user} />}
-                />
+                /> */}
             </Switch>
             {user && <Footer />}
         </>

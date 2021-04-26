@@ -4,14 +4,17 @@ const service = axios.create({
     baseURL: 'http://localhost:3000/api',
     // withCredentials: true // => I might need this when having the users in the app
 });
+const token = localStorage.getItem('token');
 
 const errorHandler = (err) => {
     // console.error(err);
     throw err;
 };
-const handleUpload = async (file) => {
+const handleUpload = async (file, id) => {
     try {
-        const resp = await service.post('/users/upload', file);
+        const resp = await service.post(`/users/upload/${id}`, file, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return resp.data;
     } catch (err) {
         errorHandler(err);
@@ -21,7 +24,9 @@ const handleUpload = async (file) => {
 const saveNewThing = async (newThing) => {
     console.log('new thing is: ', newThing);
     try {
-        const resp = await service.put(`/users/${newThing._id}`, newThing);
+        const resp = await service.put(`/users/${newThing._id}`, newThing, {
+            headers: { Authorization: `Bearer ${token}` },
+        });
         return resp.data;
     } catch (err) {
         errorHandler(err);

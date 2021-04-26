@@ -4,11 +4,12 @@ import axios from 'axios';
 import { Card, Container, Col } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { rapidKey } from '../../rapidKey.json';
+import { rapidKey } from '../../keys.json';
 const News = (props) => {
     const [newsList, setNewsList] = useState('');
 
     const fetchData = () => {
+        const token = localStorage.getItem('token');
         const options = {
             method: 'GET',
             url: 'https://bing-news-search1.p.rapidapi.com/news/search',
@@ -26,7 +27,7 @@ const News = (props) => {
                 'x-bingapis-sdk': 'true',
                 'x-rapidapi-key': rapidKey,
                 'x-rapidapi-host': 'bing-news-search1.p.rapidapi.com',
-                'X-Frame': 'SAMEORIGIN',
+                'X-Frame': 'SAMEORIGIN;Secure',
             },
         };
 

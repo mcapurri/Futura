@@ -7,10 +7,11 @@ const crypto = require('crypto');
 // @desc      Check logged in user
 // @route     GET /api/auth/loggedin
 // @access    Public
-router.get('/loggedin', (req, res, next) => {
-    console.log('logged in user: ', req.user);
-    // this is where passport stores the logged in user
-    res.json(req.user);
+
+router.get('/loggedin/:id', async (req, res, next) => {
+    const user = await User.findById(req.params.id);
+    console.log('loggedInUser', user);
+    res.json(user);
 });
 
 // @desc      Log in
@@ -37,9 +38,8 @@ router.post('/login', (req, res, next) => {
                         .json({ message: 'Error while attempting to login' });
                 }
 
-                // return res.status(200).json(user);
                 const token = user.getSignedJwtToken();
-                return res.json({ user, token });
+                return res.status(200).json({ user, token });
             }
         );
     })(req, res);
@@ -145,7 +145,7 @@ router.post('/forgotpassword', (req, res, next) => {
 // @desc      Reset password
 // @route     PUT /api/auth/resetpassword/:resettoken
 // @access    Public
-router.put('/resetpassword/:resettoken', async function (req, res, next) {
+router.put('/resetpassword/:resettoken', async function (req, res) {
     console.log('req.body', req.body);
     const { password, confirm } = req.body;
 
@@ -157,7 +157,7 @@ router.put('/resetpassword/:resettoken', async function (req, res, next) {
     console.log('resetPassToken', req.params.resettoken);
 
     if (!user) {
-        return next();
+        return res.send('User not found');
     }
     if (password !== confirm) {
         return res.status(400).json({ message: "Passwords don't match" });

@@ -36,17 +36,19 @@ const Map = () => {
         }
     }, []);
 
-    const onLoadMap = useCallback((ev) => {
-        setMap(ev);
+    const onLoadMap = useCallback((e) => {
+        setMap(e);
     }, []);
 
     const handleClickMarker = useCallback(
-        (e) =>
+        (e) => {
+            console.log('clickEvent', e);
             // new MapBoxGL.Popup()
             //     // .setLngLat(e.lngLat)
             //     .setHTML(<span>${'text'}</span>)
             //     .addTo(map);
-            console.log('clickEvent', e)[map]
+        },
+        [map]
     );
 
     const markerRenderer = useMemo(
@@ -57,11 +59,7 @@ const Map = () => {
                     coordinates={el.lngLat}
                     className={style.Marker}
                     onClick={handleClickMarker}
-                >
-                    {/* RECYCLING Point */}
-                    {/* <img src="assets/recycling-15.svg" alt="recycling-logo" /> */}
-                    {/* <img src="assets/recycling-logo" alt="recycling-logo" /> */}
-                </Marker>
+                />
             )),
         [dropOffs, handleClickMarker]
     );

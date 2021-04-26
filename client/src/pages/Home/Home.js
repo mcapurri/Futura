@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import service from '../../utils/service';
 import Login from '../../components/Auth/Login/Login';
 import Profile from '../../components/Profile/Profile';
-
+import ProtectedRoute from '../../utils/ProtectedRoute';
 import { TiThMenu as MenuIcon } from 'react-icons/ti';
 import { ImUserPlus } from 'react-icons/im';
 
@@ -19,7 +19,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
         // req.body to .create() method
         uploadData.append('avatar', e.target.files[0]);
         try {
-            const responseDB = await service.handleUpload(uploadData);
+            const responseDB = await service.handleUpload(uploadData, user._id);
             console.log('response is: ', responseDB);
             setUser({ ...user, avatar: responseDB.secure_url });
             console.log('avatar', user.avatar);
@@ -35,27 +35,21 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                     <>
                         <div className={style.Avatar}>
                             {user?.avatar ? (
-                                <>
-                                    <img
-                                        src={user.avatar}
-                                        alt="user-avatar"
-                                        onClick={(e) => handleFileUpload(e)}
-                                    />
-                                    {/* <label htmlFor={style.FileLoader}>
+                                <div>
+                                    <label htmlFor={style.FileLoader}>
                                         <img
                                             src={user.avatar}
                                             alt="user-avatar"
-                                            onClick={(e) => handleFileUpload(e)}
+                                            // onClick={(e) => handleFileUpload(e)}
                                         />
                                     </label>
                                     <input
                                         id={style.FileLoader}
                                         type="file"
                                         name="avatar"
-                                        value={user.avatar}
                                         onChange={(e) => handleFileUpload(e)}
-                                    /> */}
-                                </>
+                                    />
+                                </div>
                             ) : (
                                 <h1
                                     style={{
@@ -97,20 +91,14 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                 <Route
                     exact
                     path="/"
-                    render={(props) => (
-                        <Login
-                            {...props}
-                            setUser={setUser}
-                            // setIsSignup={setIsSignup}
-                            // setForgotPassword={setForgotPassword}
-                        />
-                    )}
+                    render={(props) => <Login {...props} setUser={setUser} />}
                 />
             ) : (
-                <Route
+                <ProtectedRoute
                     exact
                     path="/"
-                    render={(props) => <Profile {...props} user={user} />}
+                    component={Profile}
+                    user={user}
                 />
             )}
         </div>

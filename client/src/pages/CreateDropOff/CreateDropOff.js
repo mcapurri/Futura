@@ -20,8 +20,11 @@ const CreateDropOff = ({ user, ...props }) => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        const token = localStorage.getItem('token');
+
         const coordsQuery = await axios.get(
-            ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${mapBoxAccessToken}`
+            ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${mapBoxAccessToken}`,
+            { headers: { Authorization: `Bearer ${token}` } }
         );
         const lngLat = coordsQuery.data.features[0].center;
 
