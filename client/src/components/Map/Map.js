@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import style from './Map.module.css';
 
 import * as MapBoxGL from 'mapbox-gl';
-import ReactMapboxGl, { Marker } from 'react-mapbox-gl';
+import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
 
 import axios from 'axios';
 
@@ -39,17 +39,25 @@ const Map = () => {
     const onLoadMap = useCallback((e) => {
         setMap(e);
     }, []);
-
-    const handleClickMarker = useCallback(
-        (e) => {
-            console.log('clickEvent', e);
-            // new MapBoxGL.Popup()
-            //     // .setLngLat(e.lngLat)
-            //     .setHTML(<span>${'text'}</span>)
-            //     .addTo(map);
-        },
-        [map]
-    );
+    let displayPopUp = '';
+    const handleClickMarker = (e, el) => {
+        console.log('clickEvent', el);
+        return (displayPopUp = (
+            <Popup
+                latitude={el.lngLat[1]}
+                longitude={el.lngLat[0]}
+                closeButton={false}
+                closeOnClick={true}
+                offsetTop={-30}
+            >
+                <p>{el.name}</p>˜
+                <p>
+                    {el.street}, {el.houseNumber} - {el.zipCode}
+                </p>
+                ˜
+            </Popup>
+        ));
+    };
 
     const markerRenderer = useMemo(
         () =>
@@ -58,16 +66,11 @@ const Map = () => {
                     key={el._id}
                     coordinates={el.lngLat}
                     className={style.Marker}
-                    onClick={handleClickMarker}
+                    onClick={(e) => handleClickMarker(e, el)}
                 />
             )),
         [dropOffs, handleClickMarker]
     );
-
-    // useEffect(() => {
-    //     const height = window.innerHeight - 50;
-    //     setMapHeight(`${height}px`);
-    // }, []);
 
     useEffect(() => {
         fetchDropOffs();
@@ -124,6 +127,7 @@ const Map = () => {
                 onStyleLoad={onLoadMap}
             >
                 {markerRenderer}
+                {displayPopUp}
             </MapBox>
         </>
     );

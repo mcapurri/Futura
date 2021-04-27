@@ -14,7 +14,7 @@ const Footer = () => {
                 alignItems: 'center',
                 bottom: '0',
                 height: '50px',
-                position: 'absolute',
+                position: 'fixed',
                 backgroundColor: 'rgb(13, 122, 177)',
                 width: '100%',
             }}

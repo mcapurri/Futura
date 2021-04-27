@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import style from './CreateDropoff.module.css';
 import useInput from '../../utils/useInput';
-import { Form, Button } from 'bootstrap-4-react';
+import { Form, Button, Row, Col } from 'bootstrap-4-react';
+// import { Form, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 // import axios from '../../utils/axios';
 const mapBoxAccessToken =
@@ -15,6 +16,8 @@ const CreateDropOff = ({ user, ...props }) => {
     const [houseNumber, setHouseNumber] = useInput('');
     const [city, setCity] = useInput('');
     const [zipCode, setZipCode] = useInput('');
+    const [openingTime, setOpeningTime] = useInput('');
+    const [closingTime, setClosingTime] = useInput('');
 
     // console.log('token', token);
 
@@ -60,54 +63,90 @@ const CreateDropOff = ({ user, ...props }) => {
                     style={{
                         display: 'flex',
                         flexDirection: 'column',
-                        // justifyContent: 'center',
+                        padding: '0 10%',
                         alignItems: 'center',
                         width: '100%',
                         height: '100%',
-                        marginLeft: '5%',
+                        // marginLeft: '5%',
                     }}
                 >
-                    <Form.Group>
-                        <div>
-                            <Form.Input
-                                type="text"
-                                placeholder="Name"
-                                value={name}
-                                onChange={setName}
-                            />
-                        </div>
-                        <div>
-                            <Form.Input
-                                type="text"
-                                placeholder="Street"
-                                value={street}
-                                onChange={setStreet}
-                            />
-                        </div>
-                        <div>
-                            <Form.Input
-                                type="text"
-                                placeholder="House num."
-                                value={houseNumber}
-                                onChange={setHouseNumber}
-                            />
-                        </div>
-                        <div>
-                            <Form.Input
-                                type="text"
-                                placeholder="City"
-                                value={city}
-                                onChange={setCity}
-                            />
-                        </div>
-                        <div>
-                            <Form.Input
-                                type="text"
-                                placeholder="ZIP Code"
-                                value={zipCode}
-                                onChange={setZipCode}
-                            />
-                        </div>
+                    <Form.Group
+                        style={{
+                            width: '100%',
+                            margin: '0 5%',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'space-between',
+                        }}
+                    >
+                        <Form.Input
+                            type="text"
+                            placeholder="Location name"
+                            value={name}
+                            onChange={setName}
+                        />
+                        <Row className={style.Row}>
+                            <Col>
+                                <Form.Input
+                                    type="text"
+                                    placeholder="Street"
+                                    value={street}
+                                    onChange={setStreet}
+                                    className={style.Long}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Input
+                                    type="text"
+                                    placeholder="House num."
+                                    value={houseNumber}
+                                    onChange={setHouseNumber}
+                                    className={style.Short}
+                                />
+                            </Col>
+                        </Row>
+                        <Row className={style.Row}>
+                            <Col>
+                                <Form.Input
+                                    type="text"
+                                    placeholder="City"
+                                    value={city}
+                                    onChange={setCity}
+                                    className={style.Long}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Input
+                                    type="text"
+                                    placeholder="ZIP Code"
+                                    value={zipCode}
+                                    onChange={setZipCode}
+                                    className={style.Short}
+                                />
+                            </Col>
+                        </Row>
+
+                        <Row className={style.Row}>
+                            <Col>
+                                {' '}
+                                <Form.Input
+                                    type="datetime-local"
+                                    placeholder="Opening time"
+                                    value={openingTime}
+                                    onChange={setOpeningTime}
+                                    className={style.Inline}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Input
+                                    type="datetime-local"
+                                    placeholder="Closing time"
+                                    value={closingTime}
+                                    onChange={setClosingTime}
+                                    className={style.Inline}
+                                />
+                            </Col>
+                        </Row>
                     </Form.Group>
 
                     <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
