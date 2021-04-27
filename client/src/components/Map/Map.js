@@ -54,6 +54,9 @@ const Map = () => {
                 <p>
                     {el.street}, {el.houseNumber} - {el.zipCode}
                 </p>
+                <p>
+                    Opening hours: {el?.openingTime} / {el?.closingTime}
+                </p>
                 ˜
             </Popup>
         ));

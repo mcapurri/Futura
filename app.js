@@ -20,12 +20,12 @@ const mongoose = require('mongoose');
 app.use(
     session({
         secret: process.env.SESSION_SECRET,
-        cookie: {
-            SameSite: 'none',
-            Secure: true,
-            httpOnly: true,
-            maxAge: 1000 * 60 * 60 * 24,
-        },
+        // cookie: {
+        //     SameSite: 'none',
+        //     Secure: true,
+        //     httpOnly: true,
+        //     maxAge: 1000 * 60 * 60 * 24,
+        // },
         saveUninitialized: false,
         resave: true,
         store: new MongoStore({
@@ -151,6 +151,36 @@ passport.use(
 //         io.emit('chat message', { nickname, msg });
 //     });
 // });
+
+const server = require('http').createServer();
+const io = require('socket.io')(server, {
+    cors: {
+        // origin: 'http://localhost:3000',
+        // methods: ['GET', 'POST'],
+        // credentials: true,
+        origin: '*',
+    },
+});
+const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
+
+io.on('connection', (socket) => {
+    console.log(`Client ${socket.id} connected`);
+
+    // Join a conversation
+    const { roomId } = socket.handshake.query;
+    socket.join(roomId);
+
+    // Listen for new messages
+    socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+        io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+    });
+
+    // Leave the room if the user closes the socket
+    socket.on('disconnect', () => {
+        console.log(`Client ${socket.id} diconnected`);
+        socket.leave(roomId);
+    });
+});
 
 // End Socket.io
 

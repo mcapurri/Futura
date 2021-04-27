@@ -14,6 +14,8 @@ import ForgotPassword from './components/Auth/Recovery_Email/ForgotPassword';
 import ResetPassword from './components/Auth/Recovery_Email/ResetPassword';
 import SideDrawer from './components/SideDrawer/SideDrawer';
 import Map from './components/Map/Map';
+import Chat from './pages/Chat/Chat';
+import ChatRoom from './pages/Chat/ChatRoom/ChatRoom';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -97,50 +99,41 @@ function App(props) {
                     component={UserPortal}
                     user={user}
                 />
-                {/* <Route
+                <ProtectedRoute
                     exact
-                    path="/user-portal"
-                    render={(props) => <UserPortal {...props} />}
-                /> */}
+                    path="/chat"
+                    component={Chat}
+                    user={user}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/chat/:roomId"
+                    component={ChatRoom}
+                    user={user}
+                />
+
                 <ProtectedRoute
                     exact
                     path="/resources/website"
                     component={Website}
                     user={user}
                 />
-                {/* <Route
-                    exact
-                    path="/resources/website"
-                    render={(props) => <Website {...props} />}
-                /> */}
+
                 <ProtectedRoute
                     exact
                     path="/resources/news"
                     component={News}
                     user={user}
                 />
-                {/* <Route
-                    exact
-                    path="/resources/news"
-                    render={(props) => <News {...props} />}
-                /> */}
+
                 <ProtectedRoute exact path="/map" component={Map} user={user} />
-                {/* <Route
-                    exact
-                    path="/map"
-                    render={(props) => <Map {...props} />}
-                /> */}
+
                 <ProtectedRoute
                     exact
                     path="/create-dropoff"
                     component={CreateDropOff}
                     user={user}
                 />
-                {/* <Route
-                    exact
-                    path="/create-dropoff"
-                    render={(props) => <CreateDropOff {...props} user={user} />}
-                /> */}
             </Switch>
             {user && <Footer />}
         </>

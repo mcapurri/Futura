@@ -8,6 +8,7 @@
     color: #fff;
     overflow-y: auto;
     margin: 0 auto;
+    padding-bottom: 10%;
 }
 
 .Container header {
@@ -22,7 +23,6 @@
     width: 100%;
     height: 100vh;
     margin-top: 20%;
-    overflow-y: scroll;
 }
 
 .Form input {
@@ -40,6 +40,10 @@
 }
 .Form p {
     font-size: 0.9rem;
+}
+.Form .Row {
+    margin-bottom: 5%;
+    display: flex;
 }
 
 .Form button {
@@ -65,9 +69,10 @@
         margin-left: 18%;
     }
     .Form .Inline {
-        width: 85%;
+        width: 80%;
     }
     .Form .Row {
         width: 100%;
+        margin-bottom: 0;
     }
 }

@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import style from './CreateDropoff.module.css';
 import useInput from '../../utils/useInput';
 import { Form, Button, Row, Col } from 'bootstrap-4-react';
-// import { Form, Button, Row, Col } from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
+import TimePicker from 'react-bootstrap-time-picker';
 import axios from 'axios';
 // import axios from '../../utils/axios';
 const mapBoxAccessToken =
@@ -19,10 +20,19 @@ const CreateDropOff = ({ user, ...props }) => {
     const [openingTime, setOpeningTime] = useInput('');
     const [closingTime, setClosingTime] = useInput('');
 
-    // console.log('token', token);
+    // console.log('openingTime', openingTime);
+    // console.log('closingTime', closingTime);
 
-    const handleSubmit = async (event) => {
-        event.preventDefault();
+    const {
+        register,
+        handleSubmit,
+        // watch,
+        formState: { errors },
+    } = useForm();
+
+    const onSubmit = async (data) => {
+        // event.preventDefault();
+        console.log('data', data);
         const token = localStorage.getItem('token');
 
         const coordsQuery = await axios.get(
@@ -40,6 +50,8 @@ const CreateDropOff = ({ user, ...props }) => {
                 houseNumber,
                 zipCode,
                 lngLat,
+                openingTime,
+                closingTime,
                 createdBy: user,
             },
             {
@@ -58,7 +70,7 @@ const CreateDropOff = ({ user, ...props }) => {
 
     return (
         <div className={style.Container}>
-            <Form onSubmit={handleSubmit} className={style.Form}>
+            <Form onSubmit={handleSubmit(onSubmit)} className={style.Form}>
                 <div
                     style={{
                         display: 'flex',
@@ -80,73 +92,140 @@ const CreateDropOff = ({ user, ...props }) => {
                         }}
                     >
                         <Form.Input
+                            {...register('name', {
+                                required: true,
+                                minLength: 3,
+                            })}
                             type="text"
                             placeholder="Location name"
                             value={name}
                             onChange={setName}
                         />
+                        {errors.name && <span>This field is required</span>}
+                    </Form.Group>
+                    <Form.Group>
                         <Row className={style.Row}>
                             <Col>
                                 <Form.Input
+                                    {...register('street', {
+                                        required: true,
+                                        minLength: 3,
+                                    })}
                                     type="text"
                                     placeholder="Street"
                                     value={street}
                                     onChange={setStreet}
                                     className={style.Long}
                                 />
+                                {errors.street && (
+                                    <span>This field is required</span>
+                                )}
                             </Col>
                             <Col>
                                 <Form.Input
+                                    {...register('houseNumber', {
+                                        required: true,
+                                        minLength: 1,
+                                    })}
                                     type="text"
                                     placeholder="House num."
                                     value={houseNumber}
                                     onChange={setHouseNumber}
                                     className={style.Short}
                                 />
+                                {errors.houseNumber && (
+                                    <span>This field is required</span>
+                                )}
                             </Col>
                         </Row>
                         <Row className={style.Row}>
                             <Col>
                                 <Form.Input
+                                    {...register('city', {
+                                        required: true,
+                                        minLength: 3,
+                                    })}
                                     type="text"
                                     placeholder="City"
                                     value={city}
                                     onChange={setCity}
                                     className={style.Long}
                                 />
+                                {errors.city && (
+                                    <span>This field is required</span>
+                                )}
                             </Col>
                             <Col>
                                 <Form.Input
+                                    {...register('zipCode', {
+                                        required: true,
+                                        minLength: 5,
+                                        maxLength: 5,
+                                    })}
                                     type="text"
                                     placeholder="ZIP Code"
                                     value={zipCode}
                                     onChange={setZipCode}
                                     className={style.Short}
                                 />
+                                {errors.zipCode && (
+                                    <span>This field is required</span>
+                                )}
                             </Col>
                         </Row>
-
-                        <Row className={style.Row}>
-                            <Col>
-                                {' '}
-                                <Form.Input
-                                    type="datetime-local"
-                                    placeholder="Opening time"
+                        <Form.Group>
+                            <Row className={style.Row}>
+                                <Col>
+                                    {/* <TimePicker
+                                    start="08:30"
+                                    end="12:30"
+                                    step={30}
                                     value={openingTime}
                                     onChange={setOpeningTime}
                                     className={style.Inline}
-                                />
-                            </Col>
-                            <Col>
-                                <Form.Input
-                                    type="datetime-local"
-                                    placeholder="Closing time"
+                                /> */}
+                                    <Form.Input
+                                        {...register('openingTime', {
+                                            required: true,
+                                            minLength: 3,
+                                        })}
+                                        type="datetime-local"
+                                        placeholder="Opening time"
+                                        value={openingTime}
+                                        onChange={setOpeningTime}
+                                        className={style.Inline}
+                                    />
+                                    {errors.openingTime && (
+                                        <span>This field is required</span>
+                                    )}
+                                </Col>
+                                <Col>
+                                    {/* <TimePicker
+                                    start="14:30"
+                                    end="18:30"
+                                    step={30}
                                     value={closingTime}
                                     onChange={setClosingTime}
                                     className={style.Inline}
-                                />
-                            </Col>
-                        </Row>
+                                /> */}
+
+                                    <Form.Input
+                                        {...register('closingTime', {
+                                            required: true,
+                                            minLength: 3,
+                                        })}
+                                        type="datetime-local"
+                                        placeholder="Closing time"
+                                        value={closingTime}
+                                        onChange={setClosingTime}
+                                        className={style.Inline}
+                                    />
+                                    {errors.closingTime && (
+                                        <span>This field is required</span>
+                                    )}
+                                </Col>
+                            </Row>
+                        </Form.Group>
                     </Form.Group>
 
                     <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>

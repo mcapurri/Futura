@@ -47,6 +47,9 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                             </Nav.Link>
                         </li>
                         <li>
+                            <Nav.Link href="/chat">Chat</Nav.Link>
+                        </li>
+                        <li>
                             <Nav.Link href="/create-dropoff">
                                 Create Drop-off
                             </Nav.Link>

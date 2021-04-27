@@ -14,11 +14,15 @@
         "jsonwebtoken": "^8.5.1",
         "mapbox-gl": "^2.2.0",
         "react": "^17.0.2",
+        "react-bootstrap-time-picker": "^2.0.1",
         "react-dom": "^17.0.2",
+        "react-hook-form": "^7.3.4",
         "react-icons": "^4.2.0",
         "react-mapbox-gl": "^5.1.1",
+        "react-paypal-button-v2": "^2.6.3",
         "react-router-dom": "^5.2.0",
         "react-scripts": "4.0.3",
+        "socket.io-client": "^4.0.1",
         "web-vitals": "^1.1.1"
     },
     "scripts": {

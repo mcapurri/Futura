@@ -21,9 +21,21 @@ router.post('/add', async (req, res, next) => {
         city,
         zipCode,
         lngLat,
+        openingTime,
+        closingTime,
         createdBy,
     } = req.body;
     console.log('req.body', req.body);
+
+    const found = await DropOff.findOne({ name });
+    console.log('found', found);
+    if (found) {
+        return res
+            .status(400)
+            .json({ message: 'Drop-off already exist' })
+            .redirect('/crete-dropoff');
+    }
+
     try {
         const addDropOff = DropOff.create({
             name,
@@ -32,11 +44,13 @@ router.post('/add', async (req, res, next) => {
             houseNumber,
             zipCode,
             lngLat,
+            openingTime: openingTime,
+            closingTime: closingTime,
             createdBy,
         });
         res.status(201).json({ message: 'Drop-off successfully added' });
     } catch (err) {
-        res.status(400).json({ message: 'Error in adding drop-off' }, err);
+        res.status(400).json({ message: 'Error in adding drop-off' });
 
         next(err);
     }

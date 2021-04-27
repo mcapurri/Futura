@@ -8,6 +8,8 @@ const dropOffSchema = new Schema(
         zipCode: String,
         city: String,
         lngLat: [String],
+        openingTime: String,
+        closingTime: String,
         createdBy: { type: Schema.Types.ObjectId, ref: 'User' },
     },
     {
