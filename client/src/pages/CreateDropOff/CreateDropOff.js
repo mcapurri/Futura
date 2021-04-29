@@ -60,12 +60,14 @@ const CreateDropOff = ({ user, ...props }) => {
                 },
             }
         );
-        console.log('response', response.data);
-        setMessage(response.data.message);
-        setTimeout(() => {
-            setMessage('');
-            props.history.push('/');
-        });
+        if (response) {
+            console.log('response', response.data);
+            setMessage(response.data.message);
+            setTimeout(() => {
+                setMessage('');
+                props.history.push('/');
+            });
+        }
     };
 
     return (

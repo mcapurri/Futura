@@ -1,35 +1,47 @@
 import { useEffect, useRef, useState } from 'react';
-import socketIOClient from 'socket.io-client';
+import ioClient from 'socket.io-client';
+import queryString from 'query-string';
 
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
-const SOCKET_SERVER_URL = 'http://localhost:3000';
+const ENDPOINT = 'http://localhost:5005';
 
-const useChat = (roomId) => {
+const useChat = (props) => {
+    const [name, setName] = useState('');
+    const [room, setRoom] = useState('');
     const [messages, setMessages] = useState([]);
     const socketRef = useRef();
     const token = localStorage.getItem('token');
+    console.log(name, room);
 
     useEffect(() => {
-        socketRef.current = socketIOClient(
-            SOCKET_SERVER_URL,
-            {
-                query: { roomId },
+        const { name, room } = queryString.parse(props.location.search);
+        setName(name);
+        setRoom(room);
+        socketRef.current = ioClient(
+            'http://localhost:5005'
+            //  {
+            //     query: { name, room },
+            // }
+        );
+        console.log('socketRef', socketRef.current);
+
+        socketRef.current.on(
+            NEW_CHAT_MESSAGE_EVENT,
+            (message) => {
+                const incomingMessage = {
+                    ...message,
+                    ownedByCurrentUser:
+                        message.senderId === socketRef.current.id,
+                };
+                setMessages((messages) => [...messages, incomingMessage]);
             },
             { headers: { Authorization: `Bearer ${token}` } }
         );
 
-        socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
-            const incomingMessage = {
-                ...message,
-                ownedByCurrentUser: message.senderId === socketRef.current.id,
-            };
-            setMessages((messages) => [...messages, incomingMessage]);
-        });
-
         return () => {
             socketRef.current.disconnect();
         };
-    }, [roomId]);
+    }, [props.location.search, token]);
 
     const sendMessage = (messageBody) => {
         socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
@@ -38,7 +50,7 @@ const useChat = (roomId) => {
         });
     };
 
-    return { messages, sendMessage };
+    return { messages, sendMessage, room };
 };
 
 export default useChat;

@@ -34,25 +34,23 @@ router.post('/add', async (req, res, next) => {
             .status(400)
             .json({ message: 'Drop-off already exist' })
             .redirect('/crete-dropoff');
-    }
-
-    try {
-        const addDropOff = DropOff.create({
-            name,
-            street,
-            city,
-            houseNumber,
-            zipCode,
-            lngLat,
-            openingTime: openingTime,
-            closingTime: closingTime,
-            createdBy,
-        });
-        res.status(201).json({ message: 'Drop-off successfully added' });
-    } catch (err) {
-        res.status(400).json({ message: 'Error in adding drop-off' });
-
-        next(err);
+    } else {
+        try {
+            const addDropOff = DropOff.create({
+                name,
+                street,
+                city,
+                houseNumber,
+                zipCode,
+                lngLat,
+                openingTime,
+                closingTime,
+                createdBy,
+            });
+            res.status(201).json({ message: 'Drop-off successfully added' });
+        } catch (err) {
+            res.status(400).json({ message: 'Error in adding drop-off' });
+        }
     }
 });
 

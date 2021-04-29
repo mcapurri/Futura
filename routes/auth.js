@@ -28,20 +28,16 @@ router.post('/login', (req, res, next) => {
             return res.status(400).json({ message: 'Wrong credentials' });
         }
 
-        req.login(
-            user,
-            // { session: false }, // if I remove this it will logout when refresh page
-            (err) => {
-                if (err) {
-                    return res
-                        .status(500)
-                        .json({ message: 'Error while attempting to login' });
-                }
-
-                const token = user.getSignedJwtToken();
-                return res.status(200).json({ user, token });
+        req.login(user, (err) => {
+            if (err) {
+                return res
+                    .status(500)
+                    .json({ message: 'Error while attempting to login' });
             }
-        );
+
+            const token = user.getSignedJwtToken();
+            return res.status(200).json({ user, token });
+        });
     })(req, res);
 });
 
@@ -173,16 +169,17 @@ router.put('/resetpassword/:resettoken', async function (req, res) {
         await user.save();
     });
 
-    user.sendTokenResponse(user, 200, res);
+    // user.sendTokenResponse(user, 200, res);
+    user.getSignedJwtToken(user);
 });
 
 // @desc      Log out
 // @route     DELETE /logout
 // @access    Private
 router.delete('/logout', (req, res) => {
-    passport.authenticate('jwt', { session: false }),
-        // passport method to log out
-        req.logout();
+    // passport.authenticate('local', { session: false }),
+    // passport method to log out
+    req.logout();
     res.status(200).json('Logout was successful');
 });
 

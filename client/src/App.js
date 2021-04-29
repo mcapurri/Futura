@@ -107,7 +107,7 @@ function App(props) {
                 />
                 <ProtectedRoute
                     exact
-                    path="/chat/:roomId"
+                    path="/chat-room"
                     component={ChatRoom}
                     user={user}
                 />

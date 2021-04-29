@@ -4,12 +4,8 @@ import useChat from '../../../utils/useChat';
 
 const ChatRoom = (props) => {
     const { roomId } = props.match.params;
-    const { messages, sendMessage } = useChat(roomId);
+    const { messages, sendMessage, room } = useChat(props);
     const [newMessage, setNewMessage] = useState('');
-
-    const handleNewMessageChange = (event) => {
-        setNewMessage(event.target.value);
-    };
 
     const handleSendMessage = () => {
         sendMessage(newMessage);
@@ -18,7 +14,7 @@ const ChatRoom = (props) => {
 
     return (
         <div className={style.Container}>
-            <h1 className={style.Name}>Room: {roomId}</h1>
+            <h1 className={style.Name}>Room: {room}</h1>
             <div className={style.Messages}>
                 <ol className={style.MessagesList}>
                     {messages.map((message, i) => (
@@ -36,10 +32,10 @@ const ChatRoom = (props) => {
                 </ol>
             </div>
             <textarea
-                value={newMessage}
-                onChange={handleNewMessageChange}
                 placeholder="Write message..."
                 className={style.newMessage}
+                value={newMessage}
+                onChange={(e) => setNewMessage(e.target.value)}
             />
             <button onClick={handleSendMessage} className={style.Button}>
                 Send

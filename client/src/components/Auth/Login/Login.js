@@ -16,21 +16,27 @@ const Login = ({ setUser }) => {
         login({
             email: email,
             password: password,
-        }).then((user) => {
-            if (user.message) {
-                setMessage(user.message);
+        })
+            .then((user) => {
+                if (user.message) {
+                    setMessage(user.message);
 
-                //Reset input values
+                    //Reset input values
+                    setEmail('');
+                    setPassword('');
+                } else {
+                    if (user.token) {
+                        localStorage.setItem('token', user.token);
+                    }
+                    //  put the user object in the state of App.js
+                    setUser(user.user);
+                }
+            })
+            .catch((err) => {
+                console.log(err);
                 setEmail('');
                 setPassword('');
-            } else {
-                if (user.token) {
-                    localStorage.setItem('token', user.token);
-                }
-                //  put the user object in the state of App.js
-                setUser(user.user);
-            }
-        });
+            });
     };
     return (
         <div className={style.Container}>
@@ -53,8 +59,8 @@ const Login = ({ setUser }) => {
                         name="email"
                         type="email"
                         placeholder="Email"
-                        value={email}
-                        onChange={setEmail}
+                        value={email || ''}
+                        onChange={(e) => setEmail(e)}
                     />
                 </Form.Group>
                 <Form.Group>
@@ -63,8 +69,8 @@ const Login = ({ setUser }) => {
                         name="password"
                         type="password"
                         placeholder="Password"
-                        value={password}
-                        onChange={setPassword}
+                        value={password || ''}
+                        onChange={(e) => setPassword(e)}
                     />
                 </Form.Group>
                 <Form.Text className={style.forgPass}>

@@ -9,7 +9,7 @@ import { TiThMenu as MenuIcon } from 'react-icons/ti';
 import { ImUserPlus } from 'react-icons/im';
 
 const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
-    console.log('user', user);
+    // console.log('user', user);
 
     const handleFileUpload = async (e) => {
         console.log('The file to be uploaded is: ', e.target.files[0]);

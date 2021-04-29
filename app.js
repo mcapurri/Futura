@@ -6,6 +6,8 @@ require('./db');
 
 const express = require('express');
 const app = express();
+const router = require('./routes/index');
+app.use(router);
 
 // This function is getting exported from the config folder. It runs most middlewares
 require('./config')(app);
@@ -133,52 +135,38 @@ passport.use(
 // end of passport
 
 // Socket.io
-// const socketIo = require('socket.io');
-// const http = require('http');
-// const server = http.createServer(app);
-// const io = socketIo(server, {
-//     cors: {
-//         origin: 'http://localhost:3000',
-//         methods: ['GET', 'POST'],
-//         credentials: true,
-//     },
-// });
 
-// io.on('connection', (socket) => {
-//     const { id } = socket.client;
-//     console.log(`User Connected: ${id}`);
-//     socket.on('chat message', ({ nickname, msg }) => {
-//         io.emit('chat message', { nickname, msg });
-//     });
-// });
-
-const server = require('http').createServer();
-const io = require('socket.io')(server, {
-    cors: {
-        // origin: 'http://localhost:3000',
-        // methods: ['GET', 'POST'],
-        // credentials: true,
-        origin: '*',
-    },
-});
+const server = require('http').createServer(app);
+const io = require('socket.io')(
+    server
+    //     {
+    //     cors: {
+    //         // origin: 'http://localhost:3000',
+    //         // methods: ['GET', 'POST'],
+    //         // credentials: true,
+    //         origin: '*',
+    //     },
+    // }
+);
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
 
 io.on('connection', (socket) => {
     console.log(`Client ${socket.id} connected`);
 
     // Join a conversation
-    const { roomId } = socket.handshake.query;
-    socket.join(roomId);
+    const { name, room } = socket.handshake.query;
+    socket.join(room);
+    console.log(`${name} joined room: ${room}`);
 
     // Listen for new messages
     socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
-        io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+        io.in(room).emit(NEW_CHAT_MESSAGE_EVENT, data);
     });
 
     // Leave the room if the user closes the socket
     socket.on('disconnect', () => {
-        console.log(`Client ${socket.id} diconnected`);
-        socket.leave(roomId);
+        console.log(`Client ${socket.id} disconnected`);
+        socket.leave(room);
     });
 });
 

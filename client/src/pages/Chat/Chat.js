@@ -1,14 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import style from './Chat.module.css';
 
-const Chat = () => {
-    const [roomName, setRoomName] = React.useState('');
-
-    const handleRoomNameChange = (event) => {
-        setRoomName(event.target.value);
-    };
+const Chat = (props) => {
+    const [roomName, setRoomName] = useState('');
 
     return (
         <div className={style.Container}>
@@ -16,10 +12,14 @@ const Chat = () => {
                 type="text"
                 placeholder="Room"
                 value={roomName}
-                onChange={handleRoomNameChange}
+                onChange={(e) => setRoomName(e.target.value)}
                 className={style.Input}
             />
-            <Link to={`/chat/${roomName}`} className={style.Button}>
+            <Link
+                to={`/chat-room?name=${props.user.firstName}&room=${roomName}`}
+                className={style.Button}
+                onClick={(e) => !roomName && e.preventDefault()}
+            >
                 Join room
             </Link>
         </div>
