@@ -2,6 +2,7 @@ import style from './SideDrawer.module.css';
 import { Nav, Button } from 'bootstrap-4-react';
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
 import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
+import { FaUserAlt as UserIcon } from 'react-icons/fa';
 
 const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
     let attachedStyles = style.SideDrawer;
@@ -47,7 +48,8 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                             </Nav.Link>
                         </li>
                         <li>
-                            <Nav.Link href="/chat">Chat</Nav.Link>
+                            <UserIcon style={{ color: 'rgb(16, 114, 180)' }} />
+                            <Nav.Link href="/user-portal">User Portal</Nav.Link>
                         </li>
                         <li>
                             <Nav.Link href="/create-dropoff">
