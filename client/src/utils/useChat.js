@@ -50,7 +50,7 @@ const useChat = (props) => {
         });
     };
 
-    return { messages, sendMessage, room };
+    return { messages, sendMessage, name, room };
 };
 
 export default useChat;

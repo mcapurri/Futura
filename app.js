@@ -134,20 +134,21 @@ passport.use(
 
 // end of passport
 
+// Routes
+const allRoutes = require('./routes');
+app.use('/api', allRoutes);
+
 // Socket.io
 
 const server = require('http').createServer(app);
-const io = require('socket.io')(
-    server
-    //     {
-    //     cors: {
-    //         // origin: 'http://localhost:3000',
-    //         // methods: ['GET', 'POST'],
-    //         // credentials: true,
-    //         origin: '*',
-    //     },
-    // }
-);
+const io = require('socket.io')(server, {
+    cors: {
+        // origin: 'http://localhost:3000',
+        // methods: ['GET', 'POST'],
+        // credentials: true,
+        origin: '*',
+    },
+});
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
 
 io.on('connection', (socket) => {
@@ -172,11 +173,7 @@ io.on('connection', (socket) => {
 
 // End Socket.io
 
-// Routes
-const allRoutes = require('./routes');
-app.use('/api', allRoutes);
-
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
-module.exports = app;
+module.exports = server;

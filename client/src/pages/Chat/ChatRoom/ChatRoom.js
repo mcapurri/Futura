@@ -3,8 +3,7 @@ import style from './ChatRoom.module.css';
 import useChat from '../../../utils/useChat';
 
 const ChatRoom = (props) => {
-    const { roomId } = props.match.params;
-    const { messages, sendMessage, room } = useChat(props);
+    const { messages, sendMessage, name, room } = useChat(props);
     const [newMessage, setNewMessage] = useState('');
 
     const handleSendMessage = () => {
@@ -26,7 +25,15 @@ const ChatRoom = (props) => {
                                     : style.ReceivedMessage
                             }`}
                         >
-                            {message.body}
+                            <p
+                                style={{
+                                    display: 'flex',
+                                    alignSelf: 'flex-start',
+                                }}
+                            >
+                                {name} says:
+                            </p>
+                            <p style={{ fontSize: '1.2rem' }}>{message.body}</p>
                         </li>
                     ))}
                 </ol>
