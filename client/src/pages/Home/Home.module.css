@@ -3,18 +3,23 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    background-color: rgb(45, 174, 184);
+    /* align-items: center; */
+    /* background-color: rgb(45, 174, 184); */
+    background-color: #fff;
     color: #fff;
     overflow-y: auto;
 }
-.Home img {
-    width: 100vw;
+.Home .Logo {
+    margin-top: 5%;
+    margin-left: 5%;
 }
 .Home header {
     height: 33vh;
+    width: 100%;
     display: flex;
-    justify-content: center;
+    color: rgb(0, 128, 0);
+    border-bottom: 5px solid rgb(0, 128, 0);
+    justify-content: space-between;
 }
 
 .Home #FileLoader {
@@ -33,17 +38,19 @@
     cursor: pointer;
 }
 .Avatar {
-    width: 10rem;
-    height: 10rem;
-    border: 10px solid #fff;
+    width: 5rem;
+    height: 5rem;
+    border: 9px solid rgb(5, 58, 32);
     background-color: transparent;
     position: fixed;
-    top: 5%;
+    top: 12%;
+    right: 7%;
     border-radius: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 10;
+    align-self: flex-end;
+    /* z-index: 10; */
 }
 
 .Avatar h1 {
@@ -52,5 +59,11 @@
 }
 .Avatar img {
     width: 100%;
-    border-radius: 80px;
+    border-radius: 70px;
+}
+@media screen and (min-width: 435px) {
+    .Home .Logo {
+        margin-left: 10%;
+        transform: scale(1.2);
+    }
 }

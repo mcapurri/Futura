@@ -45,16 +45,16 @@
     align-items: center;
     height: 100%;
     width: 100%;
-    border-bottom: 1px solid rgb(45, 174, 184);
+    border-bottom: 1px solid rgb(9, 173, 7);
     font-size: 1.6rem;
 }
 
 .SideDrawer a {
-    color: rgb(16, 114, 180);
+    color: rgb(5, 58, 32);
     font-size: 1.4rem;
 }
 .SideDrawer button {
-    color: rgb(16, 114, 180);
+    color: rgb(5, 58, 32);
     font-size: 1.4rem;
     background-color: transparent;
 }

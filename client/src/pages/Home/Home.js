@@ -19,12 +19,12 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
         // req.body to .create() method
         uploadData.append('avatar', e.target.files[0]);
         try {
-            const responseDB = await service.handleUpload(uploadData, user._id);
-            console.log('response is: ', responseDB);
-            setUser({ ...user, avatar: responseDB.secure_url });
+            const fileUpload = await service.handleUpload(uploadData, user._id);
+            console.log('uploaded file is: ', fileUpload);
+            setUser({ ...user, avatar: fileUpload.secure_url });
             console.log('avatar', user.avatar);
         } catch (err) {
-            console.log('Error while adding the thing: ', err);
+            console.log('Error while uploading: ', err);
         }
     };
 
@@ -40,7 +40,6 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                                         <img
                                             src={user.avatar}
                                             alt="user-avatar"
-                                            // onClick={(e) => handleFileUpload(e)}
                                         />
                                     </label>
                                     <input
@@ -79,12 +78,19 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                                 position: 'fixed',
                                 right: '7%',
                                 top: '3%',
+                                color: 'rgba(27, 120, 76, 0.2);',
                             }}
                             onClick={toggleDrawer}
                         />
                     </>
                 )}
-                <img src="assets/sea-img.png" alt="sea-img" />
+                {/* <img src="assets/sea-img.png" alt="sea-img" /> */}
+                <div className={style.Logo}>
+                    <img
+                        src="assets/africa-recycle-logo.png"
+                        alt="recycle-logo"
+                    />
+                </div>
             </header>
 
             {!user ? (

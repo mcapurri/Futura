@@ -11,13 +11,13 @@
 
 .Name {
     margin-top: 0;
-    color: rgb(13, 122, 177);
+    color: rgb(5, 58, 32);
 }
 
 .Messages {
     flex: 1;
-    max-height: 30rem;
-    border: 1px solid rgb(13, 122, 177);
+    max-height: 27rem;
+    border: 1px solid rgb(9, 173, 7);
     border-radius: 7px 7px 0 0;
     margin-bottom: 5%;
     overflow-y: auto;
@@ -31,17 +31,17 @@
 .NewMessage {
     height: 200px;
     max-height: 50%;
-    font-size: 20px;
+    font-size: 1.2rem;
     padding: 8px 12px;
     resize: none;
-    border: 1px solid rgb(13, 122, 177);
+    /* border: 1px solid rgb(13, 122, 177); */
 }
 
 .Item {
     width: 45%;
 
     margin: 8px;
-    padding: 12px 8px;
+    padding: 12px 1rem;
     word-break: break-word;
     border-radius: 4px;
     color: white;
@@ -51,7 +51,7 @@
 }
 
 .MyMessage {
-    background-color: rgb(0, 132, 255);
+    background-color: rgb(9, 173, 7);
     margin-left: auto;
 }
 
@@ -61,12 +61,11 @@
 }
 
 .Button {
-    max-height: 5rem;
+    min-height: 4rem;
     font-size: 1.7rem;
     font-weight: 600;
     color: white;
-    background: rgb(13, 122, 177);
-    padding: 24px 10%;
+    background: rgb(5, 58, 32);
     border: none;
     margin: 10% 10%;
 }

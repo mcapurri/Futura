@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import style from './UserPortal.module.css';
-import { PayPalButton } from 'react-paypal-button-v2';
+// import { PayPalButton } from 'react-paypal-button-v2';c
 
 const UserPortal = () => {
     const [userBalance, setUserBalence] = useState(0);
@@ -25,7 +25,7 @@ const UserPortal = () => {
                 amount={userBalance}
                 onSuccess={handleTransfer}
             ></PayPalButton> */}
-            <PayPalButton
+            {/* <PayPalButton
                 amount="0.01"
                 // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
                 onSuccess={(details, data) => {
@@ -42,7 +42,7 @@ const UserPortal = () => {
                         }),
                     });
                 }}
-            />
+            /> */}
         </div>
     );
 };

@@ -33,7 +33,14 @@ const ChatRoom = (props) => {
                             >
                                 {name} says:
                             </p>
-                            <p style={{ fontSize: '1.2rem' }}>{message.body}</p>
+                            <p
+                                style={{
+                                    fontWeight: '700',
+                                    marginBottom: '0',
+                                }}
+                            >
+                                {message.body}
+                            </p>
                         </li>
                     ))}
                 </ol>

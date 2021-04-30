@@ -4,8 +4,8 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(45, 174, 184);
     overflow: auto;
+    padding: 0 10%;
 }
 .News .Col {
     display: flex;
@@ -13,15 +13,17 @@
     align-items: center;
 }
 .News h1 {
-    font-family: 'Prata', serif;
-    font-size: 3rem;
+    /* font-family: 'Prata', serif; */
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
     margin-top: 5%;
     margin-left: 5%;
-    color: #fff;
+    color: rgb(5, 58, 32);
 }
 .Card {
     width: 21rem;
-
+    border: 1px solid rgb(5, 58, 32);
     margin: 10% 3%;
 }
 

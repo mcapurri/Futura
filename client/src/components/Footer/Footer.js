@@ -13,7 +13,7 @@ const Footer = () => {
                 bottom: '0',
                 height: '50px',
                 position: 'fixed',
-                backgroundColor: 'rgb(13, 122, 177)',
+                backgroundColor: 'rgb(5, 58, 32)',
                 width: '100%',
             }}
         >
