@@ -13,39 +13,6 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
         <div className={style.Home}>
             {user !== '' && (
                 <header>
-                    {/* <div className={style.Avatar}>
-                        {user?.avatar ? (
-                            <div>
-                                <label htmlFor={style.FileLoader}>
-                                    <img src={user.avatar} alt="user-avatar" />
-                                </label>
-                                <input
-                                    id={style.FileLoader}
-                                    type="file"
-                                    name="avatar"
-                                    onChange={(e) => handleFileUpload(e)}
-                                />
-                            </div>
-                        ) : (
-                            <h1
-                                style={{
-                                    fontWeight: 'bold',
-                                    fontSize: '2.5rem',
-                                }}
-                            >
-                                <label htmlFor={style.FileLoader}>
-                                    <ImUserPlus />
-                                </label>
-                                <input
-                                    id={style.FileLoader}
-                                    type="file"
-                                    name="avatar"
-                                    value={user.avatar}
-                                    onChange={(e) => handleFileUpload(e)}
-                                />
-                            </h1>
-                        )}
-                    </div> */}
                     <MenuIcon
                         style={{
                             fontSize: '2rem',
@@ -64,6 +31,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                             src="assets/africa-recycle-logo.png"
                             alt="recycle-logo"
                         />
+                        <h1>!</h1>
                     </div>
                 </header>
             )}

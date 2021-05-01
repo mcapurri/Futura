@@ -47,7 +47,7 @@ const ChatRoom = (props) => {
             </div>
             <textarea
                 placeholder="Write message..."
-                className={style.newMessage}
+                className={style.Textarea}
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
             />

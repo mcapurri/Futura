@@ -6,6 +6,7 @@
     align-items: center;
     overflow: auto;
     padding: 0 10%;
+    background-image: linear-gradient(white, green);
 }
 .News .Col {
     display: flex;

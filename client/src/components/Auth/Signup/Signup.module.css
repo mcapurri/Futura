@@ -30,7 +30,6 @@
 .Container .Logo img {
     width: 100%;
     border-radius: 5%;
-    /* filter: drop-shadow(30px 30px 30px #fff); */
 }
 .Container header {
     height: 33vh;

@@ -91,6 +91,7 @@ const CreateDropOff = ({ user, ...props }) => {
                     </p>
                 </div>
             </header>
+            <section></section>
             <Form onSubmit={handleSubmit(onSubmit)} className={style.Form}>
                 <div
                     style={{

@@ -1,13 +1,14 @@
 .Container {
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: #fff;
     color: #fff;
     overflow-y: auto;
-    margin: 15% auto;
+    margin-bottom: 15%;
+    background-image: linear-gradient(white, green);
 }
 
 .Container header {
@@ -21,12 +22,15 @@
     font-family: 'Dancing Script', cursive;
     font-size: 1.4rem;
     font-weight: 600;
-    margin-top: 20%;
+    margin-top: 30%;
+    filter: drop-shadow(30px 30px 30px rgba(255, 255, 255, 0.922));
+
     /* background: url('../../assets/africa-recycle-logo.png') no-repeat center;
     background-size: contain; */
 }
 .Container img {
-    width: 80%;
+    margin-top: 10%;
+    width: auto;
 }
 
 .Form {
@@ -35,7 +39,6 @@
     width: 100%;
     height: 100%;
     margin-top: 50%;
-    background-image: linear-gradient(white, green);
 }
 
 .Form input,
@@ -51,7 +54,9 @@
 .Form input {
     width: 70vw;
 }
-
+.Form label {
+    color: rgb(117, 112, 112);
+}
 .Form input,
 .TimePicker:focus {
     box-shadow: none;
