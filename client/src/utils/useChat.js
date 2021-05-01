@@ -17,12 +17,9 @@ const useChat = (props) => {
         const { name, room } = queryString.parse(props.location.search);
         setName(name);
         setRoom(room);
-        socketRef.current = ioClient(
-            'http://localhost:5005'
-            //  {
-            //     query: { name, room },
-            // }
-        );
+        socketRef.current = ioClient('http://localhost:5005', {
+            query: { name, room },
+        });
         console.log('socketRef', socketRef.current);
 
         socketRef.current.on(
