@@ -27,10 +27,18 @@ const ForgotPassword = (props) => {
 
     return (
         <div className={style.Container}>
-            <header>
-                <img src="assets/sea-img.png" alt="sea-img" />
-            </header>
-
+            <h1>
+                <span>Futura</span>
+                <img
+                    src="../../../assets/africa-recycle-logo.png"
+                    alt=""
+                    style={{
+                        width: '3rem',
+                        height: '3rem',
+                        borderRadius: '50%',
+                    }}
+                />{' '}
+            </h1>
             <Form onSubmit={sendEmail} className={style.Form}>
                 <Form.Group>
                     <label htmlFor="email">Email</label>
@@ -57,7 +65,9 @@ const ForgotPassword = (props) => {
                         </span>
                     </Form.Text>
                 )}
-                <Button type="submit">Send recovery email</Button>
+                <Button type="submit" disabled={!email}>
+                    Send recovery email
+                </Button>
             </Form>
 
             <Link to="/">

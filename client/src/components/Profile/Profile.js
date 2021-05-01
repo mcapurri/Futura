@@ -52,7 +52,9 @@ const Profile = ({ user, setUser, ...props }) => {
                                 }}
                             >
                                 <label htmlFor={style.FileLoader}>
-                                    <ImUserPlus />
+                                    <ImUserPlus
+                                        style={{ fontSize: '2.7rem' }}
+                                    />
                                 </label>
                                 <input
                                     id={style.FileLoader}

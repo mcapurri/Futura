@@ -27,9 +27,18 @@ const ResetPassword = (props) => {
 
     return (
         <div className={style.Container}>
-            <header>
-                <img src="assets/sea-img.png" alt="sea-img" />
-            </header>
+            <h1>
+                <span>Futura</span>
+                <img
+                    src="../../../assets/africa-recycle-logo.png"
+                    alt=""
+                    style={{
+                        width: '3rem',
+                        height: '3rem',
+                        borderRadius: '50%',
+                    }}
+                />{' '}
+            </h1>
             <Form className={style.Form} onSubmit={handleSubmit}>
                 <Form.Group>
                     <label htmlFor="password">Password</label>
