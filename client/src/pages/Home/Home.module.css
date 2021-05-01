@@ -17,16 +17,13 @@
     height: 33vh;
     width: 100%;
     display: flex;
-    color: rgb(0, 128, 0);
+    color: rgb(5, 58, 32);
     border-bottom: 5px solid rgb(0, 128, 0);
     justify-content: space-between;
 }
 
 .Home #FileLoader {
     position: relative;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     width: 0;
     height: 0;
     top: 0;

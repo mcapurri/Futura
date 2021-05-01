@@ -57,12 +57,26 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
 
     return (
         <div className={style.Container}>
-            <header>
-                <img src="assets/sea-img.png" alt="sea-img" />
-            </header>
+            {/* <header>
+                <div className={style.Logo}>
+                    <img
+                        src="../../../assets/africa-recycle-logo.png"
+                        alt="recycle-logo"
+                    />
+                </div>
+            </header> */}
             <h1>
                 <span>Futura</span>
                 <img
+                    src="../../../assets/africa-recycle-logo.png"
+                    alt="recycle-logo"
+                    style={{
+                        width: '3rem',
+                        height: '3rem',
+                        borderRadius: '50%',
+                    }}
+                />
+                {/* <img
                     src="../../../assets/recycling-logo.png"
                     alt=""
                     style={{
@@ -70,7 +84,7 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         height: '3rem',
                         borderRadius: '50%',
                     }}
-                />{' '}
+                />{' '} */}
             </h1>
             <Form className={style.Form} onSubmit={handleSubmit}>
                 <Form.Group>

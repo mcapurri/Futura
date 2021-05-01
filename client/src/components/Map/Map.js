@@ -39,13 +39,15 @@ const Map = () => {
     const onLoadMap = useCallback((e) => {
         setMap(e);
     }, []);
+
     let displayPopUp = '';
     const handleClickMarker = (e, el) => {
         console.log('clickEvent', el);
         return (displayPopUp = (
             <Popup
-                latitude={el.lngLat[1]}
-                longitude={el.lngLat[0]}
+                // latitude={el.lngLat[1]}
+                // longitude={el.lngLat[0]}
+                coordinates={el.lngLat}
                 closeButton={false}
                 closeOnClick={true}
                 offsetTop={-30}

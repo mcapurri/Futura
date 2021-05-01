@@ -16,9 +16,22 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                         height: '40%',
                         backgroundColor: 'rgb(5, 58, 32)',
                         display: 'flex',
-                        alignItems: 'flex-end',
+                        flexDirection: 'column',
+                        justifyContent: 'flex-end',
                     }}
                 >
+                    <h1>
+                        <span>Futura</span>
+                        <img
+                            src="../../../assets/africa-recycle-logo.png"
+                            alt=""
+                            style={{
+                                width: '3rem',
+                                height: '3rem',
+                                borderRadius: '50%',
+                            }}
+                        />{' '}
+                    </h1>
                     <div className={style.UserInfos}>
                         <div className={style.Avatar}>
                             {user.avatar && (

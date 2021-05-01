@@ -43,7 +43,7 @@ const Login = ({ setUser }) => {
             <h1>
                 <span>Futura</span>
                 <img
-                    src="../../../assets/recycling-logo.png"
+                    src="../../../assets/africa-recycle-logo.png"
                     alt=""
                     style={{
                         width: '3rem',

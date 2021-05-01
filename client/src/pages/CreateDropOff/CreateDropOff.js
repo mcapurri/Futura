@@ -3,7 +3,6 @@ import style from './CreateDropoff.module.css';
 import useInput from '../../utils/useInput';
 import { Form, Button, Row, Col } from 'bootstrap-4-react';
 import { useForm } from 'react-hook-form';
-import TimePicker from 'react-bootstrap-time-picker';
 import axios from 'axios';
 // import axios from '../../utils/axios';
 const mapBoxAccessToken =
@@ -17,11 +16,11 @@ const CreateDropOff = ({ user, ...props }) => {
     const [houseNumber, setHouseNumber] = useInput('');
     const [city, setCity] = useInput('');
     const [zipCode, setZipCode] = useInput('');
-    const [openingTime, setOpeningTime] = useInput('');
-    const [closingTime, setClosingTime] = useInput('');
+    const [openingTime, setOpeningTime] = useState('');
+    const [closingTime, setClosingTime] = useState('');
 
-    // console.log('openingTime', openingTime);
-    // console.log('closingTime', closingTime);
+    console.log('openingTime', openingTime);
+    console.log('closingTime', closingTime);
 
     const {
         register,
@@ -72,6 +71,26 @@ const CreateDropOff = ({ user, ...props }) => {
 
     return (
         <div className={style.Container}>
+            <header>
+                <img
+                    src="../../assets/africa-recycle-logo.png"
+                    alt="recycling-logo"
+                />
+                <div>
+                    <p>
+                        Help the community and start a new recycling point
+                        today!
+                    </p>
+                    <p>
+                        Fill the form and add all the details of the new
+                        location.
+                    </p>
+                    <p>
+                        Soon our Team will contact you to validate your idoneity
+                        and will abilitate your new Futura recycling point!
+                    </p>
+                </div>
+            </header>
             <Form onSubmit={handleSubmit(onSubmit)} className={style.Form}>
                 <div
                     style={{
@@ -81,7 +100,6 @@ const CreateDropOff = ({ user, ...props }) => {
                         alignItems: 'center',
                         width: '100%',
                         height: '100%',
-                        // marginLeft: '5%',
                     }}
                 >
                     <Form.Group
@@ -106,7 +124,7 @@ const CreateDropOff = ({ user, ...props }) => {
                         {errors.name && <span>This field is required</span>}
                     </Form.Group>
                     <Form.Group>
-                        <Row className={style.Row}>
+                        <Row>
                             <Col>
                                 <Form.Input
                                     {...register('street', {
@@ -140,7 +158,7 @@ const CreateDropOff = ({ user, ...props }) => {
                                 )}
                             </Col>
                         </Row>
-                        <Row className={style.Row}>
+                        <Row>
                             <Col>
                                 <Form.Input
                                     {...register('city', {
@@ -176,52 +194,61 @@ const CreateDropOff = ({ user, ...props }) => {
                             </Col>
                         </Row>
                         <Form.Group>
-                            <Row className={style.Row}>
+                            <Row>
                                 <Col>
-                                    {/* <TimePicker
-                                    start="08:30"
-                                    end="12:30"
-                                    step={30}
-                                    value={openingTime}
-                                    onChange={setOpeningTime}
-                                    className={style.Inline}
-                                /> */}
-                                    <Form.Input
+                                    <label htmlFor="openingTime">Opening</label>
+
+                                    <Form.Select
                                         {...register('openingTime', {
                                             required: true,
-                                            minLength: 3,
                                         })}
                                         type="datetime-local"
                                         placeholder="Opening time"
                                         value={openingTime}
-                                        onChange={setOpeningTime}
-                                        className={style.Inline}
-                                    />
+                                        onChange={(e) =>
+                                            setOpeningTime(e.target.value)
+                                        }
+                                        className={style.TimePicker}
+                                    >
+                                        <option>--Select time--</option>
+                                        <option value="0900">09.00</option>
+                                        <option value="0930">09.30</option>
+                                        <option value="1000">10.00</option>
+                                        <option value="1030">10.30</option>
+                                        <option value="1100">11.00</option>
+                                        <option value="1130">11.30</option>
+                                        <option value="1200">12.00</option>
+                                        <option value="1230">12.30</option>
+                                    </Form.Select>
                                     {errors.openingTime && (
                                         <span>This field is required</span>
                                     )}
                                 </Col>
                                 <Col>
-                                    {/* <TimePicker
-                                    start="14:30"
-                                    end="18:30"
-                                    step={30}
-                                    value={closingTime}
-                                    onChange={setClosingTime}
-                                    className={style.Inline}
-                                /> */}
+                                    <label htmlFor="closingTime">Closing</label>
 
-                                    <Form.Input
+                                    <Form.Select
                                         {...register('closingTime', {
                                             required: true,
-                                            minLength: 3,
                                         })}
                                         type="datetime-local"
                                         placeholder="Closing time"
                                         value={closingTime}
-                                        onChange={setClosingTime}
-                                        className={style.Inline}
-                                    />
+                                        onChange={(e) =>
+                                            setClosingTime(e.target.value)
+                                        }
+                                        className={style.TimePicker}
+                                    >
+                                        <option>--Select time--</option>
+                                        <option value="1600">16.00</option>
+                                        <option value="1630">16.30</option>
+                                        <option value="1700">17.00</option>
+                                        <option value="1730">17.30</option>
+                                        <option value="1800">18.00</option>
+                                        <option value="1830">18.30</option>
+                                        <option value="1900">19.00</option>
+                                        <option value="1930">19.30</option>
+                                    </Form.Select>
                                     {errors.closingTime && (
                                         <span>This field is required</span>
                                     )}

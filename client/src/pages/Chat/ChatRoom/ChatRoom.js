@@ -51,7 +51,7 @@ const ChatRoom = (props) => {
                 value={newMessage}
                 onChange={(e) => setNewMessage(e.target.value)}
             />
-            <button onClick={handleSendMessage} className={style.Button}>
+            <button onClick={handleSendMessage} disabled={!newMessage}>
                 Send
             </button>
         </div>

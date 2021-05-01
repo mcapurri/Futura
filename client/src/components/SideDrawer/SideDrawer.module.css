@@ -13,7 +13,13 @@
     /* transform: translateX(100%);
     transition: transform 1s ease-in-out; */
 }
-
+.SideDrawer h1 {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+    margin-left: 5%;
+    margin-bottom: 5%;
+    color: #fff;
+}
 .Open {
     transform: translateX(0);
     -webkit-animation: slide 1s backwards;

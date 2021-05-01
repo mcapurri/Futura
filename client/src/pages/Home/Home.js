@@ -30,68 +30,62 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
 
     return (
         <div className={style.Home}>
-            <header>
-                {user !== '' && (
-                    <>
-                        <div className={style.Avatar}>
-                            {user?.avatar ? (
-                                <div>
-                                    <label htmlFor={style.FileLoader}>
-                                        <img
-                                            src={user.avatar}
-                                            alt="user-avatar"
-                                        />
-                                    </label>
-                                    <input
-                                        id={style.FileLoader}
-                                        type="file"
-                                        name="avatar"
-                                        onChange={(e) => handleFileUpload(e)}
-                                    />
-                                </div>
-                            ) : (
-                                <h1
-                                    style={{
-                                        fontWeight: 'bold',
-                                        fontSize: '2.5rem',
-                                    }}
-                                >
-                                    <label htmlFor={style.FileLoader}>
-                                        <ImUserPlus />
-                                    </label>
-                                    <input
-                                        id={style.FileLoader}
-                                        type="file"
-                                        name="avatar"
-                                        value={user.avatar}
-                                        onChange={(e) => handleFileUpload(e)}
-                                    />
-                                </h1>
-                            )}
-                        </div>
-                        <MenuIcon
-                            style={{
-                                fontSize: '2rem',
-                                display: 'flex',
-                                justifySelf: 'flex-start',
-                                alignSelf: 'flex-start',
-                                position: 'fixed',
-                                right: '7%',
-                                top: '3%',
-                                color: 'rgba(27, 120, 76, 0.2);',
-                            }}
-                            onClick={toggleDrawer}
-                        />
-                    </>
-                )}
-                {/* <img src="assets/sea-img.png" alt="sea-img" /> */}
-                <div className={style.Logo}>
-                    <img
-                        src="assets/africa-recycle-logo.png"
-                        alt="recycle-logo"
+            {user !== '' && (
+                <header>
+                    <div className={style.Avatar}>
+                        {user?.avatar ? (
+                            <div>
+                                <label htmlFor={style.FileLoader}>
+                                    <img src={user.avatar} alt="user-avatar" />
+                                </label>
+                                <input
+                                    id={style.FileLoader}
+                                    type="file"
+                                    name="avatar"
+                                    onChange={(e) => handleFileUpload(e)}
+                                />
+                            </div>
+                        ) : (
+                            <h1
+                                style={{
+                                    fontWeight: 'bold',
+                                    fontSize: '2.5rem',
+                                }}
+                            >
+                                <label htmlFor={style.FileLoader}>
+                                    <ImUserPlus />
+                                </label>
+                                <input
+                                    id={style.FileLoader}
+                                    type="file"
+                                    name="avatar"
+                                    value={user.avatar}
+                                    onChange={(e) => handleFileUpload(e)}
+                                />
+                            </h1>
+                        )}
+                    </div>
+                    <MenuIcon
+                        style={{
+                            fontSize: '2rem',
+                            display: 'flex',
+                            justifySelf: 'flex-start',
+                            alignSelf: 'flex-start',
+                            position: 'fixed',
+                            right: '7%',
+                            top: '3%',
+                            color: 'rgba(27, 120, 76, 0.2)',
+                        }}
+                        onClick={toggleDrawer}
                     />
-                </div>
-            </header>
+                    <div className={style.Logo}>
+                        <img
+                            src="assets/africa-recycle-logo.png"
+                            alt="recycle-logo"
+                        />
+                    </div>
+                </header>
+            )}
 
             {!user ? (
                 <Route
