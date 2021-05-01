@@ -1,38 +1,19 @@
 import React from 'react';
 import style from './Home.module.css';
 import { Route } from 'react-router-dom';
-import service from '../../utils/service';
 import Login from '../../components/Auth/Login/Login';
 import Profile from '../../components/Profile/Profile';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import { TiThMenu as MenuIcon } from 'react-icons/ti';
-import { ImUserPlus } from 'react-icons/im';
 
 const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
     // console.log('user', user);
-
-    const handleFileUpload = async (e) => {
-        console.log('The file to be uploaded is: ', e.target.files[0]);
-
-        const uploadData = new FormData();
-        // avatar => this name has to be the same as in the model since I pass
-        // req.body to .create() method
-        uploadData.append('avatar', e.target.files[0]);
-        try {
-            const fileUpload = await service.handleUpload(uploadData, user._id);
-            console.log('uploaded file is: ', fileUpload);
-            setUser({ ...user, avatar: fileUpload.secure_url });
-            console.log('avatar', user.avatar);
-        } catch (err) {
-            console.log('Error while uploading: ', err);
-        }
-    };
 
     return (
         <div className={style.Home}>
             {user !== '' && (
                 <header>
-                    <div className={style.Avatar}>
+                    {/* <div className={style.Avatar}>
                         {user?.avatar ? (
                             <div>
                                 <label htmlFor={style.FileLoader}>
@@ -64,7 +45,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                                 />
                             </h1>
                         )}
-                    </div>
+                    </div> */}
                     <MenuIcon
                         style={{
                             fontSize: '2rem',
@@ -74,7 +55,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                             position: 'fixed',
                             right: '7%',
                             top: '3%',
-                            color: 'rgba(27, 120, 76, 0.2)',
+                            color: 'rgb(5, 58, 32)',
                         }}
                         onClick={toggleDrawer}
                     />
@@ -99,6 +80,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                     path="/"
                     component={Profile}
                     user={user}
+                    setUser={setUser}
                 />
             )}
         </div>

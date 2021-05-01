@@ -1,12 +1,70 @@
 import React from 'react';
 import { Button } from 'bootstrap-4-react';
+import service from '../../utils/service';
 import style from './Profile.module.css';
+import { ImUserPlus } from 'react-icons/im';
 
-const Profile = ({ user, ...props }) => {
+const Profile = ({ user, setUser, ...props }) => {
+    const handleFileUpload = async (e) => {
+        console.log('The file to be uploaded is: ', e.target.files[0]);
+
+        const uploadData = new FormData();
+        // avatar => this name has to be the same as in the model since I pass
+        // req.body to .create() method
+        uploadData.append('avatar', e.target.files[0]);
+        try {
+            const fileUpload = await service.handleUpload(uploadData, user._id);
+            console.log('uploaded file is: ', fileUpload);
+            setUser({ ...user, avatar: fileUpload.secure_url });
+            console.log('avatar', user.avatar);
+        } catch (err) {
+            console.log('Error while uploading: ', err);
+        }
+    };
+
     return (
         <div className={style.Profile}>
             <section className={style.Showcase}>
-                <h3 style={{ marginLeft: '10%' }}>Hello {user.firstName},</h3>
+                <div
+                    style={{ display: 'flex', justifyContent: 'space-around' }}
+                >
+                    <h3 style={{ marginLeft: '10%' }}>
+                        Hello {user.firstName},
+                    </h3>
+                    <div className={style.Avatar}>
+                        {user?.avatar ? (
+                            <div>
+                                <label htmlFor={style.FileLoader}>
+                                    <img src={user.avatar} alt="user-avatar" />
+                                </label>
+                                <input
+                                    id={style.FileLoader}
+                                    type="file"
+                                    name="avatar"
+                                    onChange={(e) => handleFileUpload(e)}
+                                />
+                            </div>
+                        ) : (
+                            <h1
+                                style={{
+                                    fontWeight: 'bold',
+                                    fontSize: '2.5rem',
+                                }}
+                            >
+                                <label htmlFor={style.FileLoader}>
+                                    <ImUserPlus />
+                                </label>
+                                <input
+                                    id={style.FileLoader}
+                                    type="file"
+                                    name="avatar"
+                                    value={user.avatar}
+                                    onChange={(e) => handleFileUpload(e)}
+                                />
+                            </h1>
+                        )}
+                    </div>
+                </div>
                 <div
                     style={{
                         display: 'flex',
