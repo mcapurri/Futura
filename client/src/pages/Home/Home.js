@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './Home.module.css';
 import { Route } from 'react-router-dom';
 import Login from '../../components/Auth/Login/Login';
@@ -8,6 +8,20 @@ import { TiThMenu as MenuIcon } from 'react-icons/ti';
 
 const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
     // console.log('user', user);
+
+    // Show text in the header if screen > 660px
+    const [width, setWidth] = useState(window.innerWidth);
+    // console.log('width', width);
+
+    const handleResize = () => {
+        setWidth(window.innerWidth);
+    };
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     return (
         <div className={style.Home}>
@@ -26,12 +40,21 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                         }}
                         onClick={toggleDrawer}
                     />
-                    <div className={style.Logo}>
-                        <img
-                            src="assets/africa-recycle-logo.png"
-                            alt="recycle-logo"
-                        />
-                        <h1>!</h1>
+                    <div
+                        style={{
+                            display: 'flex',
+                            width: '100%',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <div className={style.Logo}>
+                            <img
+                                src="assets/africa-recycle-logo.png"
+                                alt="recycle-logo"
+                            />
+                            <h1>!</h1>
+                        </div>
+                        {width > '660' && <p>Bla bla bla</p>}
                     </div>
                 </header>
             )}
