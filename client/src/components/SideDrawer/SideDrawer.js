@@ -2,7 +2,7 @@ import style from './SideDrawer.module.css';
 import { Nav, Button } from 'bootstrap-4-react';
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
 import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
-import { FaUserAlt, FaPlus, FaRecycle } from 'react-icons/fa';
+import { FaUserAlt, FaPlus, FaRecycle, FaHeart } from 'react-icons/fa';
 
 const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
     let attachedStyles = style.SideDrawer;
@@ -18,6 +18,7 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'flex-end',
+                        alignItems: 'center',
                     }}
                 >
                     <h1>
@@ -70,6 +71,10 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                             <Nav.Link href="/recycle-history">
                                 Recycle history
                             </Nav.Link>
+                        </li>
+                        <li>
+                            <FaHeart style={{ color: 'rgb(9, 173, 7)' }} />
+                            <Nav.Link href="/about">About us</Nav.Link>
                         </li>
                         <li>
                             <LogoutIcon style={{ color: 'rgb(9, 173, 7)' }} />

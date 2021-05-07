@@ -9,7 +9,7 @@ const News = (props) => {
     const [newsList, setNewsList] = useState('');
 
     const fetchData = () => {
-        const token = localStorage.getItem('token');
+        // const token = localStorage.getItem('token');
         const options = {
             method: 'GET',
             url: 'https://bing-news-search1.p.rapidapi.com/news/search',

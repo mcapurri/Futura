@@ -7,7 +7,6 @@ import axios from 'axios';
 // import axios from '../../utils/axios';
 const mapBoxAccessToken =
     'pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A';
-const token = localStorage.getItem('token');
 
 const CreateDropOff = ({ user, ...props }) => {
     const [message, setMessage] = useState('');
@@ -18,9 +17,6 @@ const CreateDropOff = ({ user, ...props }) => {
     const [zipCode, setZipCode] = useInput('');
     const [openingTime, setOpeningTime] = useState('');
     const [closingTime, setClosingTime] = useState('');
-
-    console.log('openingTime', openingTime);
-    console.log('closingTime', closingTime);
 
     const {
         register,
@@ -65,7 +61,7 @@ const CreateDropOff = ({ user, ...props }) => {
             setTimeout(() => {
                 setMessage('');
                 props.history.push('/');
-            });
+            }, 3000);
         }
     };
 

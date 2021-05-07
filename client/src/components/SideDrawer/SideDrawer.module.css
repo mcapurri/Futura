@@ -1,7 +1,6 @@
 .SideDrawer {
     position: absolute;
     width: 80%;
-    max-width: 25rem;
     height: 90%;
     right: 0;
     top: 0;
@@ -99,4 +98,14 @@
     border-radius: 80px;
     max-width: 100%;
     max-height: 100%;
+}
+@media screen and (min-width: 435px) {
+    .SideDrawer {
+        max-width: 20rem;
+    }
+}
+@media screen and (min-width: 770px) {
+    .SideDrawer {
+        max-width: 25rem;
+    }
 }

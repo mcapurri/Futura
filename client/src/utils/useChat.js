@@ -11,13 +11,13 @@ const useChat = (props) => {
     const [messages, setMessages] = useState([]);
     const socketRef = useRef();
     const token = localStorage.getItem('token');
-    console.log(name, room);
+    // console.log(name, room);
 
     useEffect(() => {
         const { name, room } = queryString.parse(props.location.search);
         setName(name);
         setRoom(room);
-        socketRef.current = ioClient('http://localhost:5005', {
+        socketRef.current = ioClient(ENDPOINT, {
             query: { name, room },
         });
         console.log('socketRef', socketRef.current);

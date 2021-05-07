@@ -1,28 +1,80 @@
 import React from 'react';
+import style from './About.module.css';
 
 const About = () => {
     return (
-        <div>
-            <section>
-                <h1>Our mission</h1>
-                <p>
+        <div className={style.About}>
+            <section className={style.Section}>
+                <h1 style={{ marginBottom: '5%', marginLeft: '5%' }}>
+                    Our mission
+                </h1>
+                <p style={{ padding: '0 5%' }}>
                     Futura is a circular economy platform that helps producers
                     to track and collect users waist, enabling our stakeholders
                     to earn a little profit, while helping the community to keep
                     the environment clean and supporting local economy{' '}
                 </p>
             </section>
-            <section>
+            <section className={style.Section}>
                 <article className={style.Box}>
-                    <img src="/images/team.png" alt="team" />
-                    <h3> Save the environment </h3>
-                    <p className="text">
-                        {' '}
-                        We collect 50+ Kg recyclable material a day!
-                    </p>
-                    <a className="link-btn" href="#More">
-                        More{' '}
-                    </a>
+                    <img
+                        src="../../assets/environment.png"
+                        alt="environment-logo"
+                    />
+                    <div style={{ padding: '5% 10%' }}>
+                        <h5> Save the environment </h5>
+                        <p className="text">
+                            {' '}
+                            We collect 50+ Kg recyclable material a day!
+                        </p>
+                    </div>
+                </article>
+                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
+
+                <article className={style.Box}>
+                    <img
+                        src="../../assets/local-business-logo.png"
+                        alt="local-business-logo"
+                    />
+                    <div style={{ padding: '0 10%' }}>
+                        <h5> Help local business with sustanable grow</h5>
+                        <p className="text">
+                            {' '}
+                            We involve local waste stakeholders and promote
+                            circular economy.
+                        </p>
+                    </div>
+                </article>
+                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
+
+                <article className={style.Box}>
+                    <img
+                        src="../../assets/education-logo.png"
+                        alt="education-logo"
+                    />
+                    <div style={{ padding: '0 10%' }}>
+                        <h5> Promote education </h5>
+                        <p className="text">
+                            {' '}
+                            We sustain the spread of recycling culture among
+                            west african countries, and the spread of efficient
+                            waste management policies.
+                        </p>
+                    </div>
+                </article>
+                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
+
+                <article className={style.Box}>
+                    <img src="../../assets/fist-logo.png" alt="fist-logo" />
+                    <div style={{ padding: '5% 10%' }}>
+                        <h5> Empower the people </h5>
+                        <p className="text">
+                            {' '}
+                            We allow the community to be actively operative in
+                            self development, by empowering and motivating
+                            individuals to take action.
+                        </p>
+                    </div>
                 </article>
             </section>
         </div>

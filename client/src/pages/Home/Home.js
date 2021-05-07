@@ -54,7 +54,15 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                             />
                             <h1>!</h1>
                         </div>
-                        {width > '660' && <p>Bla bla bla</p>}
+                        {width > '660' && (
+                            <p
+                                style={{
+                                    marginRight: '15%',
+                                }}
+                            >
+                                It's all about what you do for our future...{' '}
+                            </p>
+                        )}
                     </div>
                 </header>
             )}

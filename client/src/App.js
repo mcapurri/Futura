@@ -4,6 +4,7 @@ import { Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
 import ProtectedRoute from './utils/ProtectedRoute';
 import Home from './pages/Home/Home';
+import About from './pages/About/About';
 import Footer from './components/Footer/Footer';
 import Website from './pages/Resources/Website';
 import News from './pages/Resources/News';
@@ -92,6 +93,12 @@ function App(props) {
                     path="/resetpassword/:resettoken"
                     render={(props) => <ResetPassword {...props} />}
                     // component={ResetPassword}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/about"
+                    component={About}
+                    user={user}
                 />
                 <ProtectedRoute
                     exact

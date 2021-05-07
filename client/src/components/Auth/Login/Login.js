@@ -78,8 +78,8 @@ const Login = ({ setUser }) => {
                 </Form.Text>
                 <p style={{ color: '#fff' }}>{message}</p>
                 <p>
-                    Don't have an account? &nbsp;
-                    <Link to="/signup">Create one now</Link>
+                    Don't have an account yet? &nbsp;
+                    <Link to="/signup">Sign up now</Link>
                 </p>
                 <Button type="submit">Login</Button>
             </Form>
