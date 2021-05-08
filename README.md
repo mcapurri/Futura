@@ -3,11 +3,12 @@
 Fully responsive Mobile Eco-App built to promote plastic recycling in Nigeria.<br/>
 It allows to find plastic drop-offs located around the current user position.
 It keeps score of user's credit, based on the amount of plastic deposited.<br/>
+Chat available for online users.<br/>
 Resources page offers an updated list of article about the recycling and sustainability in Africa.<br/>
 Database managed with MongoDB
 
 ## Technologies used:
-Node.js, Express, React, Bootstrap, JWT, 	Passport, Mongoose, Cloudinary, Mapbox
+Node.js, Express, React, Bootstrap, JWT, 	Passport, Mongoose, Cloudinary, Mapbox, Socket.io
 
 
 ## Author
