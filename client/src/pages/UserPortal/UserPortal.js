@@ -1,15 +1,28 @@
 import React, { useState } from 'react';
 import style from './UserPortal.module.css';
-// import { PayPalButton } from 'react-paypal-button-v2';c
 
-const UserPortal = () => {
-    const [userBalance, setUserBalence] = useState(0);
+const UserPortal = (props) => {
+    const [userBalance, setUserBalance] = useState(0);
     const handleTransfer = () => {};
     return (
         <div className={style.UserPortal}>
             <header>
-                <h2>Current balance: </h2>
-                <h2>€4,80</h2>
+                <div className={style.Logo}>
+                    <img
+                        src="assets/africa-recycle-logo.png"
+                        alt="recycle-logo"
+                    />
+                    <h1>!</h1>
+                </div>
+                {props.width > '600' && (
+                    <p
+                        style={{
+                            marginRight: '15%',
+                        }}
+                    >
+                        It's all about what you do for our future...{' '}
+                    </p>
+                )}
             </header>
             <div style={{ width: '100%' }}>
                 <div className={style.UserBalance}>
@@ -21,28 +34,6 @@ const UserPortal = () => {
                     <span>500 Kg</span>
                 </div>
             </div>
-            {/* <PayPalButton
-                amount={userBalance}
-                onSuccess={handleTransfer}
-            ></PayPalButton> */}
-            {/* <PayPalButton
-                amount="0.01"
-                // shippingPreference="NO_SHIPPING" // default is "GET_FROM_FILE"
-                onSuccess={(details, data) => {
-                    alert(
-                        'Transaction completed by ' +
-                            details.payer.name.given_name
-                    );
-
-                    // OPTIONAL: Call your server to save the transaction
-                    return fetch('/paypal-transaction-complete', {
-                        method: 'post',
-                        body: JSON.stringify({
-                            orderID: data.orderID,
-                        }),
-                    });
-                }}
-            /> */}
         </div>
     );
 };

@@ -1,5 +1,5 @@
 import './App.css';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
 import ProtectedRoute from './utils/ProtectedRoute';
@@ -24,6 +24,20 @@ function App(props) {
 
     const [user, setUser] = useState(props.user);
     console.log('user', user);
+
+    // Show text in the header if screen > 660px
+    const [width, setWidth] = useState(window.innerWidth);
+    // console.log('width', width);
+
+    const handleResize = () => {
+        setWidth(window.innerWidth);
+    };
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
 
     const toggleDrawer = () => {
         setDrawerOpen(() => !drawerOpen);
@@ -73,6 +87,7 @@ function App(props) {
                             setUser={setUser}
                             handleLogout={handleLogout}
                             toggleDrawer={toggleDrawer}
+                            width={width}
                         />
                     )}
                 />
@@ -105,6 +120,7 @@ function App(props) {
                     path="/user-portal"
                     component={UserPortal}
                     user={user}
+                    width={width}
                 />
                 <ProtectedRoute
                     exact

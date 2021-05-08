@@ -7,22 +7,6 @@ import ProtectedRoute from '../../utils/ProtectedRoute';
 import { TiThMenu as MenuIcon } from 'react-icons/ti';
 
 const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
-    // console.log('user', user);
-
-    // Show text in the header if screen > 660px
-    const [width, setWidth] = useState(window.innerWidth);
-    // console.log('width', width);
-
-    const handleResize = () => {
-        setWidth(window.innerWidth);
-    };
-    useEffect(() => {
-        window.addEventListener('resize', handleResize);
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
     return (
         <div className={style.Home}>
             {user !== '' && (
@@ -54,7 +38,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                             />
                             <h1>!</h1>
                         </div>
-                        {width > '660' && (
+                        {props.width > '660' && (
                             <p
                                 style={{
                                     marginRight: '15%',

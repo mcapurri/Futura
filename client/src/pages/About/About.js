@@ -40,8 +40,9 @@ const About = () => {
                         <h5> Help local business with sustanable grow</h5>
                         <p className="text">
                             {' '}
-                            We involve local waste stakeholders and promote
-                            circular economy.
+                            We promote the circular economy and involve local
+                            waste stakeholders leveraging their business and
+                            connecting them with financial institutions
                         </p>
                     </div>
                 </article>
