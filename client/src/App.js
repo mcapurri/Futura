@@ -17,14 +17,13 @@ import SideDrawer from './components/SideDrawer/SideDrawer';
 import Map from './components/Map/Map';
 import Chat from './pages/Chat/Chat';
 import ChatRoom from './pages/Chat/ChatRoom/ChatRoom';
+import UserDeposit from './pages/UserDeposit/UserDeposit';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);
-    // const [width, setWidth] = useState(window.innerWidth);
 
     const [user, setUser] = useState(props.user);
     console.log('user', user);
-
 
     // Show text in the header if screen > 660px
     const [width, setWidth] = useState(window.innerWidth);
@@ -40,8 +39,6 @@ function App(props) {
         };
     }, []);
 
-
-
     const toggleDrawer = () => {
         setDrawerOpen(() => !drawerOpen);
     };
@@ -55,19 +52,6 @@ function App(props) {
                 console.log(err);
             });
 
-    // // Check if mobile
-    // // const handleWindowSizeChange = () => {
-    // //     setWidth(window.innerWidth);
-    // // };
-    // // useEffect(() => {
-    // //     window.addEventListener('resize', handleWindowSizeChange);
-    // //     window.resizeTo(360, 740);
-    // //     return () => {
-    // //         window.removeEventListener('resize', handleWindowSizeChange);
-    // //     };
-    // // }, []);
-
-    // let isMobile = width <= 360;
     return (
         <>
             {drawerOpen && (
@@ -104,13 +88,11 @@ function App(props) {
                     exact
                     path="/forgotpassword"
                     render={(props) => <ForgotPassword {...props} />}
-                    // component={ForgotPassword}
                 />
                 <Route
                     exact
                     path="/resetpassword/:resettoken"
                     render={(props) => <ResetPassword {...props} />}
-                    // component={ResetPassword}
                 />
                 <ProtectedRoute
                     exact
@@ -122,6 +104,13 @@ function App(props) {
                     exact
                     path="/user-portal"
                     component={UserPortal}
+                    user={user}
+                    width={width}
+                />
+                <ProtectedRoute
+                    exact
+                    path="/deposit"
+                    component={UserDeposit}
                     user={user}
                     width={width}
                 />

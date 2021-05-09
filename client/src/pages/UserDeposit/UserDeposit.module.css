@@ -1,11 +1,11 @@
-.UserPortal {
+.Container {
     width: 100vw;
     height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.UserPortal header {
+.Container header {
     height: 27vh;
     width: 100%;
     display: flex;
@@ -15,28 +15,35 @@
     /* justify-content: space-between; */
 }
 
-.UserPortal .Logo {
+.Container .Logo {
     display: flex;
     align-items: flex-end;
     margin-left: 10%;
 }
-.UserPortal h1:nth-child(2) {
+.Container h1:nth-child(2) {
     font-size: 9rem;
     color: #000;
 }
-.UserPortal p {
+.Container p {
     color: #000;
     font-family: 'Dancing Script', cursive;
     font-size: 2.5rem;
     font-weight: bold;
     margin-left: 10%;
 }
-
-.UserBalance {
+.Form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     width: 100%;
-    padding: 5% 10%;
-    margin: 5% 0;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+    height: 100%;
+    margin-top: 35%;
+}
+
+.Form input {
+    background-color: transparent;
+    color: rgb(5, 58, 32);
+    border: none;
+    border-bottom: 3px solid #eee;
+    margin-bottom: 5%;
+    width: 70vw;
 }
