@@ -19,7 +19,17 @@ const UserDeposit = (props) => {
     const [location, setLocation] = useInput('');
     const [locationsList, setLocationsList] = useState([]);
     const [email, setEmail] = useInput('');
-    const credit = depositedGr + (depositedKg / 100) * 0.1;
+    const [credit, setCredit] = useState(0);
+
+    useEffect(() => {
+        const creditSum = ((+depositedGr + +depositedKg * 1000) / 1000).toFixed(
+            2
+        );
+
+        setCredit(creditSum);
+    }, [depositedGr, depositedKg]);
+
+    console.log('credit', credit);
 
     useEffect(() => {
         fetchData();
@@ -165,6 +175,7 @@ const UserDeposit = (props) => {
                                 placeholder="Deposit Kg."
                                 value={credit}
                                 // onChange={setDeposited}
+                                disable={email}
                             />
                         </Form.Group>
                     </div>
