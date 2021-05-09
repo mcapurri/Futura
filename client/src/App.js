@@ -25,6 +25,7 @@ function App(props) {
     const [user, setUser] = useState(props.user);
     console.log('user', user);
 
+
     // Show text in the header if screen > 660px
     const [width, setWidth] = useState(window.innerWidth);
     // console.log('width', width);
@@ -38,6 +39,8 @@ function App(props) {
             window.removeEventListener('resize', handleResize);
         };
     }, []);
+
+
 
     const toggleDrawer = () => {
         setDrawerOpen(() => !drawerOpen);

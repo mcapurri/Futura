@@ -15,6 +15,11 @@ const userSchema = new Schema(
 
         phoneNumber: String,
         avatar: String,
+           role: {
+            type: String,
+            enum: ['Admin', 'User'],
+            default: 'User',
+        },
         resetPasswordToken: String,
         resetPasswordExpire: Date,
         createdAt: {
@@ -76,36 +81,36 @@ userSchema.methods.sendEmail = async (options) => {
 };
 
 // Get token from model, create cookie and send response
-userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
-    console.log('sendtokenResponse running');
+// userSchema.methods.sendTokenResponse = (user, statusCode, res) => {
+//     console.log('sendtokenResponse running');
 
-    // Create token
-    const token = user.getSignedJwtToken(user);
+//     // Create token
+//     const token = user.getSignedJwtToken(user);
 
-    // Save token in a cookie
+//     // Save token in a cookie
 
-    // const options = {
-    //     expires: new Date(
-    //         Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
-    //     ),
-    //     httpOnly: true,
-    // };
-    // if (process.env.NODE_ENV === 'production') {
-    //     options.secure = true;
-    // }
-    // res.status(statusCode).cookie('token', token, options).json({
-    //     token,
-    //     message: 'Password Successfully Updated',
-    // });
-    return token;
-};
+//     const options = {
+//         expires: new Date(
+//             Date.now() + process.env.JWT_COOKIE_EXPIRE * 24 * 60 * 60 * 1000
+//         ),
+//         httpOnly: true,
+//     };
+//     if (process.env.NODE_ENV === 'production') {
+//         options.secure = true;
+//     }
+//     res.status(statusCode).cookie('token', token, options).json({
+//         token,
+//         message: 'Password Successfully Updated',
+//     });
+//     return token;
+// };
 
 // Sign JWT and return
 userSchema.methods.getSignedJwtToken = function (user) {
     let temp = user || this;
     console.log('getSignedToken running');
     return jwt.sign(
-        { email: temp.email, _id: temp._id },
+        { email: temp.email, _id: temp._id, role: temp.role },
         process.env.JWT_SECRET,
         {
             expiresIn: process.env.JWT_EXPIRE,
