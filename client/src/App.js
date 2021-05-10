@@ -18,6 +18,7 @@ import Map from './components/Map/Map';
 import Chat from './pages/Chat/Chat';
 import ChatRoom from './pages/Chat/ChatRoom/ChatRoom';
 import UserDeposit from './pages/UserDeposit/UserDeposit';
+import RecycleHistory from './pages/RecycleHistory/RecycleHistory';
 
 function App(props) {
     const [drawerOpen, setDrawerOpen] = useState(false);
@@ -99,6 +100,7 @@ function App(props) {
                     path="/about"
                     component={About}
                     user={user}
+                    width={width}
                 />
                 <ProtectedRoute
                     exact
@@ -114,6 +116,14 @@ function App(props) {
                     user={user}
                     width={width}
                 />
+                <ProtectedRoute
+                    exact
+                    path="/history"
+                    component={RecycleHistory}
+                    user={user}
+                    width={width}
+                />
+
                 <ProtectedRoute
                     exact
                     path="/chat"

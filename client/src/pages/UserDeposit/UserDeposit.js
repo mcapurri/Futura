@@ -29,8 +29,6 @@ const UserDeposit = (props) => {
         setCredit(creditSum);
     }, [depositedGr, depositedKg]);
 
-    console.log('credit', credit);
-
     useEffect(() => {
         fetchData();
     }, []);

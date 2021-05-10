@@ -61,21 +61,17 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                             <FaUserAlt style={{ color: 'rgb(9, 173, 7)' }} />
                             <Nav.Link href="/user-portal">User Portal</Nav.Link>
                         </li>
+
+                        <li>
+                            <FaRecycle style={{ color: 'rgb(9, 173, 7)' }} />
+                            <Nav.Link href="/history">Recycle history</Nav.Link>
+                        </li>
+
                         <li>
                             <FaPlus style={{ color: 'rgb(9, 173, 7)' }} />
                             <Nav.Link href="/create-dropoff">
                                 New recycling point
                             </Nav.Link>
-                        </li>
-                        <li>
-                            <FaRecycle style={{ color: 'rgb(9, 173, 7)' }} />
-                            <Nav.Link href="/recycle-history">
-                                Recycle history
-                            </Nav.Link>
-                        </li>
-                        <li>
-                            <FaHeart style={{ color: 'rgb(9, 173, 7)' }} />
-                            <Nav.Link href="/about">About us</Nav.Link>
                         </li>
                         {user.role === 'Admin' && (
                             <li>
@@ -86,6 +82,10 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                                 </Nav.Link>
                             </li>
                         )}
+                        <li>
+                            <FaHeart style={{ color: 'rgb(9, 173, 7)' }} />
+                            <Nav.Link href="/about">About us</Nav.Link>
+                        </li>
                         <li>
                             <LogoutIcon style={{ color: 'rgb(9, 173, 7)' }} />
                             <Button onClick={handleLogout}>Logout</Button>

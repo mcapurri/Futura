@@ -2,6 +2,15 @@ const router = require('express').Router();
 const Deposit = require('../models/Deposit');
 const User = require('../models/User');
 
+/// @desc     Get all own deposits
+// @route     GET /api/deposits
+// @access    Private
+router.get('/:id', async (req, res, next) => {
+    const deposits = await Deposit.find({ depositedBy: req.params.id });
+    console.log('deposits', deposits);
+    res.status(200).json(deposits);
+});
+
 /// @desc     Add deposit
 // @route     POST /api/deposits/add
 // @access    Private
