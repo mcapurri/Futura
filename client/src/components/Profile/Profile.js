@@ -1,6 +1,5 @@
 import React from 'react';
 import { Button } from 'bootstrap-4-react';
-// import { service } from '../../utils/service';
 import style from './Profile.module.css';
 import { ImUserPlus } from 'react-icons/im';
 import axios from '../../utils/axios';

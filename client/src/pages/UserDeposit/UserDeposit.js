@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import style from './UserDeposit.module.css';
 import { useForm } from 'react-hook-form';
-// import { service } from '../../utils/service';
 import useInput from '../../utils/useInput';
 import { Form, Button } from 'bootstrap-4-react';
 import axios from '../../utils/axios';

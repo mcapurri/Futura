@@ -15,7 +15,7 @@ router.post('/add', async (req, res, next) => {
         },
         {
             totalDeposited: user.totalDeposited + kgDeposited,
-            totalCredit: user.totalCredit + credit,
+            balance: user.balance + credit,
         }
     );
     console.log('user', user);

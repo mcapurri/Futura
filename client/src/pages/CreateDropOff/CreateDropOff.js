@@ -3,10 +3,8 @@ import style from './CreateDropoff.module.css';
 import useInput from '../../utils/useInput';
 import { Form, Button, Row, Col } from 'bootstrap-4-react';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
-// import axios from '../../utils/axios';
-const mapBoxAccessToken =
-    'pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A';
+import axios from '../../utils/axios';
+import config from '../../utils/config.json';
 
 const CreateDropOff = ({ user, ...props }) => {
     const [message, setMessage] = useState('');
@@ -28,33 +26,23 @@ const CreateDropOff = ({ user, ...props }) => {
     const onSubmit = async (data) => {
         // event.preventDefault();
         console.log('data', data);
-        const token = localStorage.getItem('token');
 
         const coordsQuery = await axios.get(
-            ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${mapBoxAccessToken}`,
-            { headers: { Authorization: `Bearer ${token}` } }
+            ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${config.mapboxtoken}`
         );
         const lngLat = coordsQuery.data.features[0].center;
 
-        const response = await axios.post(
-            '/api/dropoffs/add',
-            {
-                name,
-                street,
-                city,
-                houseNumber,
-                zipCode,
-                lngLat,
-                openingTime,
-                closingTime,
-                createdBy: user,
-            },
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
+        const response = await axios.post('/api/dropoffs/add', {
+            name,
+            street,
+            city,
+            houseNumber,
+            zipCode,
+            lngLat,
+            openingTime,
+            closingTime,
+            createdBy: user,
+        });
         if (response) {
             console.log('response', response.data);
             setMessage(response.data.message);

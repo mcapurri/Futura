@@ -14,7 +14,7 @@ const userSchema = new Schema(
         },
 
         phoneNumber: String,
-        totalCredit: {
+        balance: {
             type: Number,
             default: 0,
         },

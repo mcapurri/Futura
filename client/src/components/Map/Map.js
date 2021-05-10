@@ -4,11 +4,11 @@ import style from './Map.module.css';
 import * as MapBoxGL from 'mapbox-gl';
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
 
-import axios from 'axios';
+import axios from '../../utils/axios';
 
 import config from '../../utils/config.json';
 
-import 'mapbox-gl/dist/mapbox-gl.css';
+// import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { getBounds, getGeoJson } from '../../utils/map';
 
@@ -23,10 +23,7 @@ const Map = () => {
 
     const fetchDropOffs = useCallback(async () => {
         try {
-            const token = localStorage.getItem('token');
-            const { data } = await axios.get('/api/dropoffs', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const { data } = await axios.get('/api/dropoffs');
 
             setDropOffs(data);
             const geojsonData = getGeoJson(data);
@@ -74,7 +71,7 @@ const Map = () => {
                     onClick={(e) => handleClickMarker(e, el)}
                 />
             )),
-        [dropOffs, handleClickMarker]
+        [dropOffs]
     );
 
     useEffect(() => {
@@ -123,18 +120,16 @@ const Map = () => {
     }, [map, dropOffs]);
 
     return (
-        <>
-            <MapBox
-                className={style.Container}
-                style={MapBoxStyle}
-                center={[13.4, 52.52]}
-                zoom={[15]}
-                onStyleLoad={onLoadMap}
-            >
-                {markerRenderer}
-                {displayPopUp}
-            </MapBox>
-        </>
+        <MapBox
+            className={style.Container}
+            style={MapBoxStyle}
+            center={[13.4, 52.52]}
+            zoom={[15]}
+            onStyleLoad={onLoadMap}
+        >
+            {markerRenderer}
+            {displayPopUp}
+        </MapBox>
     );
 };
 

@@ -3,7 +3,7 @@ import { Nav, Button } from 'bootstrap-4-react';
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
 import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
 import { FaUserAlt, FaPlus, FaRecycle, FaHeart } from 'react-icons/fa';
-import { ImBin2} from 'react-icons/im';
+import { ImBin2 } from 'react-icons/im';
 
 const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
     let attachedStyles = style.SideDrawer;
@@ -64,7 +64,7 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                         <li>
                             <FaPlus style={{ color: 'rgb(9, 173, 7)' }} />
                             <Nav.Link href="/create-dropoff">
-                                Add recycling point
+                                New recycling point
                             </Nav.Link>
                         </li>
                         <li>
@@ -77,10 +77,13 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                             <FaHeart style={{ color: 'rgb(9, 173, 7)' }} />
                             <Nav.Link href="/about">About us</Nav.Link>
                         </li>
-                        {user.role === "Admin" && (
+                        {user.role === 'Admin' && (
                             <li>
                                 <ImBin2 style={{ color: 'rgb(9, 173, 7)' }} />
-                                <Nav.Link href="/deposit"> New Deposit</Nav.Link>
+                                <Nav.Link href="/deposit">
+                                    {' '}
+                                    New Deposit
+                                </Nav.Link>
                             </li>
                         )}
                         <li>
