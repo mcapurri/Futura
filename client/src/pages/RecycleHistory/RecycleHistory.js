@@ -5,10 +5,12 @@ import axios from '../../utils/axios';
 const RecycleHistory = (props) => {
     const [depositsList, setDepositslist] = useState([]);
 
+    console.log('depositsList', depositsList);
+
     const fetchData = async () => {
         try {
             const deposits = await axios.get(`/api/deposits/${props.user._id}`);
-            console.log('deposits', deposits.data);
+            setDepositslist(deposits.data);
         } catch (err) {
             throw err;
         }

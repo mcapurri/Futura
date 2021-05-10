@@ -36,7 +36,7 @@ const UserDeposit = (props) => {
     const fetchData = async () => {
         try {
             const locations = await axios.get('/api/dropoffs');
-            console.log('locations', locations.data);
+            // console.log('locations', locations.data);
 
             const options = locations.data.map((location) => {
                 return (
@@ -54,13 +54,14 @@ const UserDeposit = (props) => {
 
     const onSubmit = async (e) => {
         e.preventDefault();
+        const kgDeposited = (
+            (+depositedGr + +depositedKg * 1000) /
+            1000
+        ).toFixed(2);
         try {
             const deposit = await axios.post('/api/deposits/add', {
                 location,
-                deposited: (
-                    (+depositedGr + +depositedKg * 1000) /
-                    1000
-                ).toFixed(2),
+                deposited: +kgDeposited,
                 credit,
                 email,
             });
@@ -70,6 +71,7 @@ const UserDeposit = (props) => {
             setEmail('');
             setDepositedGr(0);
             setDepositedKg(0);
+            props.history.go(0);
         } catch (err) {
             throw err;
         }
@@ -107,7 +109,7 @@ const UserDeposit = (props) => {
                                 type="text"
                                 placeholder="Location"
                                 value={location}
-                                onChange={(e) => setLocation(e.target.value)}
+                                onChange={setLocation}
                                 className={style.SelectInput}
                             >
                                 <option>--- Select a location ---</option>
@@ -137,6 +139,7 @@ const UserDeposit = (props) => {
                                     <Form.Input
                                         {...register('depositedKg', {
                                             required: true,
+                                            maxLength: 2,
                                         })}
                                         type="text"
                                         placeholder="Kilograms"
@@ -151,6 +154,7 @@ const UserDeposit = (props) => {
                                     <Form.Input
                                         {...register('depositedGr', {
                                             required: true,
+                                            maxLength: 3,
                                         })}
                                         type="text"
                                         placeholder="Grams"
