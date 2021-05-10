@@ -33,7 +33,7 @@ router.post('/add', async (req, res, next) => {
         return res
             .status(400)
             .json({ message: 'Drop-off already exist' })
-            .redirect('/crete-dropoff');
+            .redirect('/create-dropoff');
     } else {
         try {
             const addDropOff = DropOff.create({

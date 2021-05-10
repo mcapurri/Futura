@@ -1,8 +1,9 @@
 import React from 'react';
 import { Button } from 'bootstrap-4-react';
-import service from '../../utils/service';
+// import { service } from '../../utils/service';
 import style from './Profile.module.css';
 import { ImUserPlus } from 'react-icons/im';
+import axios from '../../utils/axios';
 
 const Profile = ({ user, setUser, ...props }) => {
     const handleFileUpload = async (e) => {
@@ -12,13 +13,20 @@ const Profile = ({ user, setUser, ...props }) => {
         // avatar => this name has to be the same as in the model since I pass
         // req.body to .create() method
         uploadData.append('avatar', e.target.files[0]);
+
         try {
-            const fileUpload = await service.handleUpload(uploadData, user._id);
-            console.log('uploaded file is: ', fileUpload);
-            setUser({ ...user, avatar: fileUpload.secure_url });
+            // const fileUpload = await service.handleUpload(uploadData, user._id);
+
+            const fileUpload = await axios.post(
+                `/users/upload/${user._id}`,
+                uploadData
+            );
+
+            console.log('uploaded file is: ', fileUpload.secure_url);
+            await setUser({ ...user, avatar: fileUpload.secure_url });
             console.log('avatar', user.avatar);
         } catch (err) {
-            console.log('Error while uploading: ', err);
+            throw err;
         }
     };
 

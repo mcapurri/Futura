@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import style from './UserDeposit.module.css';
 import { useForm } from 'react-hook-form';
+// import { service } from '../../utils/service';
 import useInput from '../../utils/useInput';
-import { Form, Button, Row, Col } from 'bootstrap-4-react';
-import axios from 'axios';
+import { Form, Button } from 'bootstrap-4-react';
+import axios from '../../utils/axios';
 
 const UserDeposit = (props) => {
     const {
         register,
-        handleSubmit,
+        // handleSubmit,
         // watch,
         formState: { errors },
     } = useForm();
@@ -22,9 +23,9 @@ const UserDeposit = (props) => {
     const [credit, setCredit] = useState(0);
 
     useEffect(() => {
-        const creditSum = ((+depositedGr + +depositedKg * 1000) / 1000).toFixed(
-            2
-        );
+        // credit is 1$ /kg
+        const creditSum =
+            ((+depositedGr + +depositedKg * 1000) / 1000).toFixed(2) * 1;
 
         setCredit(creditSum);
     }, [depositedGr, depositedKg]);
@@ -37,10 +38,7 @@ const UserDeposit = (props) => {
 
     const fetchData = async () => {
         try {
-            const token = localStorage.getItem('token');
-            const locations = await axios.get('/api/dropoffs', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
+            const locations = await axios.get('/api/dropoffs');
             console.log('locations', locations.data);
 
             const options = locations.data.map((location) => {
@@ -57,8 +55,27 @@ const UserDeposit = (props) => {
         }
     };
 
-    const onSubmit = async (data) => {
-        console.log('data', data);
+    const onSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            const deposit = await axios.post('/api/deposits/add', {
+                location,
+                deposited: (
+                    (+depositedGr + +depositedKg * 1000) /
+                    1000
+                ).toFixed(2),
+                credit,
+                email,
+            });
+            console.log('deposit', deposit);
+            await setMessage(deposit.message);
+            setLocation('');
+            setEmail('');
+            setDepositedGr(0);
+            setDepositedKg(0);
+        } catch (err) {
+            throw err;
+        }
     };
 
     return (
@@ -82,26 +99,9 @@ const UserDeposit = (props) => {
                 )}
             </header>
             <div className={style.Form}>
-                <Form onSubmit={handleSubmit(onSubmit)} className={style.Form}>
-                    <div
-                    // style={{
-                    //     display: 'flex',
-                    //     flexDirection: 'column',
-                    //     padding: '0 10%',
-                    //     alignItems: 'center',
-                    //     width: '100%',
-                    //     height: '100%',
-                    // }}
-                    >
-                        <Form.Group
-                        // style={{
-                        //     width: '100%',
-                        //     margin: '0 5%',
-                        //     display: 'flex',
-                        //     flexDirection: 'column',
-                        //     alignItems: 'space-between',
-                        // }}
-                        >
+                <Form onSubmit={onSubmit} className={style.Form}>
+                    <div>
+                        <Form.Group>
                             <label htmlFor="location">Location</label>
                             <Form.Select
                                 {...register('location', {

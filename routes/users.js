@@ -20,9 +20,4 @@ router.post(
     }
 );
 
-router.put('/users/:id', (req, res, next) => {
-    console.log('req.body', req.body);
-    // const {avatar} = req.body
-    User.findByIdAndUpdate(req.params.id, {});
-});
 module.exports = router;

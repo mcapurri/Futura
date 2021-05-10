@@ -2,11 +2,10 @@ import axios from 'axios';
 const token = localStorage.getItem('token');
 
 const instance = axios.create({
-    baseURL: process.env.ORIGIN,
-    headers: {
-        'Content-Type': 'application/json',
-    },
-    withCredentials: true,
+    // baseURL: 'http://localhost:5005/api',
+    baseUrl: process.env.ORIGIN,
+    headers: { Authorization: `Bearer ${token}` },
+    // withCredentials: true // => you might need this when having the users in the app
 });
 
 if (token) {
@@ -17,15 +16,15 @@ if (token) {
     delete instance.defaults.headers.common['Authorization'];
 }
 
-instance.interceptors.request.use(
-    (req) => {
-        if (axios.defaults.headers.common['Authorization']) return req;
-        throw { message: 'the token is not available' };
-    },
-    (error) => {
-        return Promise.reject(error);
-    }
-);
+// instance.interceptors.request.use(
+//     (req) => {
+//         if (axios.defaults.headers.common['Authorization']) return req;
+//         throw { message: 'the token is not available' };
+//     },
+//     (error) => {
+//         return Promise.reject(error);
+//     }
+// );
 
 // axios.interceptors.request.use(
 //     (config) => {

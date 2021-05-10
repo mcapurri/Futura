@@ -14,11 +14,10 @@
     align-items: center;
     color: rgb(5, 58, 32);
     border-bottom: 5px solid rgb(0, 128, 0);
-    /* justify-content: space-between; */
 }
-/* .Container header img {
-    filter: drop-shadow(10% 10% 10% #eee);
-} */
+.Container header img {
+    filter: drop-shadow(10px 10px 0 #eee);
+}
 .Container .Logo {
     display: flex;
     align-items: flex-end;

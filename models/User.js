@@ -14,8 +14,16 @@ const userSchema = new Schema(
         },
 
         phoneNumber: String,
+        totalCredit: {
+            type: Number,
+            default: 0,
+        },
+        totalDeposited: {
+            type: Number,
+            default: 0,
+        },
         avatar: String,
-           role: {
+        role: {
             type: String,
             enum: ['Admin', 'User'],
             default: 'User',
