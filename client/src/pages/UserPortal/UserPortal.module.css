@@ -75,7 +75,7 @@
     border-radius: 70px;
 }
 .Display {
-    width: 7rem;
+    width: 5rem;
     height: 2rem;
     background-color: rgba(255, 215, 0, 0.5);
     border-radius: 5%;
@@ -84,6 +84,9 @@
     align-items: center;
     font-weight: bold;
     color: rgb(5, 58, 32);
+}
+.UserPortal label {
+    font-size: 1.1rem;
 }
 .Values {
     display: flex;
@@ -96,5 +99,14 @@
     width: 100%;
     margin-bottom: 3%;
     padding: 0 10%;
-    color: rgba(255, 215, 0, 0.5);
+    color: rgba(255, 215, 0, 0.7);
+}
+
+@media screen and (min-width: 435px) {
+    .UserPortal label {
+        font-size: 1.4rem;
+    }
+    .Display {
+        width: 7rem;
+    }
 }

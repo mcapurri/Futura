@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import style from './UserPortal.module.css';
 import { ImUserPlus } from 'react-icons/im';
+import axios from '../../utils/axios';
 
 const UserPortal = ({ user, ...props }) => {
     // const [userBalance, setUserBalance] = useState(0);
-    // const handleTransfer = () => {};
+    // const [totalRecycle, setTotalRecycle] = useState(0);
+    // const [totalEarnings, setTotalEarnings] = useState(0);
+
+    // const fetchData = async () => {
+    //     const
+    // }
+
+    // useEffect(() => {
+    //     fetchData();
+    // }, []);
+
     return (
         <div className={style.UserPortal}>
             <header>
@@ -49,15 +60,23 @@ const UserPortal = ({ user, ...props }) => {
                 </div>
                 <div className={style.Values}>
                     <div className={style.Row}>
-                        <label htmlFor="left">Total weight</label>
+                        <label htmlFor="right">Current Balance</label>
+                        <div className={style.Display} id="right">
+                            ₦ 4.800
+                        </div>
+                    </div>
+
+                    <div className={style.Row}>
+                        <label htmlFor="left">Total Recycle</label>
                         <div className={style.Display} id="left">
                             48 kg
                         </div>
                     </div>
+
                     <div className={style.Row}>
-                        <label htmlFor="right">Current payout</label>
-                        <div className={style.Display} id="right">
-                            ₦ 4.800
+                        <label htmlFor="left">Total Earnings</label>
+                        <div className={style.Display} id="left">
+                            48 kg
                         </div>
                     </div>
                 </div>
