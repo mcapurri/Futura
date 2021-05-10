@@ -4,7 +4,8 @@ import axios from 'axios';
 import { Card, Container, Col } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import Spinner from '../../components/UI/Spinner/Spinner';
-import { rapidKey } from '../../keys.json';
+import { rapidKey } from '../../utils/config.json';
+
 const News = (props) => {
     const [newsList, setNewsList] = useState('');
 

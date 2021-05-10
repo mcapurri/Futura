@@ -1,3 +1,5 @@
 {
-  "mapboxtoken": "pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A"
+    "rapidKey": "e855f8934amshaea2adbe9d42120p167129jsn01b5d102db6f",
+    "jwtSecret": "123456789",
+    "mapboxtoken": "pk.eyJ1IjoibWNhcHVycmkiLCJhIjoiY2tsMmR4Z2NmMDgwaDJ1cDEycmEyN3NiaCJ9.Mmr5igenBPR3QkJOKMgG3A"
 }

@@ -6,18 +6,17 @@ import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
 
 import axios from '../../utils/axios';
 
-import config from '../../utils/config.json';
+import { mapboxtoken } from '../../utils/config.json';
 
 // import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { getBounds, getGeoJson } from '../../utils/map';
 
-const MapBox = ReactMapboxGl({ accessToken: config.mapboxtoken });
+const MapBox = ReactMapboxGl({ accessToken: mapboxtoken });
 const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
 const Map = () => {
     const [map, setMap] = useState();
-    // const [mapHeight, setMapHeight] = useState('680px');
     const [dropOffs, setDropOffs] = useState([]);
     const [, setGeojson] = useState();
 

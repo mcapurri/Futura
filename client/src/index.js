@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 import jwt from 'jsonwebtoken';
-import { jwtSecret } from './keys.json';
+import { jwtSecret } from './utils/config.json';
 
 import App from './App';
 import reportWebVitals from './reportWebVitals';

@@ -4,7 +4,7 @@ import useInput from '../../utils/useInput';
 import { Form, Button, Row, Col } from 'bootstrap-4-react';
 import { useForm } from 'react-hook-form';
 import axios from '../../utils/axios';
-import config from '../../utils/config.json';
+import { mapboxtoken } from '../../utils/config.json';
 
 const CreateDropOff = ({ user, ...props }) => {
     const [message, setMessage] = useState('');
@@ -28,7 +28,7 @@ const CreateDropOff = ({ user, ...props }) => {
         console.log('data', data);
 
         const coordsQuery = await axios.get(
-            ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${config.mapboxtoken}`
+            ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${mapboxtoken}`
         );
         const lngLat = coordsQuery.data.features[0].center;
 
