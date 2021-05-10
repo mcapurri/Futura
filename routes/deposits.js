@@ -8,17 +8,20 @@ const User = require('../models/User');
 router.post('/add', async (req, res, next) => {
     const { location, email, kgDeposited, credit } = req.body;
     console.log('req.body', req.body);
-
-    const user = await User.findOneAndUpdate(
-        {
-            email: email,
-        },
-        {
-            totalDeposited: user.totalDeposited + kgDeposited,
-            balance: user.balance + credit,
-        }
-    );
-    console.log('user', user);
+    try {
+        const user = await User.findOneAndUpdate(
+            {
+                email: email,
+            },
+            {
+                totalDeposited: user.totalDeposited + kgDeposited,
+                balance: user.balance + credit,
+            }
+        );
+        console.log('user', user);
+    } catch (err) {
+        throw err;
+    }
 
     if (user) {
         try {

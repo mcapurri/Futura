@@ -11,17 +11,12 @@ const auth = require('./auth');
 router.use('/auth', auth);
 
 const users = require('./users');
-router.use(
-    '/users',
-    // passport.authenticate('jwt', { session: false }),
-    users
-);
+router.use('/users', users);
 
 const dropoffs = require('./dropoffs');
-router.use(
-    '/dropoffs',
-    // passport.authenticate('jwt', { session: false }),
-    dropoffs
-);
+router.use('/dropoffs', dropoffs);
+
+const deposits = require('./deposits');
+router.use('/deposits', deposits);
 
 module.exports = router;
