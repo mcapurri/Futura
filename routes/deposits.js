@@ -16,7 +16,6 @@ router.get('/:id', async (req, res, next) => {
 // @access    Private
 router.post('/add', async (req, res, next) => {
     const { location, email, deposited, credit } = req.body;
-    // console.log('req.body', req.body);
     try {
         const user = await User.findOneAndUpdate(
             {
@@ -30,31 +29,15 @@ router.post('/add', async (req, res, next) => {
                 },
             }
         );
-        console.log('user', user);
-        // const addDeposit = await Deposit.create({
-        //     location,
-        //     deposited,
-        //     credit,
-        //     depositedBy: user,
-        // });
-        // console.log('addDeposit', addDeposit);
+        const addDeposit = await Deposit.create({
+            location,
+            kgDeposited: deposited,
+            credit,
+            depositedBy: user,
+        });
 
-        // if (user) {
-        //     try {
-        //         const addDeposit = await Deposit.create({
-        //             location,
-        //             kgDeposited,
-        //             credit,
-        //             depositedBy: user,
-        //         });
-        //         console.log('addDeposit', addDeposit);
-        //         res.status(201).json({ message: 'Deposit successfully added' });
-        //     } catch (err) {
-        //         res.status(400).json({ message: 'Error in adding deposit' });
-        //     }
-        // } else {
-        //     return res.status(400).json({ message: "User doesn't exist" });
-        // }
+        console.log('user', user);
+        console.log('addDeposit', addDeposit);
     } catch (err) {
         return res.status(400).json({ message: "User doesn't exist" });
     }
