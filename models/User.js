@@ -22,6 +22,10 @@ const userSchema = new Schema(
             type: Number,
             default: 0,
         },
+        totalEarned: {
+            type: Number,
+            default: 0,
+        },
         avatar: String,
         role: {
             type: String,

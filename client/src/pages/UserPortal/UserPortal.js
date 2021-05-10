@@ -38,11 +38,15 @@ const UserPortal = ({ user, ...props }) => {
             </header>
             <section className={style.Showcase}>
                 <div
-                    style={{ display: 'flex', justifyContent: 'space-around' }}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                    }}
                 >
-                    <h3 style={{ marginLeft: '10%' }}>
-                        Hello {user.firstName},
-                    </h3>
+                    <h4 style={{ marginLeft: '10%' }}>
+                        {user.firstName} {user.lastName}
+                    </h4>
                     <div className={style.Avatar}>
                         {user?.avatar ? (
                             <img src={user.avatar} alt="user-avatar" />

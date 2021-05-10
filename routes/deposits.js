@@ -17,6 +17,8 @@ router.get('/:id', async (req, res, next) => {
 router.post('/add', async (req, res, next) => {
     const { location, email, deposited, credit } = req.body;
     try {
+        console.log('userUpdated');
+
         const user = await User.findOneAndUpdate(
             {
                 email: email,
@@ -24,8 +26,9 @@ router.post('/add', async (req, res, next) => {
 
             {
                 $inc: {
-                    'user.totalDeposited': deposited,
-                    'user.balance': credit,
+                    totalDeposited: deposited,
+                    balance: credit,
+                    totalEarned: credit,
                 },
             }
         );
