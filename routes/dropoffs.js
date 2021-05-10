@@ -6,7 +6,7 @@ const DropOff = require('../models/DropOff');
 // @access    Private
 router.get('/', async (req, res, next) => {
     const dropOffs = await DropOff.find().populate('createdBy');
-    console.log('dropOffs', dropOffs);
+    // console.log('dropOffs', dropOffs);
     res.status(200).json(dropOffs);
 });
 

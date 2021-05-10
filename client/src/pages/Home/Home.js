@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import style from './Home.module.css';
 import { Route } from 'react-router-dom';
 import Login from '../../components/Auth/Login/Login';
-import Profile from '../../components/Profile/Profile';
+import Profile from '../Profile/Profile';
 import ProtectedRoute from '../../utils/ProtectedRoute';
 import { TiThMenu as MenuIcon } from 'react-icons/ti';
 
