@@ -2,7 +2,7 @@ const router = require('express').Router();
 const Deposit = require('../models/Deposit');
 const User = require('../models/User');
 
-/// @desc     Get all own deposits
+// @desc      Get all own deposits
 // @route     GET /api/deposits
 // @access    Private
 router.get('/:id', async (req, res, next) => {
@@ -11,7 +11,7 @@ router.get('/:id', async (req, res, next) => {
     res.status(200).json(deposits);
 });
 
-/// @desc     Add deposit
+// @desc      Add deposit
 // @route     POST /api/deposits/add
 // @access    Private
 router.post('/add', async (req, res, next) => {
@@ -44,6 +44,28 @@ router.post('/add', async (req, res, next) => {
         res.status(200).json({ message: 'Deposit successfully added' });
     } catch (err) {
         return res.status(400).json({ message: "User doesn't exist" });
+    }
+});
+
+// @desc      Transfer Cash
+// @route     POST /api/deposits/transfer
+// @access    Private
+router.post('/transfer', async (req, res, next) => {
+    const { id, transferAmount } = req.body;
+    console.log('transferAmount', transferAmount);
+    try {
+        const transfer = await User.findByIdAndUpdate(id, {
+            $inc: {
+                balance: -transferAmount,
+            },
+        });
+        res.status(200).json({
+            message: 'Congratulation! Your cash is on its way',
+        });
+    } catch (err) {
+        return res
+            .status(400)
+            .json({ message: 'Ooops... something went wrong!' });
     }
 });
 

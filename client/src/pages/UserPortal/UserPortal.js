@@ -15,13 +15,14 @@ const UserPortal = ({ user, ...props }) => {
         formState: { errors },
     } = useForm();
 
+    console.log('transferAmount', transferAmount);
+
     const onSubmit = async (e) => {
         e.preventDefault();
-        console.log('transferAmount', transferAmount);
-        const { data } = await axios.post(
-            '/api/deposits/transfer',
-            transferAmount
-        );
+        const { data } = await axios.post('/api/deposits/transfer', {
+            id: user._id,
+            transferAmount: +transferAmount,
+        });
         console.log('responseDB', data);
     };
 
@@ -101,7 +102,7 @@ const UserPortal = ({ user, ...props }) => {
                         className={style.Row}
                         style={{ alignItems: 'flex-end' }}
                     >
-                        <label htmlFor="amount">Cash Tranfer</label>
+                        <label htmlFor="amount">Cash Transfer</label>
                         {/* <InputGroup className={style.InputGroup}> */}
                         {/* <InputGroup.Prepend
                                 style={{
@@ -141,7 +142,7 @@ const UserPortal = ({ user, ...props }) => {
                         {/* </InputGroup> */}
                     </Form.Group>
                     {errors.amount && <span>Max withdraw 999 $</span>}
-                    <Button type="Submit">Pay out</Button>
+                    <Button type="submit">Pay out</Button>
                 </Form>
             </section>
         </div>

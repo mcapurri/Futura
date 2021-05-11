@@ -1,7 +1,6 @@
 import React from 'react';
 import { AiFillHome as HomeLogo } from 'react-icons/ai';
-import { FaBookOpen as ResourcesLogo } from 'react-icons/fa';
-import { BsFillChatFill as ChatLogo } from 'react-icons/bs';
+import { FaBookOpen as ResourcesLogo, FaUserAlt } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 const Footer = () => {
     return (
@@ -25,8 +24,9 @@ const Footer = () => {
                     }}
                 />
             </Link>
-            <Link to="/chat">
-                <ChatLogo
+
+            <Link to="/user-portal">
+                <FaUserAlt
                     style={{
                         fontSize: '2rem',
                         color: '#fff',

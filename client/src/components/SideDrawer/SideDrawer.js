@@ -2,7 +2,9 @@ import style from './SideDrawer.module.css';
 import { Nav, Button } from 'bootstrap-4-react';
 import Backdrop from '../../components/UI/Backdrop/Backdrop';
 import { AiOutlineLogout as LogoutIcon } from 'react-icons/ai';
-import { FaUserAlt, FaPlus, FaRecycle, FaHeart } from 'react-icons/fa';
+import { FaPlus, FaRecycle, FaHeart } from 'react-icons/fa';
+import { BsFillChatFill as ChatLogo } from 'react-icons/bs';
+
 import { ImBin2 } from 'react-icons/im';
 
 const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
@@ -57,14 +59,18 @@ const SideDrawer = ({ drawerOpen, toggleDrawer, handleLogout, user }) => {
                 </div>
                 <Nav onClick={toggleDrawer} style={{ height: '60%' }}>
                     <ul>
-                        <li>
+                        {/* <li>
                             <FaUserAlt style={{ color: 'rgb(9, 173, 7)' }} />
                             <Nav.Link href="/user-portal">User Portal</Nav.Link>
-                        </li>
+                        </li> */}
 
                         <li>
                             <FaRecycle style={{ color: 'rgb(9, 173, 7)' }} />
                             <Nav.Link href="/history">Recycle history</Nav.Link>
+                        </li>
+                        <li>
+                            <ChatLogo style={{ color: 'rgb(9, 173, 7)' }} />
+                            <Nav.Link href="/chat">Chat</Nav.Link>
                         </li>
 
                         <li>

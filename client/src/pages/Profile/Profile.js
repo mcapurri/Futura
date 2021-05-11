@@ -2,6 +2,7 @@ import React from 'react';
 import { Button } from 'bootstrap-4-react';
 import style from './Profile.module.css';
 import { ImUserPlus } from 'react-icons/im';
+import { FaSearchLocation } from 'react-icons/fa';
 import axios from '../../utils/axios';
 
 const Profile = ({ user, setUser, ...props }) => {
@@ -33,11 +34,16 @@ const Profile = ({ user, setUser, ...props }) => {
         <div className={style.Profile}>
             <section className={style.Showcase}>
                 <div
-                    style={{ display: 'flex', justifyContent: 'space-around' }}
+                    style={{
+                        display: 'flex',
+                        justifyContent: 'space-around',
+                        alignItems: 'center',
+                        marginTop: '5%',
+                    }}
                 >
-                    <h3 style={{ marginLeft: '10%' }}>
+                    <h1 style={{ marginLeft: '6%' }}>
                         Hello {user.firstName},
-                    </h3>
+                    </h1>
                     <div className={style.Avatar}>
                         {user?.avatar ? (
                             <div>
@@ -77,27 +83,42 @@ const Profile = ({ user, setUser, ...props }) => {
                 <div
                     style={{
                         display: 'flex',
-                        justifyContent: 'space-around',
-                        width: '100%',
+                        flexDirection: 'column',
+                        width: '90%',
                     }}
                 >
-                    <div>
-                        <label htmlFor="left">Total weight</label>
-                        <div className={style.Display} id="left">
-                            48 kg
-                        </div>
-                    </div>
-                    <div>
-                        <label htmlFor="right">Current payout</label>
-                        <div className={style.Display} id="right">
-                            ₦ 4.800
-                        </div>
-                    </div>
+                    <p>We are so proud of you!</p>
+                    <p>
+                        You have already helped us to collect{' '}
+                        {user.totalDeposited.toString()} Kilograms of recyclable
+                        meterial.
+                    </p>
+                    <p>Thank you!</p>
                 </div>
             </section>
-            <Button onClick={() => props.history.push('/map')}>
-                Drop-offs near you
-            </Button>
+            <section className={style.Dropoffs}>
+                <div style={{ width: '100%' }}>
+                    <p>
+                        &nbsp;Display on the map all <br /> the recycling points
+                        near you.
+                        <br />
+                        Happy recycling!
+                    </p>
+                </div>
+                <Button onClick={() => props.history.push('/map')}>
+                    {' '}
+                    <img
+                        src="assets/search-logo.png"
+                        alt="search-logo"
+                        style={{
+                            width: '1.3rem',
+                            marginRight: '5%',
+                            color: 'rgb(5, 58, 32)',
+                        }}
+                    />
+                    Map
+                </Button>
+            </section>
         </div>
     );
 };
