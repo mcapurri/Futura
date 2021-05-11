@@ -20,15 +20,34 @@
     background-color: rgb(5, 58, 32);
     border-radius: 10px;
     margin: 5% 0;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.Showcase h1 {
+    font-weight: bold;
+    font-size: 2.4rem;
+    margin-top: 2%;
+}
+.Showcase h1,
+.Showcase p:first-child {
     font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
+}
+.Showcase p:first-child {
+    font-size: 1.8em;
+    margin-top: 2%;
 }
 .Dropoffs {
     min-height: 30vh;
-    margin-bottom: 30%;
+    margin-bottom: 20%;
     align-items: center;
     justify-content: center;
     padding: 5% 0;
+    font-size: 1.1rem;
+}
+.Dropoffs p:last-child {
+    font-size: 1.3em;
+    font-family: 'Dancing Script', cursive;
 }
 
 .Showcase #FileLoader {
@@ -66,7 +85,7 @@
     border-radius: 70px;
 }
 .Profile p {
-    margin-left: 15%;
+    margin-left: 12%;
 }
 
 .Profile button {
@@ -79,6 +98,7 @@
     color: rgb(5, 58, 32);
     font-weight: bold;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
+    margin-top: 5%;
 }
 .Profile label {
     font-size: 0.9rem;

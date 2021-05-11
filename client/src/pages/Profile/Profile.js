@@ -2,7 +2,6 @@ import React from 'react';
 import { Button } from 'bootstrap-4-react';
 import style from './Profile.module.css';
 import { ImUserPlus } from 'react-icons/im';
-import { FaSearchLocation } from 'react-icons/fa';
 import axios from '../../utils/axios';
 
 const Profile = ({ user, setUser, ...props }) => {
@@ -99,11 +98,11 @@ const Profile = ({ user, setUser, ...props }) => {
             <section className={style.Dropoffs}>
                 <div style={{ width: '100%' }}>
                     <p>
-                        &nbsp;Display on the map all <br /> the recycling points
-                        near you.
+                        Display on the map all the <br /> recycling points near
+                        you.
                         <br />
-                        Happy recycling!
                     </p>
+                    <p>Happy recycling!</p>
                 </div>
                 <Button onClick={() => props.history.push('/map')}>
                     {' '}
