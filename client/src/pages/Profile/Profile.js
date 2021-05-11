@@ -38,6 +38,7 @@ const Profile = ({ user, setUser, ...props }) => {
                         justifyContent: 'space-around',
                         alignItems: 'center',
                         marginTop: '5%',
+                        width: '100%',
                     }}
                 >
                     <h1 style={{ marginLeft: '6%' }}>
@@ -79,13 +80,7 @@ const Profile = ({ user, setUser, ...props }) => {
                         )}
                     </div>
                 </div>
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        width: '90%',
-                    }}
-                >
+                <div className={style.Content}>
                     <p>We are so proud of you!</p>
                     <p>
                         You have already helped us to collect{' '}
@@ -98,8 +93,7 @@ const Profile = ({ user, setUser, ...props }) => {
             <section className={style.Dropoffs}>
                 <div style={{ width: '100%' }}>
                     <p>
-                        Display on the map all the <br /> recycling points near
-                        you.
+                        Display on the map all the recycling points near you.
                         <br />
                     </p>
                     <p>Happy recycling!</p>

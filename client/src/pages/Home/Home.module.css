@@ -39,11 +39,12 @@
         transform: scale(1.2);
     }
     .Home header {
-        height: 40vh;
+        min-height: 25vh;
     }
 }
+
 @media screen and (min-width: 960px) {
     .Home header {
-        min-height: 29vh;
+        min-height: 27vh;
     }
 }
