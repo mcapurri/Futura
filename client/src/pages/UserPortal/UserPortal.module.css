@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: auto;
 }
 .UserPortal header {
     height: 27vh;
@@ -32,30 +33,31 @@
     margin-left: 10%;
 }
 
-.UserBalance {
+/* .UserBalance {
     display: flex;
     justify-content: space-between;
     width: 100%;
     padding: 5% 10%;
     margin: 5% 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
-}
+} */
 .Showcase,
 .Inputcase {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: center;
+    align-items: center;
     width: 90%;
     max-width: 36rem;
-    min-height: 35vh;
+    min-height: 37vh;
     background-color: rgb(5, 58, 32);
     border-radius: 10px;
     margin-top: 10%;
     color: #eee;
 }
 .Inputcase {
-    min-height: 15vh;
-    margin-bottom: 10%;
+    min-height: 20vh;
+    margin-bottom: 20%;
 }
 
 .Avatar {
@@ -86,6 +88,7 @@ input {
     background-color: rgba(255, 215, 0, 0.5);
     border-radius: 5%;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     font-weight: bold;
@@ -106,17 +109,31 @@ input {
     margin-bottom: 3%;
     padding: 0 10%;
     color: rgba(255, 215, 0, 0.7);
-}
-/* .UserPortal input {
     font-weight: bold;
-    color: rgb(5, 58, 32);
-} */
+}
+
 .UserPortal input:focus {
     box-shadow: none;
     background-color: rgba(255, 215, 0, 0.5);
 }
 .UserPortal ::placeholder {
     color: rgb(50, 106, 50);
+}
+.Form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.UserPortal .Form label {
+    font-size: 1rem;
+}
+.Form button {
+    background-color: rgba(255, 215, 0, 0.5);
+    font-weight: bold;
+    color: rgb(5, 58, 32);
+    margin-top: 5%;
 }
 
 @media screen and (min-width: 435px) {
