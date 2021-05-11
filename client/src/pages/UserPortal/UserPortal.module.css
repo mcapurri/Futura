@@ -40,7 +40,8 @@
     margin: 5% 0;
     border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
-.Showcase {
+.Showcase,
+.Inputcase {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -52,10 +53,14 @@
     margin-top: 10%;
     color: #eee;
 }
+.Inputcase {
+    min-height: 15vh;
+    margin-bottom: 10%;
+}
 
 .Avatar {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
     border: 3px solid #fff;
     background-color: transparent;
     border-radius: 80px;
@@ -74,7 +79,8 @@
     width: 100%;
     border-radius: 70px;
 }
-.Display {
+.Display,
+input {
     width: 5rem;
     height: 2rem;
     background-color: rgba(255, 215, 0, 0.5);
@@ -100,6 +106,17 @@
     margin-bottom: 3%;
     padding: 0 10%;
     color: rgba(255, 215, 0, 0.7);
+}
+/* .UserPortal input {
+    font-weight: bold;
+    color: rgb(5, 58, 32);
+} */
+.UserPortal input:focus {
+    box-shadow: none;
+    background-color: rgba(255, 215, 0, 0.5);
+}
+.UserPortal ::placeholder {
+    color: rgb(50, 106, 50);
 }
 
 @media screen and (min-width: 435px) {

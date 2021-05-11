@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import style from './UserPortal.module.css';
 import { ImUserPlus } from 'react-icons/im';
+import { Form, Button } from 'bootstrap-4-react';
 import axios from '../../utils/axios';
+import useInput from '../../utils/useInput';
 
 const UserPortal = ({ user, ...props }) => {
-    // const [userBalance, setUserBalance] = useState(0);
-    // const [totalRecycle, setTotalRecycle] = useState(0);
-    // const [totalEarnings, setTotalEarnings] = useState(0);
+    const [transferAmount, setTransferAmount] = useInput(null);
 
-    // const fetchData = async () => {
-    //     const
-    // }
-
-    // useEffect(() => {
-    //     fetchData();
-    // }, []);
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        const { data } = await axios.post(
+            '/api/deposits/transfer',
+            transferAmount
+        );
+        console.log('responseDB', data);
+    };
 
     return (
         <div className={style.UserPortal}>
@@ -38,15 +39,15 @@ const UserPortal = ({ user, ...props }) => {
             </header>
             <section className={style.Showcase}>
                 <div
+                    className={style.Row}
                     style={{
-                        display: 'flex',
-                        justifyContent: 'space-around',
                         alignItems: 'center',
+                        margin: '5% 0',
                     }}
                 >
-                    <h4 style={{ marginLeft: '10%' }}>
+                    <h3 style={{ color: '#eee' }}>
                         {user.firstName} {user.lastName}
-                    </h4>
+                    </h3>
                     <div className={style.Avatar}>
                         {user?.avatar ? (
                             <img src={user.avatar} alt="user-avatar" />
@@ -62,28 +63,43 @@ const UserPortal = ({ user, ...props }) => {
                         )}
                     </div>
                 </div>
+                {/* <section> */}
                 <div className={style.Values}>
                     <div className={style.Row}>
                         <label htmlFor="right">Current Balance</label>
-                        <div className={style.Display} id="right">
-                            ₦ 4.800
+                        <div className={style.Display}>
+                            {`${user.balance} $`}
                         </div>
                     </div>
 
                     <div className={style.Row}>
-                        <label htmlFor="left">Total Recycle</label>
-                        <div className={style.Display} id="left">
-                            48 kg
+                        <label htmlFor="left">Total Recycled</label>
+                        <div className={style.Display}>
+                            {`${user.totalRecycled} Kg.`}
                         </div>
                     </div>
 
                     <div className={style.Row}>
                         <label htmlFor="left">Total Earnings</label>
-                        <div className={style.Display} id="left">
-                            48 kg
+                        <div className={style.Display}>
+                            {`${user.totalEarned} $`}
                         </div>
                     </div>
                 </div>
+                {/* </section> */}
+            </section>
+            <section className={style.Inputcase}>
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className={style.Row}>
+                        <label htmlFor="amount">Pay out</label>
+                        <Form.Input
+                            className={style.Display}
+                            name={'amount'}
+                            value={transferAmount}
+                            placeholder={'$$$'}
+                        />
+                    </Form.Group>
+                </Form>
             </section>
         </div>
     );

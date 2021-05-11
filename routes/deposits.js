@@ -26,7 +26,7 @@ router.post('/add', async (req, res, next) => {
 
             {
                 $inc: {
-                    totalDeposited: deposited,
+                    totalRecycled: deposited,
                     balance: credit,
                     totalEarned: credit,
                 },
