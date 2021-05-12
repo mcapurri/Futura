@@ -64,6 +64,7 @@
 
 .Container button {
     min-height: 4rem;
+    max-width: 40rem;
     font-size: 1.7rem;
     font-weight: 600;
     color: white;
@@ -77,4 +78,24 @@
 .NewMessage,
 .Button {
     border-color: #9a9a9a;
+}
+@media screen and (min-width: 700px) {
+    .Container button {
+        margin-left: 10%;
+    }
+}
+@media screen and (min-width: 900px) {
+    .Container button {
+        margin-left: 15%;
+    }
+}
+@media screen and (min-width: 1020px) {
+    .Container button {
+        margin-left: 20%;
+    }
+}
+@media screen and (min-width: 1200px) {
+    .Container button {
+        margin-left: 25%;
+    }
 }

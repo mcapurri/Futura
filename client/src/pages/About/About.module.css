@@ -8,19 +8,25 @@
     color: rgb(5, 58, 32);
     overflow-y: auto;
     margin: 10% auto;
-    padding: 10% 10%;
 }
 .Section {
-    width: 100%;
+    width: 100vw;
+    /* margin: 10% 0; */
+}
+.Section:first-child {
+    margin-top: 20%;
+}
+.Section:last-child {
+    margin-bottom: 20%;
 }
 
 .Box {
     font-size: 0.7rem;
     max-width: 40rem;
     box-sizing: border-box;
-    margin-top: 20%;
-    width: 100%;
-    height: 7rem;
+    /* margin-top: 20%; */
+    width: 100vw;
+    height: 12rem;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -31,8 +37,22 @@
     border-radius: 50%;
     margin-left: 5%;
 }
+@media only screen and (min-width: 435px) {
+    .About.Box {
+        height: 5rem;
+        padding: 10% 10%;
+    }
+}
+@media only screen and (min-width: 640px) {
+    .Section {
+        width: 80%;
+    }
+}
 @media only screen and (min-width: 825px) {
-    .Box {
+    .About .Box {
         margin-left: 10%;
+    }
+    .Section {
+        width: 60%;
     }
 }

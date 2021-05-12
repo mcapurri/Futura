@@ -29,8 +29,9 @@
     /* background: url('../../assets/africa-recycle-logo.png') no-repeat center;
     background-size: contain; */
 }
-.Container img {
+.Container header img {
     margin: 10% 0;
+    max-width: 30rem;
 }
 
 .Form {
@@ -74,11 +75,11 @@
     background-color: rgb(5, 58, 32);
     border-radius: 10px;
     border: none;
-    width: 15rem;
+    width: 80%;
+    max-width: 30rem;
     height: 3rem;
     font-size: 1.2rem;
     margin: 10% 0 20% 0;
-
     color: #fff;
 }
 
@@ -91,8 +92,8 @@
         margin-top: 30%;
     }
 }
-/* @media screen and (min-width: 550px) {
-    .Form {
+@media screen and (min-width: 550px) {
+    /* .Form {
         margin-top: 10%;
     }
     .Form .Long {
@@ -104,5 +105,8 @@
     }
     .Form .Inline {
         width: 80%;
+    } */
+    .Container header img {
+        transform: scale(0.8);
     }
-} */
+}

@@ -18,10 +18,10 @@ const About = () => {
             <section className={style.Section}>
                 <article className={style.Box}>
                     <img
-                        src="../../assets/environment.png"
+                        src="../../assets/environment-logo.png"
                         alt="environment-logo"
                     />
-                    <div style={{ padding: '5% 10%' }}>
+                    <div style={{ padding: '0 25%', marginLeft: '-5%' }}>
                         <h5> Save the environment </h5>
                         <p className="text">
                             {' '}
@@ -58,8 +58,8 @@ const About = () => {
                         <p className="text">
                             {' '}
                             We sustain the spread of recycling culture among
-                            west african countries, and the spread of efficient
-                            waste management policies.
+                            west african countries, and the application of
+                            efficient waste management policies.
                         </p>
                     </div>
                 </article>
@@ -77,6 +77,7 @@ const About = () => {
                         </p>
                     </div>
                 </article>
+                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
             </section>
         </div>
     );
