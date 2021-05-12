@@ -158,6 +158,7 @@ function App(props) {
                     path="/create-dropoff"
                     component={CreateDropOff}
                     user={user}
+                    width={width}
                 />
             </Switch>
             {user && <Footer />}

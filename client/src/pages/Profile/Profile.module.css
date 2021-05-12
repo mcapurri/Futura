@@ -20,7 +20,6 @@
     background-color: rgb(5, 58, 32);
     border-radius: 10px;
     margin: 5% 0;
-    /* font-family: 'Roboto', sans-serif; */
     font-weight: bold;
     font-size: 0.9rem;
 }
@@ -111,8 +110,13 @@
 @media screen and (min-width: 435px) {
     .Showcase,
     .Dropoffs {
-        margin: 10% 0;
         width: 80%;
+    }
+    .Showcase {
+        margin: 10% 0;
+    }
+    .Dropoffs {
+        margin-bottom: 20%;
     }
     .Profile .Content {
         margin-left: 12%;

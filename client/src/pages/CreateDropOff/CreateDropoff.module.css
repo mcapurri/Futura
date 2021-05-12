@@ -7,27 +7,48 @@
     background-color: #fff;
     color: #fff;
     overflow-y: auto;
-    margin-bottom: 9%;
+    margin-bottom: 8%;
     background-image: linear-gradient(white, green);
 }
-
 .Container header {
-    height: 33vh;
+    height: 27vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: rgb(5, 58, 32);
+    border-bottom: 5px solid rgb(0, 128, 0);
+    filter: drop-shadow(10px 10px 10px rgba(255, 255, 255, 0.922));
+}
+
+.Container .Logo {
+    display: flex;
+    align-items: center;
+    margin-left: 10%;
+    width: 45%;
+}
+.Container h1:nth-child(2) {
+    font-size: 9rem;
+    color: #000;
+}
+.Container header p {
+    color: #000;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-left: 10%;
+}
+
+.Container section {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     color: rgb(5, 58, 32);
     padding: 0 10%;
-    /* font-family: 'Dancing Script', cursive; */
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    font-size: 1.1rem;
     font-weight: 600;
     margin-top: 20%;
-    filter: drop-shadow(30px 30px 30px rgba(255, 255, 255, 0.922));
-
-    /* background: url('../../assets/africa-recycle-logo.png') no-repeat center;
-    background-size: contain; */
+    margin-bottom: 10%;
 }
 .Container header img {
     margin: 10% 0;
@@ -39,7 +60,9 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    margin-top: 35%;
+    max-width: 40rem;
+    padding: 0 10%;
+    align-items: center;
 }
 
 .Form input,
@@ -50,6 +73,9 @@
     border-bottom: 3px solid #eee;
     margin-bottom: 5%;
     width: 70vw;
+}
+#firstInput {
+    width: 100%;
 }
 
 .Form ::placeholder {
@@ -84,29 +110,41 @@
 }
 
 @media screen and (min-width: 435px) {
+    .Container .Logo {
+        transform: scale(1.2);
+    }
+    .Container header {
+        min-height: 25vh;
+    }
     .TimePicker {
         width: 10rem;
     }
-    .Container img {
-        width: 50%;
-        margin-top: 30%;
+    .Container section {
+        width: 90%;
     }
 }
-@media screen and (min-width: 550px) {
-    /* .Form {
-        margin-top: 10%;
-    }
-    .Form .Long {
-        width: 40vw;
-    }
-    .Form .Short {
-        width: 20vw;
-        margin-left: 18%;
-    }
-    .Form .Inline {
+@media screen and (min-width: 700px) {
+    .Form {
         width: 80%;
-    } */
-    .Container header img {
-        transform: scale(0.8);
+    }
+
+    #firstInput {
+        width: 80%;
+        margin-right: 40%;
+    }
+}
+@media screen and (min-width: 850px) {
+    #firstInput {
+        width: 80%;
+        margin-right: 50%;
+    }
+}
+
+@media screen and (min-width: 960px) {
+    .Container header {
+        min-height: 27vh;
+    }
+    #firstInput {
+        margin-left: -65%;
     }
 }
