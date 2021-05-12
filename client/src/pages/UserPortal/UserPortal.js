@@ -1,7 +1,7 @@
 import React from 'react';
 import style from './UserPortal.module.css';
 import { ImUserPlus } from 'react-icons/im';
-import { Form, Button, InputGroup } from 'bootstrap-4-react';
+import { Form, Button } from 'bootstrap-4-react';
 import axios from '../../utils/axios';
 import useInput from '../../utils/useInput';
 import { useForm } from 'react-hook-form';
@@ -10,7 +10,7 @@ const UserPortal = ({ user, ...props }) => {
     const [transferAmount, setTransferAmount] = useInput('');
     const {
         register,
-        handleSubmit,
+        // handleSubmit,
         // watch,
         formState: { errors },
     } = useForm();

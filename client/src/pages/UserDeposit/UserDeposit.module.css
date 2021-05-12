@@ -95,3 +95,13 @@
         width: 10rem;
     }
 }
+@media screen and (min-width: 640px) {
+    .Form .Deposit {
+        width: 12rem;
+    }
+}
+@media screen and (min-width: 860px) {
+    .Form .Deposit {
+        width: 15rem;
+    }
+}
