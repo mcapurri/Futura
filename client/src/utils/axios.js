@@ -19,7 +19,6 @@ if (token) {
 // instance.interceptors.request.use(
 //     (req) => {
 //         if (axios.defaults.headers.common['Authorization']) return req;
-//         throw { message: 'the token is not available' };
 //     },
 //     (error) => {
 //         return Promise.reject(error);
@@ -41,20 +40,20 @@ if (token) {
 //     }
 // );
 
-//on successful response
-instance.interceptors.response.use(
-    (response) => response,
-    (error) => {
-        const fallbackValue = [
-            {
-                userId: 'Not authorized to access this route',
-                // id: 'aerw15311sq',
-                title: 'Please try again',
-                completed: false,
-            },
-        ];
-        return Promise.reject(fallbackValue);
-    }
-);
+// //on successful response
+// instance.interceptors.response.use(
+//     (response) => response,
+//     (error) => {
+//         const fallbackValue = [
+//             {
+//                 error,
+//                 // reason: 'Not authorized to access this route',
+//                 // title: 'Please try again',
+//                 completed: false,
+//             },
+//         ];
+//         return Promise.reject(fallbackValue);
+//     }
+// );
 
 export default instance;

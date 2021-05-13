@@ -9,14 +9,20 @@ export const getBounds = (points) => {
 };
 
 export const getGeoJson = (list) => {
-    console.log('Geojson list', list);
-    const features = [...list].map((marker) => {
+    // console.log('Geojson list', list);
+    const features = [...list].map((marker, index) => {
         // console.log('marker', marker);
         const feature = {
+            key: index,
             type: 'Feature',
             properties: {
-                title: marker.name,
-                description: `${marker.street}  ${marker.houseNumber}, ${marker.zipCode}`,
+                id: marker._id,
+                name: marker.name,
+                street: marker.street,
+                houseNumber: marker.houseNumber,
+                zipCode: marker.zipCode,
+                openingTime: marker.openingTime,
+                closingTime: marker.closingTime,
             },
             geometry: { type: 'Point', coordinates: marker.lngLat },
         };

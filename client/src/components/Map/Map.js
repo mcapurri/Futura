@@ -18,8 +18,8 @@ const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 const Map = () => {
     const [map, setMap] = useState();
     const [dropOffs, setDropOffs] = useState([]);
-    const [, setGeojson] = useState();
-
+    const [geojson, setGeojson] = useState({});
+    console.log('geojson', geojson);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
     const fetchDropOffs = useCallback(async () => {
@@ -27,10 +27,10 @@ const Map = () => {
             const { data } = await axios.get('/api/dropoffs');
 
             setDropOffs(data);
-            const geojsonData = getGeoJson(data);
+            const geojsonData = await getGeoJson(data);
             setGeojson({ type: 'geojson', data: geojsonData });
         } catch (err) {
-            console.log('fetchDropOffs: ', err);
+            console.log(err);
         }
     }, []);
 
@@ -47,36 +47,41 @@ const Map = () => {
 
     const displayMarkers = useMemo(
         () =>
-            dropOffs.map((el, index) => (
+            geojson.data &&
+            geojson?.data.map((el) => (
                 <>
+                    {console.log('el', el)}
                     <Marker
-                        key={el._id}
-                        coordinates={el.lngLat}
+                        key={el.id}
+                        coordinates={el.geometry.coordinates}
                         className={style.Marker}
-                        onClick={() => openPopup(el._id)}
+                        onClick={() => openPopup(el.key)}
                     />
                     {selectedIndex !== null && (
                         <Popup
-                            key={index}
-                            coordinates={el.lngLat}
+                            key={el.key}
+                            id={selectedIndex}
+                            coordinates={el.geometry.coordinates}
                             onClose={closePopup}
                             closeButton={true}
                             closeOnClick={false}
                             offsetTop={-30}
                         >
-                            <p>{el.name}</p>˜{' '}
+                            <p>{el.properties.title}</p>˜{' '}
                             <p>
-                                {el.street}, {el.houseNumber} - {el.zipCode}{' '}
+                                {el.properties.street},{' '}
+                                {el.properties.houseNumber} -{' '}
+                                {el.properties.zipCode}{' '}
                             </p>{' '}
                             <p>
-                                Opening hours: {el?.openingTime} /{' '}
-                                {el?.closingTime}{' '}
+                                Opening hours: {el?.properties.openingTime} /{' '}
+                                {el?.properties.closingTime}{' '}
                             </p>
                         </Popup>
                     )}
                 </>
             )),
-        [dropOffs, selectedIndex]
+        [geojson, selectedIndex]
     );
 
     useEffect(() => {
@@ -114,7 +119,7 @@ const Map = () => {
 
     useEffect(() => {
         const data = getGeoJson(dropOffs);
-        setGeojson({ type: 'geojson', data: data });
+        setGeojson({ type: 'geojson', data: data.features });
     }, [dropOffs]);
 
     useEffect(() => {
