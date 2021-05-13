@@ -25,14 +25,31 @@ const ChatRoom = (props) => {
                                     : style.ReceivedMessage
                             }`}
                         >
-                            <p
+                            <div
                                 style={{
                                     display: 'flex',
-                                    alignSelf: 'flex-start',
+                                    justifyContent: 'flex-start',
+                                    alignItems: 'center',
+                                    width: '100%',
                                 }}
                             >
-                                {name} says:
-                            </p>
+                                <div className={style.Avatar}>
+                                    {props.user.avatar && (
+                                        <img
+                                            src={props.user.avatar}
+                                            alt="user-avatar"
+                                        />
+                                    )}
+                                </div>
+                                <p
+                                    style={{
+                                        display: 'flex',
+                                        alignSelf: 'flex-start',
+                                    }}
+                                >
+                                    {name} says:
+                                </p>
+                            </div>
                             <p
                                 style={{
                                     fontWeight: '700',

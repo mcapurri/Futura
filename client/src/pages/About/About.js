@@ -17,10 +17,13 @@ const About = () => {
             </section>
             <section className={style.Section}>
                 <article className={style.Box}>
-                    <img
-                        src="../../assets/environment-logo.png"
-                        alt="environment-logo"
-                    />
+                    <div className={style.ImgContainer}>
+                        <img
+                            src="../../assets/environment-logo.png"
+                            alt="environment-logo"
+                            style={{ transform: 'scale(0.8)' }}
+                        />
+                    </div>
                     <div style={{ padding: '0 25%', marginLeft: '-5%' }}>
                         <h5> Save the environment </h5>
                         <p className="text">
@@ -32,10 +35,13 @@ const About = () => {
                 <hr style={{ width: '20rem', backgroundColor: 'green' }} />
 
                 <article className={style.Box}>
+                    {/* <div className={style.ImgContainer}> */}
                     <img
                         src="../../assets/local-business-logo.png"
                         alt="local-business-logo"
+                        style={{ transform: 'scale(1.2)' }}
                     />
+                    {/* </div> */}
                     <div style={{ padding: '0 10%' }}>
                         <h5> Help local business with sustanable grow</h5>
                         <p className="text">
@@ -49,10 +55,13 @@ const About = () => {
                 <hr style={{ width: '20rem', backgroundColor: 'green' }} />
 
                 <article className={style.Box}>
-                    <img
-                        src="../../assets/education-logo.png"
-                        alt="education-logo"
-                    />
+                    <div className={style.ImgContainer}>
+                        <img
+                            src="../../assets/education-logo.png"
+                            alt="education-logo"
+                            style={{ transform: 'scale(0.6)' }}
+                        />
+                    </div>
                     <div style={{ padding: '0 10%' }}>
                         <h5> Promote education </h5>
                         <p className="text">
@@ -66,7 +75,13 @@ const About = () => {
                 <hr style={{ width: '20rem', backgroundColor: 'green' }} />
 
                 <article className={style.Box}>
-                    <img src="../../assets/fist-logo.png" alt="fist-logo" />
+                    <div className={style.ImgContainer}>
+                        <img
+                            src="../../assets/fist-logo.png"
+                            alt="fist-logo"
+                            style={{ transform: 'scale(0.7)' }}
+                        />
+                    </div>
                     <div style={{ padding: '5% 10%' }}>
                         <h5> Empower the people </h5>
                         <p className="text">

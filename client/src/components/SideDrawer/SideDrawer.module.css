@@ -82,7 +82,7 @@
     border: 5px solid #fff;
     background-color: transparent;
     margin: 0 5%;
-    border-radius: 80px;
+    border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -95,7 +95,7 @@
     font-size: 4rem;
 }
 .Avatar img {
-    border-radius: 80px;
+    border-radius: 50%;
     max-width: 100%;
     max-height: 100%;
 }

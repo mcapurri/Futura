@@ -67,12 +67,14 @@
     height: 6rem;
     border: 3px solid #fff;
     background-color: transparent;
-    border-radius: 80px;
+    border-radius: 50%;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     align-self: flex-end;
     padding-top: 2.7%;
+    align-items: stretch;
+    margin: 0 5%;
 }
 
 .Avatar h1 {
@@ -81,7 +83,10 @@
 }
 .Avatar img {
     width: 100%;
-    border-radius: 70px;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    flex: 1;
 }
 
 .Profile button {

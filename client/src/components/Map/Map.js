@@ -20,6 +20,8 @@ const Map = () => {
     const [dropOffs, setDropOffs] = useState([]);
     const [, setGeojson] = useState();
 
+    const [selectedIndex, setSelectedIndex] = useState(null);
+
     const fetchDropOffs = useCallback(async () => {
         try {
             const { data } = await axios.get('/api/dropoffs');
@@ -36,41 +38,45 @@ const Map = () => {
         setMap(e);
     }, []);
 
-    let displayPopUp = '';
-    const handleClickMarker = (e, el) => {
-        console.log('clickEvent', el);
-        return (displayPopUp = (
-            <Popup
-                // latitude={el.lngLat[1]}
-                // longitude={el.lngLat[0]}
-                coordinates={el.lngLat}
-                closeButton={false}
-                closeOnClick={true}
-                offsetTop={-30}
-            >
-                <p>{el.name}</p>˜
-                <p>
-                    {el.street}, {el.houseNumber} - {el.zipCode}
-                </p>
-                <p>
-                    Opening hours: {el?.openingTime} / {el?.closingTime}
-                </p>
-                ˜
-            </Popup>
-        ));
+    const openPopup = (index) => {
+        setSelectedIndex(index);
+    };
+    const closePopup = () => {
+        setSelectedIndex(null);
     };
 
-    const markerRenderer = useMemo(
+    const displayMarkers = useMemo(
         () =>
-            dropOffs.map((el) => (
-                <Marker
-                    key={el._id}
-                    coordinates={el.lngLat}
-                    className={style.Marker}
-                    onClick={(e) => handleClickMarker(e, el)}
-                />
+            dropOffs.map((el, index) => (
+                <>
+                    <Marker
+                        key={el._id}
+                        coordinates={el.lngLat}
+                        className={style.Marker}
+                        onClick={() => openPopup(el._id)}
+                    />
+                    {selectedIndex !== null && (
+                        <Popup
+                            key={index}
+                            coordinates={el.lngLat}
+                            onClose={closePopup}
+                            closeButton={true}
+                            closeOnClick={false}
+                            offsetTop={-30}
+                        >
+                            <p>{el.name}</p>˜{' '}
+                            <p>
+                                {el.street}, {el.houseNumber} - {el.zipCode}{' '}
+                            </p>{' '}
+                            <p>
+                                Opening hours: {el?.openingTime} /{' '}
+                                {el?.closingTime}{' '}
+                            </p>
+                        </Popup>
+                    )}
+                </>
             )),
-        [dropOffs]
+        [dropOffs, selectedIndex]
     );
 
     useEffect(() => {
@@ -126,8 +132,7 @@ const Map = () => {
             zoom={[15]}
             onStyleLoad={onLoadMap}
         >
-            {markerRenderer}
-            {displayPopUp}
+            {displayMarkers}
         </MapBox>
     );
 };

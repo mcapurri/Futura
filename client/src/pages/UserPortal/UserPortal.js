@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import style from './UserPortal.module.css';
 import { ImUserPlus } from 'react-icons/im';
 import { Form, Button } from 'bootstrap-4-react';
@@ -7,6 +7,7 @@ import useInput from '../../utils/useInput';
 import { useForm } from 'react-hook-form';
 
 const UserPortal = ({ user, ...props }) => {
+    const [message, setMessage] = useState('');
     const [transferAmount, setTransferAmount] = useInput('');
     const {
         register,
@@ -23,7 +24,11 @@ const UserPortal = ({ user, ...props }) => {
             id: user._id,
             transferAmount: +transferAmount,
         });
+        setMessage(data.message);
         console.log('responseDB', data);
+        setTimeout(() => {
+            props.history.go(0);
+        }, 3000);
     };
 
     return (
@@ -77,21 +82,21 @@ const UserPortal = ({ user, ...props }) => {
                     <div className={style.Row}>
                         <label htmlFor="right">Current Balance</label>
                         <div className={style.Display}>
-                            {`${user.balance} $`}
+                            {`${user.balance.toFixed(2)} $`}
                         </div>
                     </div>
 
                     <div className={style.Row}>
                         <label htmlFor="left">Total Recycled</label>
                         <div className={style.Display}>
-                            {`${user.totalRecycled} Kg`}
+                            {`${user.totalRecycled.toFixed(2)} Kg`}
                         </div>
                     </div>
 
                     <div className={style.Row}>
                         <label htmlFor="left">Total Earnings</label>
                         <div className={style.Display}>
-                            {`${user.totalEarned} $`}
+                            {`${user.totalEarned.toFixed(2)} $`}
                         </div>
                     </div>
                 </div>
@@ -100,18 +105,10 @@ const UserPortal = ({ user, ...props }) => {
                 <Form onSubmit={onSubmit} className={style.Form}>
                     <Form.Group
                         className={style.Row}
-                        style={{ alignItems: 'flex-end' }}
+                        style={{ alignItems: 'flex-end', marginTop: '5%' }}
                     >
                         <label htmlFor="amount">Cash Transfer</label>
-                        {/* <InputGroup className={style.InputGroup}> */}
-                        {/* <InputGroup.Prepend
-                                style={{
-                                    height: '2rem',
-                                    backgroundColor: 'rgba(255, 215, 0, 0.5)',
-                                }}
-                            >
-                                <InputGroup.Text>$</InputGroup.Text>
-                            </InputGroup.Prepend> */}
+
                         <div
                             style={{ display: 'flex', alignItems: 'flex-end' }}
                         >
@@ -135,14 +132,15 @@ const UserPortal = ({ user, ...props }) => {
                             />
                             <span style={{ marginLeft: '3%' }}>,00</span>
                         </div>
-
-                        {/* <InputGroup.Append style={{ height: '2rem' }}>
-                            <InputGroup.Text>.00</InputGroup.Text>
-                            </InputGroup.Append> */}
-                        {/* </InputGroup> */}
                     </Form.Group>
+                    <p style={{ color: '#fff', fontSize: '1rem' }}>{message}</p>
                     {errors.amount && <span>Max withdraw 999 $</span>}
-                    <Button type="submit">Pay out</Button>
+                    <Button type="submit" disabled as={!transferAmount}>
+                        <img
+                            src="assets/transferwise-logo.png"
+                            alt="transferwise-logo"
+                        />
+                    </Button>
                 </Form>
             </section>
         </div>

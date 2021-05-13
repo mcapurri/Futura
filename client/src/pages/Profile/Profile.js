@@ -84,8 +84,8 @@ const Profile = ({ user, setUser, ...props }) => {
                     <p>We are so proud of you!</p>
                     <p>
                         You have already helped us to collect{' '}
-                        {user.totalDeposited.toString()} Kilograms of recyclable
-                        meterial.
+                        {user.totalRecycled?.toFixed(2).toString()} Kilograms of
+                        recyclable meterial.
                     </p>
                     <p>Thank you!</p>
                 </div>
