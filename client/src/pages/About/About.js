@@ -12,7 +12,8 @@ const About = () => {
                     Futura is a circular economy platform that helps producers
                     to track and collect users waist, enabling our stakeholders
                     to earn a little profit, while helping the community to keep
-                    the environment clean and supporting local economy{' '}
+                    the environment clean and improve the livelihood of our
+                    community.{' '}
                 </p>
             </section>
             <section className={style.Section}>
@@ -21,10 +22,13 @@ const About = () => {
                         <img
                             src="../../assets/environment-logo.png"
                             alt="environment-logo"
-                            style={{ transform: 'scale(0.8)' }}
+                            style={{
+                                transform: 'scale(0.8)',
+                                paddingRight: '5%',
+                            }}
                         />
                     </div>
-                    <div style={{ padding: '0 25%', marginLeft: '-5%' }}>
+                    <div style={{ padding: '0 15%', marginLeft: '-7%' }}>
                         <h5> Save the environment </h5>
                         <p className="text">
                             {' '}
