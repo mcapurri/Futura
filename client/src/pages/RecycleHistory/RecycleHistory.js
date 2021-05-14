@@ -19,6 +19,26 @@ const RecycleHistory = (props) => {
         fetchData();
     }, []);
 
+    const displayHistory = depositsList?.map((deposit) => {
+        console.log('deposit', deposit);
+        return (
+            <tr key={deposit._id} className={style.Deposit}>
+                <td>
+                    <b>Deposited on</b> {deposit.createdAt}
+                </td>
+                <td>
+                    <b>at our </b> {deposit.location} <b>e-point</b>
+                </td>
+                <td>
+                    <b>Kg.</b> {deposit.kgDeposited}
+                </td>
+                <td>
+                    <b>Credit $</b> {deposit.credit}
+                </td>
+            </tr>
+        );
+    });
+
     return (
         <div className={style.Container}>
             <header>
@@ -39,6 +59,9 @@ const RecycleHistory = (props) => {
                     </p>
                 )}
             </header>
+            <div className={style.CardsContainer}>
+                <table className={style.Card}>{displayHistory}</table>
+            </div>
         </div>
     );
 };

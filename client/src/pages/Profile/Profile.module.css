@@ -69,8 +69,8 @@
     background-color: transparent;
     border-radius: 50%;
     display: flex;
-    /* justify-content: center;
-    align-items: center; */
+    justify-content: center;
+    align-items: center;
     align-self: flex-end;
     padding-top: 2.7%;
     align-items: stretch;
@@ -80,6 +80,7 @@
 .Avatar h1 {
     font-weight: bold;
     font-size: 4rem;
+    color: #eee;
 }
 .Avatar img {
     width: 100%;

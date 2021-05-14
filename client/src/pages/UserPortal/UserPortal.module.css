@@ -67,7 +67,8 @@
 
 .Avatar h1 {
     font-weight: bold;
-    font-size: 4rem;
+    font-size: 2rem;
+    color: #eee;
 }
 .Avatar img {
     width: 100%;

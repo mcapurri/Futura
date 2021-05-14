@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { Form, Button } from 'bootstrap-4-react';
 import useInput from '../../../utils/useInput';
 import { RiArrowGoBackLine as BackArrow } from 'react-icons/ri';
-import axios from 'axios';
+import axios from '../../../utils/axios';
 
 const ForgotPassword = (props) => {
     const [message, setMessage] = useState('');

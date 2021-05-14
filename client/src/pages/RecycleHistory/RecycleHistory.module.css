@@ -36,3 +36,23 @@
     font-weight: bold;
     margin-left: 10%;
 }
+.Card {
+    width: 90vw;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+    margin: 5% 0;
+    border-radius: 10px;
+}
+.Deposit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    border: 2px solid #eee;
+    font-size: 0.9rem;
+    border-radius: 20px;
+    background-color: rgba(35, 145, 77, 0.963);
+    padding: 5% 5%;
+}

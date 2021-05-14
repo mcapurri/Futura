@@ -3,7 +3,7 @@ import style from './ResetPassword.module.css';
 import { Form, Button } from 'bootstrap-4-react';
 import { Link } from 'react-router-dom';
 import useInput from '../../../utils/useInput';
-import axios from 'axios';
+import axios from '../../../utils/axios';
 import { RiArrowGoBackLine as BackArrow } from 'react-icons/ri';
 
 const ResetPassword = (props) => {
@@ -20,7 +20,9 @@ const ResetPassword = (props) => {
             .then((res) => {
                 console.log('response', res.data.message);
                 setMessage(res.data.message);
-                props.history.push('/');
+                setTimeout(() => {
+                    props.history.push('/');
+                }, 3000);
             })
             .catch((err) => console.log(err));
     };

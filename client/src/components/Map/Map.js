@@ -52,7 +52,7 @@ const Map = () => {
                 <>
                     {console.log('el', el)}
                     <Marker
-                        key={el.id}
+                        key={el.properties.id}
                         coordinates={el.geometry.coordinates}
                         className={style.Marker}
                         onClick={() => openPopup(el.key)}
@@ -66,8 +66,14 @@ const Map = () => {
                             closeButton={true}
                             closeOnClick={false}
                             offsetTop={-30}
+                            style={{
+                                borderRadius: '10px',
+                                backgroundColor: 'rgb(5, 58, 32)',
+                            }}
                         >
-                            <p>{el.properties.title}</p>˜{' '}
+                            <p style={{ fontWeight: '500' }}>
+                                {el.properties.name}
+                            </p>{' '}
                             <p>
                                 {el.properties.street},{' '}
                                 {el.properties.houseNumber} -{' '}
