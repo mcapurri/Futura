@@ -32,16 +32,16 @@ const About = () => {
                         </p>
                     </div>
                 </article>
-                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
+                <hr />
 
                 <article className={style.Box}>
-                    {/* <div className={style.ImgContainer}> */}
-                    <img
-                        src="../../assets/local-business-logo.png"
-                        alt="local-business-logo"
-                        style={{ transform: 'scale(1.2)' }}
-                    />
-                    {/* </div> */}
+                    <div className={style.ImgContainer}>
+                        <img
+                            src="../../assets/local-business-logo.png"
+                            alt="local-business-logo"
+                            style={{ transform: 'scale(1.1)' }}
+                        />
+                    </div>
                     <div style={{ padding: '0 10%' }}>
                         <h5> Help local business with sustanable grow</h5>
                         <p className="text">
@@ -52,14 +52,17 @@ const About = () => {
                         </p>
                     </div>
                 </article>
-                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
+                <hr />
 
                 <article className={style.Box}>
                     <div className={style.ImgContainer}>
                         <img
                             src="../../assets/education-logo.png"
                             alt="education-logo"
-                            style={{ transform: 'scale(0.6)' }}
+                            style={{
+                                transform: 'scale(0.6)',
+                                paddingRight: '10%',
+                            }}
                         />
                     </div>
                     <div style={{ padding: '0 10%' }}>
@@ -72,14 +75,17 @@ const About = () => {
                         </p>
                     </div>
                 </article>
-                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
+                <hr />
 
                 <article className={style.Box}>
                     <div className={style.ImgContainer}>
                         <img
                             src="../../assets/fist-logo.png"
                             alt="fist-logo"
-                            style={{ transform: 'scale(0.7)' }}
+                            style={{
+                                transform: 'scale(0.7)',
+                                paddingRight: '10%',
+                            }}
                         />
                     </div>
                     <div style={{ padding: '5% 10%' }}>
@@ -92,7 +98,7 @@ const About = () => {
                         </p>
                     </div>
                 </article>
-                <hr style={{ width: '20rem', backgroundColor: 'green' }} />
+                <hr />
             </section>
         </div>
     );
