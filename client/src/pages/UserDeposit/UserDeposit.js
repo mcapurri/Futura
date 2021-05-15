@@ -79,24 +79,6 @@ const UserDeposit = (props) => {
 
     return (
         <div className={style.Container}>
-            <header>
-                <div className={style.Logo}>
-                    <img
-                        src="assets/africa-recycle-logo.png"
-                        alt="recycle-logo"
-                    />
-                    <h1>!</h1>
-                </div>
-                {props.width > '600' && (
-                    <p
-                        style={{
-                            marginRight: '15%',
-                        }}
-                    >
-                        It's all about what you do for our future...{' '}
-                    </p>
-                )}
-            </header>
             <div className={style.Form}>
                 <Form onSubmit={onSubmit} className={style.Form}>
                     <div>
@@ -122,7 +104,8 @@ const UserDeposit = (props) => {
                             <Form.Input
                                 {...register('email', {
                                     required: true,
-                                    pattern: /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
+                                    pattern:
+                                        /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
                                 })}
                                 type="email"
                                 placeholder="Email"

@@ -41,26 +41,10 @@ const RecycleHistory = (props) => {
 
     return (
         <div className={style.Container}>
-            <header>
-                <div className={style.Logo}>
-                    <img
-                        src="assets/africa-recycle-logo.png"
-                        alt="recycle-logo"
-                    />
-                    <h1>!</h1>
-                </div>
-                {props.width > '600' && (
-                    <p
-                        style={{
-                            marginRight: '15%',
-                        }}
-                    >
-                        It's all about what you do for our future...{' '}
-                    </p>
-                )}
-            </header>
             <div className={style.CardsContainer}>
-                <table className={style.Card}>{displayHistory}</table>
+                <table className={style.Card}>
+                    <tbody>{displayHistory}</tbody>
+                </table>
             </div>
         </div>
     );

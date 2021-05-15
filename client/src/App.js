@@ -1,7 +1,9 @@
-import './App.css';
-import { useState, useEffect } from 'react';
-import { Switch, Route } from 'react-router-dom';
+// import './App.css';
+import style from './App.module.css';
+import { useState, useEffect, useRef } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { logout } from './utils/auth';
+import { TiThMenu as MenuIcon } from 'react-icons/ti';
 import ProtectedRoute from './utils/ProtectedRoute';
 import Home from './pages/Home/Home';
 import About from './pages/About/About';
@@ -54,115 +56,164 @@ function App(props) {
             });
 
     return (
-        <>
-            {drawerOpen && (
-                <SideDrawer
-                    user={user}
-                    drawerOpen={drawerOpen}
-                    toggleDrawer={toggleDrawer}
-                    handleLogout={handleLogout}
-                />
-            )}
-
-            <Switch>
-                <Route
-                    exact
-                    path="/"
-                    render={(props) => (
-                        <Home
-                            {...props}
-                            user={user}
-                            setUser={setUser}
-                            handleLogout={handleLogout}
-                            toggleDrawer={toggleDrawer}
-                            width={width}
+        <Router>
+            <div className={style.App}>
+                {drawerOpen && (
+                    <SideDrawer
+                        user={user}
+                        drawerOpen={drawerOpen}
+                        toggleDrawer={toggleDrawer}
+                        handleLogout={handleLogout}
+                    />
+                )}
+                {user !== '' && (
+                    <header>
+                        <MenuIcon
+                            style={{
+                                fontSize: '2rem',
+                                display: 'flex',
+                                justifySelf: 'flex-start',
+                                alignSelf: 'flex-start',
+                                position: 'fixed',
+                                right: '7%',
+                                top: '3%',
+                                color: 'rgb(5, 58, 32)',
+                            }}
+                            onClick={toggleDrawer}
                         />
-                    )}
-                />
+                        <div
+                            style={{
+                                display: 'flex',
+                                width: '100%',
+                                alignItems: 'center',
+                            }}
+                        >
+                            <div className={style.Logo}>
+                                <img
+                                    src="assets/africa-recycle-logo.png"
+                                    alt="recycle-logo"
+                                />
+                                <h1>!</h1>
+                            </div>
+                            {width > '660' && (
+                                <p
+                                    style={{
+                                        marginRight: '15%',
+                                    }}
+                                >
+                                    It's all about what you do for our future...{' '}
+                                </p>
+                            )}
+                        </div>
+                    </header>
+                )}
+                <Switch>
+                    <Route
+                        exact
+                        path="/"
+                        render={(props) => (
+                            <Home
+                                {...props}
+                                user={user}
+                                setUser={setUser}
+                                handleLogout={handleLogout}
+                                toggleDrawer={toggleDrawer}
+                                width={width}
+                            />
+                        )}
+                    />
 
-                <Route
-                    exact
-                    path="/signup"
-                    render={(props) => <Signup {...props} setUser={setUser} />}
-                />
-                <Route
-                    exact
-                    path="/forgotpassword"
-                    render={(props) => <ForgotPassword {...props} />}
-                />
-                <Route
-                    exact
-                    path="/resetpassword/:resettoken"
-                    render={(props) => <ResetPassword {...props} />}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/about"
-                    component={About}
-                    user={user}
-                    width={width}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/user-portal"
-                    component={UserPortal}
-                    user={user}
-                    width={width}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/deposit"
-                    component={UserDeposit}
-                    user={user}
-                    width={width}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/history"
-                    component={RecycleHistory}
-                    user={user}
-                    width={width}
-                />
+                    <Route
+                        exact
+                        path="/signup"
+                        render={(props) => (
+                            <Signup {...props} setUser={setUser} />
+                        )}
+                    />
+                    <Route
+                        exact
+                        path="/forgotpassword"
+                        render={(props) => <ForgotPassword {...props} />}
+                    />
+                    <Route
+                        exact
+                        path="/resetpassword/:resettoken"
+                        render={(props) => <ResetPassword {...props} />}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/about"
+                        component={About}
+                        user={user}
+                        width={width}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/user-portal"
+                        component={UserPortal}
+                        user={user}
+                        width={width}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/deposit"
+                        component={UserDeposit}
+                        user={user}
+                        width={width}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/history"
+                        component={RecycleHistory}
+                        user={user}
+                        width={width}
+                    />
 
-                <ProtectedRoute
-                    exact
-                    path="/chat"
-                    component={Chat}
-                    user={user}
-                />
-                <ProtectedRoute
-                    exact
-                    path="/chat-room"
-                    component={ChatRoom}
-                    user={user}
-                />
+                    <ProtectedRoute
+                        exact
+                        path="/chat"
+                        component={Chat}
+                        user={user}
+                    />
+                    <ProtectedRoute
+                        exact
+                        path="/chat-room"
+                        component={ChatRoom}
+                        user={user}
+                    />
 
-                <ProtectedRoute
-                    exact
-                    path="/resources/website"
-                    component={Website}
-                    user={user}
-                />
+                    <ProtectedRoute
+                        exact
+                        path="/resources/website"
+                        component={Website}
+                        user={user}
+                    />
 
-                <ProtectedRoute
-                    exact
-                    path="/resources/news"
-                    component={News}
-                    user={user}
-                />
+                    <ProtectedRoute
+                        exact
+                        path="/resources/news"
+                        component={News}
+                        user={user}
+                    />
 
-                <ProtectedRoute exact path="/map" component={Map} user={user} />
+                    <ProtectedRoute
+                        exact
+                        path="/map"
+                        component={Map}
+                        user={user}
+                    />
 
-                <ProtectedRoute
-                    exact
-                    path="/create-dropoff"
-                    component={CreateDropOff}
-                    user={user}
-                    width={width}
-                />
-            </Switch>
-            {user && <Footer />}
-        </>
+                    <ProtectedRoute
+                        exact
+                        path="/create-dropoff"
+                        component={CreateDropOff}
+                        user={user}
+                        width={width}
+                    />
+                </Switch>
+                {user && <Footer />}
+            </div>
+        </Router>
     );
 }
 

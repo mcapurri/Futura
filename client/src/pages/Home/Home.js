@@ -4,12 +4,12 @@ import { Route } from 'react-router-dom';
 import Login from '../../components/Auth/Login/Login';
 import Profile from '../Profile/Profile';
 import ProtectedRoute from '../../utils/ProtectedRoute';
-import { TiThMenu as MenuIcon } from 'react-icons/ti';
+// import { TiThMenu as MenuIcon } from 'react-icons/ti';
 
 const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
     return (
         <div className={style.Home}>
-            {user !== '' && (
+            {/* {user !== '' && (
                 <header>
                     <MenuIcon
                         style={{
@@ -49,7 +49,7 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                         )}
                     </div>
                 </header>
-            )}
+            )} */}
 
             {!user ? (
                 <Route

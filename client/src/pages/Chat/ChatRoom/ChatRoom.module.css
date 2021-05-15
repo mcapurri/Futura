@@ -1,12 +1,12 @@
 .Container {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: 0;
-    bottom: 0;
     display: flex;
     flex-direction: column;
-    margin: 16px;
+    /* margin: 16px; */
+    margin-bottom: 10%;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    padding: 0 10%;
 }
 
 .Name {
@@ -15,8 +15,9 @@
 }
 
 .Messages {
-    flex: 1;
-    max-height: 33rem;
+    /* flex: 1; */
+    min-height: 22rem;
+    max-width: 50rem;
     border: 5px solid rgb(5, 58, 32);
     border-radius: 7px 7px 0 0;
     margin-bottom: 5%;
@@ -29,7 +30,8 @@
 }
 
 .Textarea {
-    height: 6rem;
+    min-height: 8rem;
+    max-width: 50rem;
     max-height: 50%;
     font-size: 1.2rem;
     padding: 8px 12px;
@@ -56,6 +58,9 @@
     background-color: rgb(9, 173, 7);
     margin-left: auto;
 }
+.Item p:first-child {
+    font-size: 0.9;
+}
 
 .ReceivedMessage {
     background-color: #3f4042;
@@ -70,8 +75,7 @@
     color: white;
     background: rgb(5, 58, 32);
     border: none;
-    margin-bottom: 10%;
-    margin-top: 10%;
+    margin: 10% 0;
 }
 
 .Container,
@@ -85,40 +89,18 @@
     height: 2rem;
     border: 1px solid #fff;
     background-color: transparent;
-    margin: 0 5%;
+    margin-right: 10%;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     align-self: center;
     z-index: 10;
+    margin-top: -10%;
 }
 
-.Avatar h1 {
-    font-weight: bold;
-}
 .Avatar img {
     border-radius: 50%;
-    max-width: 100%;
-    max-height: 100%;
-}
-@media screen and (min-width: 700px) {
-    .Container button {
-        margin-left: 10%;
-    }
-}
-@media screen and (min-width: 900px) {
-    .Container button {
-        margin-left: 15%;
-    }
-}
-@media screen and (min-width: 1020px) {
-    .Container button {
-        margin-left: 20%;
-    }
-}
-@media screen and (min-width: 1200px) {
-    .Container button {
-        margin-left: 25%;
-    }
+    width: 100%;
+    height: 100%;
 }

@@ -22,16 +22,16 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
         event.preventDefault();
 
         signup({
-            firstName: firstName,
-            lastName: lastName,
-            email: email,
-            password: password,
-            confirm: confirm,
-            street: street,
-            zipCode: zipCode,
-            city: city,
-            state: state,
-            phoneNumber: phoneNumber,
+            firstName,
+            lastName,
+            email,
+            password,
+            confirm,
+            street,
+            zipCode,
+            city,
+            state,
+            phoneNumber,
         }).then((user) => {
             if (user.message) {
                 setMessage(user.message);
@@ -57,14 +57,6 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
 
     return (
         <div className={style.Container}>
-            {/* <header>
-                <div className={style.Logo}>
-                    <img
-                        src="../../../assets/africa-recycle-logo.png"
-                        alt="recycle-logo"
-                    />
-                </div>
-            </header> */}
             <h1>
                 <span>Futura</span>
                 <img
@@ -76,15 +68,6 @@ const Signup = ({ setIsSignup, user, setUser, ...props }) => {
                         borderRadius: '50%',
                     }}
                 />
-                {/* <img
-                    src="../../../assets/recycling-logo.png"
-                    alt=""
-                    style={{
-                        width: '3rem',
-                        height: '3rem',
-                        borderRadius: '50%',
-                    }}
-                />{' '} */}
             </h1>
             <Form className={style.Form} onSubmit={handleSubmit}>
                 <Form.Group>

@@ -45,6 +45,7 @@ const ChatRoom = (props) => {
                                     style={{
                                         display: 'flex',
                                         alignSelf: 'flex-start',
+                                        fontSize: '0.9rem',
                                     }}
                                 >
                                     {name} says:
