@@ -20,7 +20,7 @@ const RecycleHistory = (props) => {
     }, []);
 
     const displayHistory = depositsList?.map((deposit) => {
-        console.log('deposit', deposit);
+        // console.log('deposit', deposit);
         return (
             <tr key={deposit._id} className={style.Deposit}>
                 <td>

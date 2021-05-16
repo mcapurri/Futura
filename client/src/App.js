@@ -66,7 +66,7 @@ function App(props) {
                         handleLogout={handleLogout}
                     />
                 )}
-                {user !== '' && (
+                {user && window.location.pathname !== '/map' && (
                     <header>
                         <MenuIcon
                             style={{

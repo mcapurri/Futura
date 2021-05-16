@@ -13,7 +13,7 @@ export const getGeoJson = (list) => {
     const features = [...list].map((marker, index) => {
         // console.log('marker', marker);
         const feature = {
-            key: index,
+            key: marker._id,
             type: 'Feature',
             properties: {
                 id: marker._id,

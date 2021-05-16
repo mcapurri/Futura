@@ -16,8 +16,6 @@ const UserPortal = ({ user, ...props }) => {
         formState: { errors },
     } = useForm();
 
-    console.log('transferAmount', transferAmount);
-
     const onSubmit = async (e) => {
         e.preventDefault();
         const { data } = await axios.post('/api/deposits/transfer', {

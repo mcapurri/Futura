@@ -26,30 +26,35 @@ const CreateDropOff = ({ user, ...props }) => {
     const onSubmit = async (data) => {
         // event.preventDefault();
         console.log('data', data);
+        try {
+            const coordsQuery = await axios.get(
+                ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${mapboxtoken}`
+            );
+            const lngLat = coordsQuery.data.features[0].center;
 
-        const coordsQuery = await axios.get(
-            ` https://api.mapbox.com/geocoding/v5/mapbox.places/${street},${houseNumber},${zipCode},${city}.json?types=address&access_token=${mapboxtoken}`
-        );
-        const lngLat = coordsQuery.data.features[0].center;
+            const response = await axios.post('/api/dropoffs/add', {
+                name,
+                street,
+                city,
+                houseNumber,
+                zipCode,
+                lngLat,
+                openingTime,
+                closingTime,
+                createdBy: user,
+            });
+            console.log('response', response);
+            if (response) {
+                setMessage(response.data.message);
+                setTimeout(() => {
+                    setMessage('');
+                    props.history.push('/');
+                }, 3000);
+            }
+        } catch (err) {
+            setMessage(err.message);
 
-        const response = await axios.post('/api/dropoffs/add', {
-            name,
-            street,
-            city,
-            houseNumber,
-            zipCode,
-            lngLat,
-            openingTime,
-            closingTime,
-            createdBy: user,
-        });
-        if (response) {
-            console.log('response', response.data);
-            setMessage(response.data.message);
-            setTimeout(() => {
-                setMessage('');
-                props.history.push('/');
-            }, 3000);
+            console.log(err);
         }
     };
 

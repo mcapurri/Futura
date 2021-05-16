@@ -48,24 +48,25 @@ const Map = () => {
     const displayMarkers = useMemo(
         () =>
             geojson.data &&
-            geojson?.data.map((el) => (
+            geojson.data.map((el, index) => (
                 <>
-                    {console.log('el', el)}
+                    {/* {console.log('el', el)} */}
                     <Marker
-                        key={el.properties.id}
+                        key={el.key}
                         coordinates={el.geometry.coordinates}
                         className={style.Marker}
                         onClick={() => openPopup(el.key)}
                     />
+                    {console.log(selectedIndex === el.key)}
                     {selectedIndex !== null && (
                         <Popup
-                            key={el.key}
+                            key={index}
+                            visible={selectedIndex === el.key}
                             id={selectedIndex}
                             coordinates={el.geometry.coordinates}
                             onClose={closePopup}
                             closeButton={true}
                             closeOnClick={false}
-                            offsetTop={-30}
                             style={{
                                 borderRadius: '10px',
                                 backgroundColor: 'rgb(5, 58, 32)',
