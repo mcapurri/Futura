@@ -30,10 +30,8 @@ router.post('/add', async (req, res, next) => {
     const found = await DropOff.findOne({ name });
     console.log('found', found);
     if (found) {
-        return res
-            .status(400)
-            .json({ message: 'Drop-off already exist' })
-            .redirect('/create-dropoff');
+        return res.status(400).json({ message: 'Drop-off already exist' });
+        // .redirect('/create-dropoff');
     } else {
         try {
             const addDropOff = DropOff.create({

@@ -3,7 +3,6 @@ const token = localStorage.getItem('token');
 
 const instance = axios.create({
     baseUrl: process.env.ORIGIN,
-    withCredentials: true,
 });
 
 if (token) {
