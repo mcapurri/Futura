@@ -1,111 +1,111 @@
 .SideDrawer {
-    position: absolute;
-    width: 80%;
-    height: 90%;
-    right: 0;
-    top: 0;
-    z-index: 200;
-    background-color: white;
-    border-radius: 10px;
-    /* padding: 32px 16px; */
-    box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
-    /* transform: translateX(100%);
+  position: fixed;
+  width: 80%;
+  height: 90%;
+  right: 0;
+  top: 0;
+  z-index: 200;
+  background-color: white;
+  border-radius: 10px;
+  /* padding: 32px 16px; */
+  box-shadow: 1px 0px 7px rgba(0, 0, 0, 0.5);
+  /* transform: translateX(100%);
     transition: transform 1s ease-in-out; */
 }
 .SideDrawer h1 {
-    font-family: 'Pacifico', cursive;
-    font-size: 4rem;
-    margin-left: 5%;
-    margin-bottom: 5%;
-    color: #fff;
+  font-family: "Pacifico", cursive;
+  font-size: 4rem;
+  margin-left: 5%;
+  margin-bottom: 5%;
+  color: #fff;
 }
 .Open {
-    transform: translateX(0);
-    -webkit-animation: slide 1s backwards;
-    -webkit-animation-delay: 2s;
-    animation: slide 0.5s backwards;
-    animation-delay: 2s;
+  transform: translateX(0);
+  -webkit-animation: slide 1s backwards;
+  -webkit-animation-delay: 2s;
+  animation: slide 0.5s backwards;
+  animation-delay: 2s;
 }
 @-webkit-keyframes slide {
-    100% {
-        right: 0;
-    }
+  100% {
+    right: 0;
+  }
 }
 
 @keyframes slide {
-    100% {
-        right: 0;
-    }
+  100% {
+    right: 0;
+  }
 }
 
 .SideDrawer ul {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
 }
 .SideDrawer li {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    border-bottom: 1px solid rgb(9, 173, 7);
-    font-size: 1.6rem;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border-bottom: 1px solid rgb(9, 173, 7);
+  font-size: 1.6rem;
 }
 
 .SideDrawer a {
-    color: rgb(5, 58, 32);
-    font-size: 1.4rem;
+  color: rgb(5, 58, 32);
+  font-size: 1.4rem;
 }
 .SideDrawer button {
-    color: rgb(5, 58, 32);
-    font-size: 1.4rem;
-    background-color: transparent;
+  color: rgb(5, 58, 32);
+  font-size: 1.4rem;
+  background-color: transparent;
 }
 .UserInfos {
-    display: flex;
-    align-items: center;
-    width: 100%;
-    height: 40%;
-    color: #fff;
-    margin-bottom: 5%;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+  color: #fff;
+  margin-bottom: 5%;
 }
 .UserInfos p {
-    font-size: 1.8rem;
-    margin-bottom: 0;
+  font-size: 1.8rem;
+  margin-bottom: 0;
 }
 
 .Avatar {
-    width: 5rem;
-    height: 5rem;
-    border: 5px solid #fff;
-    background-color: transparent;
-    margin: 0 5%;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: center;
-    z-index: 10;
+  width: 5rem;
+  height: 5rem;
+  border: 5px solid #fff;
+  background-color: transparent;
+  margin: 0 5%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-self: center;
+  z-index: 10;
 }
 
 .Avatar h1 {
-    font-weight: bold;
-    font-size: 4rem;
+  font-weight: bold;
+  font-size: 4rem;
 }
 .Avatar img {
-    border-radius: 50%;
-    max-width: 100%;
-    max-height: 100%;
+  border-radius: 50%;
+  max-width: 100%;
+  max-height: 100%;
 }
 @media screen and (min-width: 435px) {
-    .SideDrawer {
-        max-width: 20rem;
-    }
+  .SideDrawer {
+    max-width: 20rem;
+  }
 }
 @media screen and (min-width: 770px) {
-    .SideDrawer {
-        max-width: 25rem;
-    }
+  .SideDrawer {
+    max-width: 25rem;
+  }
 }

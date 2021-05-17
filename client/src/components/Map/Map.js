@@ -12,15 +12,22 @@ import { mapboxtoken } from '../../utils/config.json';
 
 import { getBounds, getGeoJson } from '../../utils/map';
 
-const MapBox = ReactMapboxGl({ accessToken: mapboxtoken });
+const MapBox = ReactMapboxGl({ accessToken: mapboxtoken, height: '100%' });
 const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
-const Map = () => {
+const Map = ({ setIsMapPage }) => {
     const [map, setMap] = useState();
     const [dropOffs, setDropOffs] = useState([]);
     const [geojson, setGeojson] = useState({});
     console.log('geojson', geojson);
     const [selectedIndex, setSelectedIndex] = useState(null);
+
+    useEffect(() => {
+        setIsMapPage(true);
+        return () => {
+            setIsMapPage(false);
+        };
+    }, []);
 
     const fetchDropOffs = useCallback(async () => {
         try {
@@ -58,7 +65,7 @@ const Map = () => {
                         onClick={() => openPopup(el.key)}
                     />
                     {console.log(selectedIndex === el.key)}
-                    {selectedIndex !== null && (
+                    {selectedIndex !== null && selectedIndex === el.key && (
                         <Popup
                             key={index}
                             visible={selectedIndex === el.key}
@@ -66,7 +73,7 @@ const Map = () => {
                             coordinates={el.geometry.coordinates}
                             onClose={closePopup}
                             closeButton={true}
-                            closeOnClick={false}
+                            closeOnClick={true}
                             style={{
                                 borderRadius: '10px',
                                 backgroundColor: 'rgb(5, 58, 32)',
@@ -142,6 +149,7 @@ const Map = () => {
             style={MapBoxStyle}
             center={[13.4, 52.52]}
             zoom={[15]}
+            height={'100%'}
             onStyleLoad={onLoadMap}
         >
             {displayMarkers}
