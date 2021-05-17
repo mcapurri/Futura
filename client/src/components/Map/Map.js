@@ -12,7 +12,11 @@ import { mapboxtoken } from '../../utils/config.json';
 
 import { getBounds, getGeoJson } from '../../utils/map';
 
-const MapBox = ReactMapboxGl({ accessToken: mapboxtoken, height: '100%' });
+const MapBox = ReactMapboxGl({
+    accessToken: mapboxtoken,
+    // className: style.Canvas,
+    // style: 'mapbox://styles/mapbox/streets-v11',
+});
 const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
 const Map = ({ setIsMapPage }) => {
@@ -56,10 +60,9 @@ const Map = ({ setIsMapPage }) => {
         () =>
             geojson.data &&
             geojson.data.map((el, index) => (
-                <>
+                <div key={el.key}>
                     {/* {console.log('el', el)} */}
                     <Marker
-                        key={el.key}
                         coordinates={el.geometry.coordinates}
                         className={style.Marker}
                         onClick={() => openPopup(el.key)}
@@ -67,9 +70,7 @@ const Map = ({ setIsMapPage }) => {
                     {console.log(selectedIndex === el.key)}
                     {selectedIndex !== null && selectedIndex === el.key && (
                         <Popup
-                            key={index}
                             visible={selectedIndex === el.key}
-                            id={selectedIndex}
                             coordinates={el.geometry.coordinates}
                             onClose={closePopup}
                             closeButton={true}
@@ -93,7 +94,7 @@ const Map = ({ setIsMapPage }) => {
                             </p>
                         </Popup>
                     )}
-                </>
+                </div>
             )),
         [geojson, selectedIndex]
     );
