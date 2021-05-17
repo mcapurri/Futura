@@ -1,107 +1,107 @@
 .Container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: linear-gradient(white, green);
-    overflow-y: auto;
+  width: 100vw;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: linear-gradient(white, green);
+  /* overflow-y: auto; */
 }
 .Container header {
-    height: 27vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: rgb(5, 58, 32);
-    border-bottom: 5px solid rgb(0, 128, 0);
+  height: 27vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  color: rgb(5, 58, 32);
+  border-bottom: 5px solid rgb(0, 128, 0);
 }
 .Container header img {
-    filter: drop-shadow(10px 10px 0 #eee);
+  filter: drop-shadow(10px 10px 0 #eee);
 }
 .Container .Logo {
-    display: flex;
-    align-items: flex-end;
-    margin-left: 10%;
-    margin-top: -5%;
-    padding-bottom: 3%;
+  display: flex;
+  align-items: flex-end;
+  margin-left: 10%;
+  margin-top: -5%;
+  padding-bottom: 3%;
 }
 .Container h1:nth-child(2) {
-    font-size: 9rem;
-    color: #000;
+  font-size: 9rem;
+  color: #000;
 }
 .Container p {
-    color: #000;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-left: 10%;
+  color: #000;
+  font-family: "Dancing Script", cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-left: 10%;
 }
 .Form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    margin: 10% 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  margin: 10% 0;
 }
 .Form ::placeholder {
-    color: rgb(2, 59, 2);
+  color: rgb(2, 59, 2);
 }
 
 .Form input,
 .SelectInput {
-    background-color: transparent;
-    color: rgb(5, 58, 32);
-    border: none;
-    border-bottom: 3px solid #eee;
-    margin-bottom: 5%;
-    width: 70vw;
+  background-color: transparent;
+  color: rgb(5, 58, 32);
+  border: none;
+  border-bottom: 3px solid #eee;
+  margin-bottom: 5%;
+  width: 70vw;
 }
 .Form input:focus,
 .SelectInput:focus {
-    box-shadow: none;
-    background-color: transparent;
+  box-shadow: none;
+  background-color: transparent;
 }
 .Form label {
-    color: #eee;
+  color: #eee;
 }
 
 .Row {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 70vw;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70vw;
 }
 .Form .Col {
-    width: 100%;
+  width: 100%;
 }
 .Form .Deposit {
-    width: 7rem;
+  width: 7rem;
 }
 .Form button {
-    background-color: rgb(5, 58, 32);
-    border-radius: 10px;
-    border: none;
-    width: 15rem;
-    height: 3rem;
-    font-size: 1.2rem;
-    margin: 10% 0 20% 0;
+  background-color: rgb(5, 58, 32);
+  border-radius: 10px;
+  border: none;
+  width: 15rem;
+  height: 3rem;
+  font-size: 1.2rem;
+  margin: 10% 0 20% 0;
 
-    color: #fff;
+  color: #fff;
 }
 @media screen and (min-width: 435px) {
-    .Form .Deposit {
-        width: 10rem;
-    }
+  .Form .Deposit {
+    width: 10rem;
+  }
 }
 @media screen and (min-width: 640px) {
-    .Form .Deposit {
-        width: 12rem;
-    }
+  .Form .Deposit {
+    width: 12rem;
+  }
 }
 @media screen and (min-width: 860px) {
-    .Form .Deposit {
-        width: 15rem;
-    }
+  .Form .Deposit {
+    width: 15rem;
+  }
 }
