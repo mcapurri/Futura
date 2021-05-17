@@ -20,21 +20,21 @@ const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
 app.use(
-    session({
-        secret: process.env.SESSION_SECRET,
-        // cookie: {
-        //     SameSite: 'none',
-        //     Secure: true,
-        //     httpOnly: true,
-        //     maxAge: 1000 * 60 * 60 * 24,
-        // },
-        saveUninitialized: false,
-        resave: true,
-        store: new MongoStore({
-            mongooseConnection: mongoose.connection,
-            mongoUrl: 'mongodb://localhost/recycling-app',
-        }),
-    })
+   session({
+      secret: process.env.SESSION_SECRET,
+      // cookie: {
+      //     SameSite: 'none',
+      //     Secure: true,
+      //     httpOnly: true,
+      //     maxAge: 1000 * 60 * 60 * 24,
+      // },
+      saveUninitialized: false,
+      resave: true,
+      store: new MongoStore({
+         mongooseConnection: mongoose.connection,
+         mongoUrl: 'mongodb://localhost/recycling-app',
+      }),
+   })
 );
 // end of session configuration
 
@@ -46,57 +46,57 @@ const bcrypt = require('bcrypt');
 
 // we serialize only the `_id` field of the user to keep the information stored minimum
 passport.serializeUser((user, done) => {
-    done(null, user._id);
+   done(null, user._id);
 });
 
 // when we need the information for the user, the deserializeUser function is called with the id that we previously serialized to fetch the user from the database
 passport.deserializeUser((id, done) => {
-    User.findById(id)
-        .then((dbUser) => {
-            done(null, dbUser);
-        })
-        .catch((err) => {
-            done(err);
-        });
+   User.findById(id)
+      .then((dbUser) => {
+         done(null, dbUser);
+      })
+      .catch((err) => {
+         done(err);
+      });
 });
 
 // local config
 passport.use(
-    new LocalStrategy(
-        {
-            usernameField: 'email',
-            passwordField: 'password',
-        },
-        (email, password, done) => {
-            console.log('credentials', email, password);
+   new LocalStrategy(
+      {
+         usernameField: 'email',
+         passwordField: 'password',
+      },
+      (email, password, done) => {
+         console.log('credentials', email, password);
 
-            // login
-            User.findOne({ email })
-                .then((userFromDB) => {
-                    if (!userFromDB) {
-                        // there is no user with this username
-                        done(null, false, { message: 'Wrong Credentials' });
-                    } else {
-                        bcrypt.compare(
-                            password,
-                            userFromDB.password,
-                            function (err, valid) {
-                                if (valid) {
-                                    done(null, userFromDB);
-                                } else {
-                                    done(null, false, {
-                                        message: 'Wrong Credentials',
-                                    });
-                                }
-                            }
-                        );
-                    }
-                })
-                .catch((err) => {
-                    console.log(err);
-                });
-        }
-    )
+         // login
+         User.findOne({ email })
+            .then((userFromDB) => {
+               if (!userFromDB) {
+                  // there is no user with this username
+                  done(null, false, { message: 'Wrong Credentials' });
+               } else {
+                  bcrypt.compare(
+                     password,
+                     userFromDB.password,
+                     function (err, valid) {
+                        if (valid) {
+                           done(null, userFromDB);
+                        } else {
+                           done(null, false, {
+                              message: 'Wrong Credentials',
+                           });
+                        }
+                     }
+                  );
+               }
+            })
+            .catch((err) => {
+               console.log(err);
+            });
+      }
+   )
 );
 
 app.use(passport.initialize());
@@ -104,32 +104,32 @@ app.use(passport.session());
 
 // Passport JWT config
 const JwtStrategy = require('passport-jwt').Strategy,
-    ExtractJwt = require('passport-jwt').ExtractJwt;
+   ExtractJwt = require('passport-jwt').ExtractJwt;
 const options = {
-    jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
-    secretOrKey: process.env.JWT_SECRET,
-    // issuer: 'accounts.examplesoft.com',
-    // audience: 'yoursite.net',
+   jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
+   secretOrKey: process.env.JWT_SECRET,
+   // issuer: 'accounts.examplesoft.com',
+   // audience: 'yoursite.net',
 };
 
 passport.use(
-    new JwtStrategy(options, (jwt_payload, done) => {
-        User.findOne({ id: jwt_payload.sub })
-            .then((user) => {
-                console.log('userJWTstr', user);
-                // if (err) {
-                //     return done(err, false);
-                // }
-                if (user) {
-                    console.log('user jwt', user);
-                    return done(null, user);
-                } else {
-                    return done(null, false);
-                    // or you could create a new account
-                }
-            })
-            .catch((err) => console.log(err));
-    })
+   new JwtStrategy(options, (jwt_payload, done) => {
+      User.findOne({ id: jwt_payload.sub })
+         .then((user) => {
+            console.log('userJWTstr', user);
+            // if (err) {
+            //     return done(err, false);
+            // }
+            if (user) {
+               console.log('user jwt', user);
+               return done(null, user);
+            } else {
+               return done(null, false);
+               // or you could create a new account
+            }
+         })
+         .catch((err) => console.log(err));
+   })
 );
 
 // end of passport
@@ -142,31 +142,31 @@ app.use('/api', allRoutes);
 
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
-    cors: {
-        // origin: 'http://localhost:3000',
-        // methods: ['GET', 'POST'],
-        // credentials: true,
-        origin: '*',
-    },
+   cors: {
+      // origin: 'http://localhost:3000',
+      // methods: ['GET', 'POST'],
+      // credentials: true,
+      origin: '*',
+   },
 });
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
 
 io.on('connection', (socket) => {
-    // Join a conversation
-    const { name, room } = socket.handshake.query;
-    socket.join(room);
-    console.log(`${name} joined room: ${room}`);
+   // Join a conversation
+   const { name, room } = socket.handshake.query;
+   socket.join(room);
+   console.log(`${name} joined room: ${room}`);
 
-    // Listen for new messages
-    socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
-        io.in(room).emit(NEW_CHAT_MESSAGE_EVENT, data);
-    });
+   // Listen for new messages
+   socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+      io.in(room).emit(NEW_CHAT_MESSAGE_EVENT, data);
+   });
 
-    // Leave the room
-    socket.on('disconnect', () => {
-        socket.leave(room);
-        console.log(`${name} left`);
-    });
+   // Leave the room
+   socket.on('disconnect', () => {
+      socket.leave(room);
+      console.log(`${name} left`);
+   });
 });
 
 // End Socket.io

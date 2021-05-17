@@ -1,161 +1,166 @@
 .Profile {
-    background-color: whitesmoke;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient(white, green);
-    margin: 10% 0;
+   background-color: whitesmoke;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: space-around;
+   width: 100%;
+   /* height: 100%; */
+   background-image: linear-gradient(white, green);
+   margin: 10% 0;
+   /* overflow-x: hidden; */
 }
 
 .Showcase,
 .Dropoffs {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 90%;
-    max-width: 50rem;
-    min-height: 35vh;
-    background-color: rgb(5, 58, 32);
-    border-radius: 10px;
-    margin: 5% 0;
-    font-weight: bold;
-    font-size: 0.9rem;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   width: 90%;
+   max-width: 50rem;
+   min-height: 35vh;
+   background-color: rgb(5, 58, 32);
+   border-radius: 10px;
+   margin: 5% 0;
+   font-weight: bold;
+   font-size: 0.9rem;
 }
 .Showcase h1 {
-    font-weight: bold;
-    font-size: 2.4rem;
-    margin-top: 2%;
+   font-weight: bold;
+   font-size: 2.4rem;
+   margin-top: 2%;
 }
 .Showcase h1,
 .Showcase p:first-child {
-    font-family: 'Dancing Script', cursive;
+   font-family: 'Dancing Script', cursive;
 }
 .Showcase p:first-child {
-    font-size: 1.8em;
-    margin-top: 2%;
+   font-size: 1.8em;
+   margin-top: 2%;
 }
 .Dropoffs {
-    min-height: 30vh;
-    margin-bottom: 20%;
-    align-items: center;
-    padding: 10% 10%;
-    font-size: 1.1rem;
-    max-width: 50rem;
+   min-height: 30vh;
+   margin-bottom: 20%;
+   align-items: center;
+   padding: 10% 10%;
+   font-size: 1.1rem;
+   max-width: 50rem;
 }
 .Dropoffs p:last-child {
-    font-size: 1.3em;
-    font-family: 'Dancing Script', cursive;
+   font-size: 1.3em;
+   font-family: 'Dancing Script', cursive;
 }
 
 .Showcase #FileLoader {
-    position: relative;
-    width: 0;
-    height: 0;
-    top: 0;
-    left: 0;
-    margin: 0;
-    right: 0;
-    bottom: 0;
-    opacity: 0;
-    cursor: pointer;
+   position: relative;
+   width: 0;
+   height: 0;
+   top: 0;
+   left: 0;
+   margin: 0;
+   right: 0;
+   bottom: 0;
+   opacity: 0;
+   cursor: pointer;
 }
 
 .Avatar {
-    width: 5.5rem;
-    height: 5.5rem;
-    border: 3px solid #fff;
-    background-color: transparent;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    align-self: flex-end;
-    padding-top: 2.7%;
-    align-items: stretch;
-    margin: 0 5%;
+   width: 5.5rem;
+   height: 5.5rem;
+   border: 3px solid #fff;
+   background-color: transparent;
+   border-radius: 50%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   align-self: flex-end;
+   padding-top: 2.7%;
+   align-items: stretch;
+   margin: 0 5%;
+   position: relative;
 }
 
 .Avatar h1 {
-    font-weight: bold;
-    font-size: 4rem;
-    color: #eee;
+   font-weight: bold;
+   font-size: 4rem;
+   color: #eee;
 }
 .Avatar img {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-    /* object-fit: cover;
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   border-radius: 50%;
+   /* object-fit: cover;
     flex: 1; */
 }
 
 .Profile button {
-    background-color: rgba(255, 215, 0, 0.5);
-    border-radius: 10px;
-    border: none;
-    width: 15rem;
-    height: 3rem;
-    font-size: 1.2rem;
-    color: rgb(5, 58, 32);
-    font-weight: bold;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin-top: 5%;
+   background-color: rgba(255, 215, 0, 0.5);
+   border-radius: 10px;
+   border: none;
+   width: 15rem;
+   height: 3rem;
+   font-size: 1.2rem;
+   color: rgb(5, 58, 32);
+   font-weight: bold;
+   font-family: Verdana, Geneva, Tahoma, sans-serif;
+   margin-top: 5%;
 }
 .Profile label {
-    font-size: 0.9rem;
+   font-size: 0.9rem;
 }
 
 .Profile .Content {
-    display: flex;
-    flex-direction: column;
-    width: 80%;
-    margin-left: 10%;
+   display: flex;
+   flex-direction: column;
+   width: 80%;
+   margin-left: 10%;
 }
 
 @media screen and (min-width: 435px) {
-    .Showcase,
-    .Dropoffs {
-        width: 80%;
-    }
-    .Showcase {
-        margin: 10% 0;
-    }
-    .Dropoffs {
-        margin-bottom: 20%;
-    }
-    .Profile .Content {
-        margin-left: 12%;
-    }
+   .Showcase,
+   .Dropoffs {
+      width: 80%;
+   }
+   .Showcase {
+      margin: 10% 0;
+   }
+   .Dropoffs {
+      margin-bottom: 20%;
+   }
+   .Profile .Content {
+      margin-left: 12%;
+   }
 }
 @media screen and (min-width: 600px) {
-    .Showcase {
-        margin-top: 20%;
-        margin-bottom: 5%;
-    }
-    .Showcase h1 {
-        font-size: 3rem;
-    }
+   .Showcase {
+      margin-top: 20%;
+      margin-bottom: 5%;
+   }
+   .Showcase h1 {
+      font-size: 3rem;
+   }
 
-    .Profile .Content {
-        width: 70%;
-    }
-    .Avatar {
-        width: 8rem;
-        height: 8rem;
-    }
-    .Dropoffs {
-        padding: 10% 15%;
-        font-size: 1.1rem;
-    }
-    .Profile .Content {
-        margin-left: 15%;
-    }
+   .Profile .Content {
+      width: 70%;
+   }
+   .Avatar {
+      width: 8rem;
+      height: 8rem;
+   }
+   .Dropoffs {
+      padding: 10% 15%;
+      font-size: 1.1rem;
+   }
+   .Profile .Content {
+      margin-left: 15%;
+   }
 }
 @media screen and (min-width: 800px) {
-    .Profile .Content {
-        margin-left: 18%;
-        width: 80%;
-    }
+   .Profile .Content {
+      margin-left: 18%;
+      width: 80%;
+   }
 }

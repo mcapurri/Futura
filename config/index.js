@@ -15,36 +15,36 @@ const cors = require('cors');
 
 // Middleware configuration
 module.exports = (app) => {
-    // Because this is a server that will accept requests from outside and it will be hosted ona server with a `proxy`, express needs to know that it should trust that setting.
-    // Services like heroku use something called a proxy and you need to add this to your server
-    app.set('trust proxy', 1);
+   // Because this is a server that will accept requests from outside and it will be hosted ona server with a `proxy`, express needs to know that it should trust that setting.
+   // Services like heroku use something called a proxy and you need to add this to your server
+   app.set('trust proxy', 1);
 
-    // controls a very specific header to pass headers from the frontend
-    app.use(
-        cors({
-            credentials: true,
-            origin: process.env.ORIGIN || 'http://localhost:3000',
-        })
-    );
-    // app.use((req, res, next) => {
-    //     res.setHeader('Access-Control-Allow-Origin', '*');
-    //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-    //     res.setHeader(
-    //         'Access-Control-Allow-Headers',
-    //         'Content-Type, Authorization'
-    //     );
-    //     next();
-    // });
+   // controls a very specific header to pass headers from the frontend
+   app.use(
+      cors({
+         credentials: true,
+         origin: process.env.ORIGIN || 'http://localhost:3000',
+      })
+   );
+   // app.use((req, res, next) => {
+   //     res.setHeader('Access-Control-Allow-Origin', '*');
+   //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
+   //     res.setHeader(
+   //         'Access-Control-Allow-Headers',
+   //         'Content-Type, Authorization'
+   //     );
+   //     next();
+   // });
 
-    // In development environment the app logs
-    app.use(logger('dev'));
+   // In development environment the app logs
+   app.use(logger('dev'));
 
-    // Body parser
-    app.use(express.json());
-    app.use(express.urlencoded({ extended: true }));
+   // Body parser
+   app.use(express.json());
+   app.use(express.urlencoded({ extended: true }));
 
-    //Cookie parser
-    app.use(cookieParser());
+   //Cookie parser
+   app.use(cookieParser());
 
-    // Handles access to the favicon
+   // Handles access to the favicon
 };

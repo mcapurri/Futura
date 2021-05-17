@@ -8,8 +8,8 @@ Resources page offers an updated list of article about the recycling and sustain
 Database managed with MongoDB
 
 ## Technologies used:
-Node.js, Express.js, React, Bootstrap, JWT, 	Passport, Mongoose, Cloudinary, Mapbox GL, Socket.io
 
+Node.js, Express.js, React, Bootstrap, JWT, Passport, Mongoose, Cloudinary, Mapbox GL, Socket.io
 
 ## Author
 
@@ -20,4 +20,3 @@ Marco Capurri
 This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
 Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
 details
-

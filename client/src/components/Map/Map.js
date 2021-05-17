@@ -15,138 +15,150 @@ import { getBounds, getGeoJson } from '../../utils/map';
 const MapBox = ReactMapboxGl({ accessToken: mapboxtoken });
 const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
-const Map = () => {
-    const [map, setMap] = useState();
-    const [dropOffs, setDropOffs] = useState([]);
-    const [geojson, setGeojson] = useState({});
-    console.log('geojson', geojson);
-    const [selectedIndex, setSelectedIndex] = useState(null);
+const Map = ({ setIsMapPage }) => {
+   const [map, setMap] = useState();
+   const [dropOffs, setDropOffs] = useState([]);
+   const [isMoved, setIsMoved] = useState(false);
+   const [geojson, setGeojson] = useState({});
+   console.log('geojson', geojson);
+   const [selectedIndex, setSelectedIndex] = useState(null);
 
-    const fetchDropOffs = useCallback(async () => {
-        try {
-            const { data } = await axios.get('/api/dropoffs');
+   useEffect(() => {
+      setIsMapPage(true);
+      return () => {
+         setIsMapPage(false);
+      };
+   }, []);
 
-            setDropOffs(data);
-            const geojsonData = await getGeoJson(data);
-            setGeojson({ type: 'geojson', data: geojsonData });
-        } catch (err) {
-            console.log(err);
-        }
-    }, []);
+   const fetchDropOffs = useCallback(async () => {
+      try {
+         const { data } = await axios.get('/api/dropoffs');
 
-    const onLoadMap = useCallback((e) => {
-        setMap(e);
-    }, []);
+         setDropOffs(data);
+         const geojsonData = await getGeoJson(data);
+         setGeojson({ type: 'geojson', data: geojsonData });
+      } catch (err) {
+         console.log(err);
+      }
+   }, []);
 
-    const openPopup = (index) => {
-        setSelectedIndex(index);
-    };
-    const closePopup = () => {
-        setSelectedIndex(null);
-    };
+   const onLoadMap = useCallback((e) => {
+      setMap(e);
+   }, []);
 
-    const displayMarkers = useMemo(
-        () =>
-            geojson.data &&
-            geojson.data.map((el, index) => (
-                <>
-                    {/* {console.log('el', el)} */}
-                    <Marker
-                        key={el.key}
-                        coordinates={el.geometry.coordinates}
-                        className={style.Marker}
-                        onClick={() => openPopup(el.key)}
-                    />
-                    {console.log(selectedIndex === el.key)}
-                    {selectedIndex !== null && (
-                        <Popup
-                            key={index}
-                            visible={selectedIndex === el.key}
-                            id={selectedIndex}
-                            coordinates={el.geometry.coordinates}
-                            onClose={closePopup}
-                            closeButton={true}
-                            closeOnClick={false}
-                            style={{
-                                borderRadius: '10px',
-                                backgroundColor: 'rgb(5, 58, 32)',
-                            }}
-                        >
-                            <p style={{ fontWeight: '500' }}>
-                                {el.properties.name}
-                            </p>{' '}
-                            <p>
-                                {el.properties.street},{' '}
-                                {el.properties.houseNumber} -{' '}
-                                {el.properties.zipCode}{' '}
-                            </p>{' '}
-                            <p>
-                                Opening hours: {el?.properties.openingTime} /{' '}
-                                {el?.properties.closingTime}{' '}
-                            </p>
-                        </Popup>
-                    )}
-                </>
-            )),
-        [geojson, selectedIndex]
-    );
+   const openPopup = (index) => {
+      setSelectedIndex(index);
+   };
+   const closePopup = () => {
+      setSelectedIndex(null);
+   };
 
-    useEffect(() => {
-        fetchDropOffs();
-    }, [fetchDropOffs]);
+   const displayMarkers = useMemo(
+      () =>
+         geojson.data &&
+         geojson.data.map((el, index) => (
+            <>
+               {/* {console.log('el', el)} */}
+               <Marker
+                  key={el.key}
+                  coordinates={el.geometry.coordinates}
+                  className={style.Marker}
+                  onClick={() => openPopup(el.key)}
+               />
+               {console.log(selectedIndex === el.key)}
+               {selectedIndex !== null && selectedIndex === el.key && (
+                  <Popup
+                     key={index}
+                     visible={selectedIndex === el.key}
+                     id={selectedIndex}
+                     coordinates={el.geometry.coordinates}
+                     onClose={closePopup}
+                     closeButton={true}
+                     closeOnClick={false}
+                     style={{
+                        borderRadius: '10px',
+                        backgroundColor: 'rgb(5, 58, 32)',
+                     }}
+                  >
+                     <p style={{ fontWeight: '500' }}>{el.properties.name}</p>{' '}
+                     <p>
+                        {el.properties.street}, {el.properties.houseNumber} -{' '}
+                        {el.properties.zipCode}{' '}
+                     </p>{' '}
+                     <p>
+                        Opening hours: {el?.properties.openingTime} /{' '}
+                        {el?.properties.closingTime}{' '}
+                     </p>
+                  </Popup>
+               )}
+            </>
+         )),
+      [geojson, selectedIndex]
+   );
 
-    useEffect(() => {
-        map?.addControl(
-            new MapBoxGL.GeolocateControl({
-                positionOptions: {
-                    enableHighAccuracy: true,
-                },
-                trackUserLocation: true,
-                showUserLocation: true,
-            })
-        );
-    }, [map]);
+   useEffect(() => {
+      fetchDropOffs();
+   }, [fetchDropOffs]);
 
-    useEffect(() => {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                (data) => {
-                    const {
-                        coords: { longitude: lng, latitude: lat },
-                    } = data;
+   useEffect(() => {
+      map?.addControl(
+         new MapBoxGL.GeolocateControl({
+            positionOptions: {
+               enableHighAccuracy: true,
+            },
+            trackUserLocation: true,
+            showUserLocation: true,
+         })
+      );
+   }, [map]);
 
-                    map?.setCenter([lng, lat]);
-                },
-                (err) => {
-                    console.log('err: ', err);
-                }
-            );
-        }
-    }, [map]);
+   useEffect(() => {
+      if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(
+            (data) => {
+               const {
+                  coords: { longitude: lng, latitude: lat },
+               } = data;
 
-    useEffect(() => {
-        const data = getGeoJson(dropOffs);
-        setGeojson({ type: 'geojson', data: data.features });
-    }, [dropOffs]);
+               //  map?.setCenter([lng, lat]);
+            },
+            (err) => {
+               console.log('err: ', err);
+            }
+         );
+      }
+   }, [map]);
 
-    useEffect(() => {
-        if (dropOffs.length <= 1) return;
+   useEffect(() => {
+      const data = getGeoJson(dropOffs);
+      setGeojson({ type: 'geojson', data: data.features });
+   }, [dropOffs]);
 
-        const bounds = getBounds(dropOffs);
-        map?.fitBounds(bounds);
-    }, [map, dropOffs]);
+   useEffect(() => {
+      if (dropOffs.length <= 1) return;
 
-    return (
-        <MapBox
-            className={style.Container}
-            style={MapBoxStyle}
-            center={[13.4, 52.52]}
-            zoom={[15]}
-            onStyleLoad={onLoadMap}
-        >
-            {displayMarkers}
-        </MapBox>
-    );
+      const bounds = getBounds(dropOffs);
+      // map?.fitBounds(bounds);
+   }, [map, dropOffs]);
+
+   return (
+      // <div style={{ height: '100%', backgroundColor: 'red' }}>
+      <MapBox
+         className={style.Container}
+         style={MapBoxStyle}
+         center={isMoved ? undefined : [13.4, 52.52]}
+         zoom={isMoved ? undefined : [15]}
+         onDrag={() => {
+            if (!isMoved) {
+               setIsMoved(true);
+            }
+         }}
+         onStyleLoad={onLoadMap}
+      >
+         {displayMarkers}
+      </MapBox>
+      // </div>
+   );
 };
 
 export default Map;

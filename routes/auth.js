@@ -65,7 +65,7 @@ router.post('/signup', (req, res, next) => {
             .json({ message: 'Your password must be 8 chars minimum' });
     }
     if (password !== confirm) {
-        return res.status(400).json({ message: "Passwords don't match" });
+        return res.status(400).json({ message: 'Passwords don't match' });
     }
 
     User.findOne({ email }).then((found) => {
@@ -115,7 +115,7 @@ router.post('/forgotpassword', (req, res, next) => {
         .then(async (user) => {
             console.log('userDb', user);
             if (!user) {
-                res.status(403).json("User doesn't exist");
+                res.status(403).json('User doesn't exist');
             } else {
                 // Get reset token
                 const resetToken = await user.getResetPasswordToken(user);
@@ -156,7 +156,7 @@ router.put('/resetpassword/:resettoken', async function (req, res) {
         return res.send('User not found');
     }
     if (password !== confirm) {
-        return res.status(400).json({ message: "Passwords don't match" });
+        return res.status(400).json({ message: 'Passwords don't match' });
     }
 
     // Set new password

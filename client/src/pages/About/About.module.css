@@ -1,94 +1,94 @@
 .About {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: linear-gradient(white, green);
-    color: rgb(5, 58, 32);
-    overflow-y: auto;
-    margin: 10% auto;
+   width: 100vw;
+   /* height: 100vh; */
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-image: linear-gradient(white, green);
+   color: rgb(5, 58, 32);
+   /* overflow-y: auto; */
+   margin: 10% auto;
 }
 
 .About hr {
-    width: 20rem;
-    background-color: green;
+   width: 20rem;
+   background-color: green;
 }
 .Section {
-    width: 100vw;
-    font-weight: 600;
+   width: 100vw;
+   font-weight: 600;
 }
 .Section:first-child {
-    margin-top: 20%;
-    padding: 0 5%;
+   margin-top: 20%;
+   padding: 0 5%;
 }
 .Section:last-child {
-    margin-bottom: 20%;
+   margin-bottom: 20%;
 }
 
 .Box {
-    font-size: 0.7rem;
-    max-width: 40rem;
-    box-sizing: border-box;
-    width: 100vw;
-    height: 12rem;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    padding: 0 5%;
+   font-size: 0.7rem;
+   max-width: 40rem;
+   box-sizing: border-box;
+   width: 100vw;
+   height: 12rem;
+   display: flex;
+   justify-content: space-around;
+   align-items: center;
+   padding: 0 5%;
 }
 .Box img {
-    width: 5rem;
-    height: 5rem;
-    border-radius: 50%;
-    margin-left: 5%;
-    overflow: hidden;
+   width: 5rem;
+   height: 5rem;
+   border-radius: 50%;
+   margin-left: 5%;
+   overflow: hidden;
 }
 .Box h5 {
-    font-family: 'Dancing Script', cursive;
-    font-size: 1.5rem;
-    font-weight: bold;
+   font-family: 'Dancing Script', cursive;
+   font-size: 1.5rem;
+   font-weight: bold;
 }
 .ImgContainer {
-    width: 5rem;
-    height: 5rem;
-    background-color: #fff;
-    -mozborderradius: 6em;
-    -webkitborder-radius: 6em;
-    border-radius: 50%;
+   width: 5rem;
+   height: 5rem;
+   background-color: #fff;
+   -mozborderradius: 6em;
+   -webkitborder-radius: 6em;
+   border-radius: 50%;
 }
 
 @media only screen and (min-width: 435px) {
-    .About.Box {
-        height: 5rem;
-        padding: 10% 10%;
-    }
+   .About.Box {
+      height: 5rem;
+      padding: 10% 10%;
+   }
 }
 @media only screen and (min-width: 640px) {
-    .Section {
-        width: 80%;
-    }
-    .About hr {
-        width: 30rem;
-    }
-    .Box {
-        margin: 5% 0;
-    }
-    .Box h5 {
-        font-size: 2rem;
-    }
-    .About p {
-        font-size: 1.1rem;
-    }
+   .Section {
+      width: 80%;
+   }
+   .About hr {
+      width: 30rem;
+   }
+   .Box {
+      margin: 5% 0;
+   }
+   .Box h5 {
+      font-size: 2rem;
+   }
+   .About p {
+      font-size: 1.1rem;
+   }
 }
 @media only screen and (min-width: 825px) {
-    .About .Box {
-        margin-left: 10%;
-    }
-    .Section {
-        width: 60%;
-    }
-    .About hr {
-        width: 35rem;
-    }
+   .About .Box {
+      margin-left: 10%;
+   }
+   .Section {
+      width: 60%;
+   }
+   .About hr {
+      width: 35rem;
+   }
 }

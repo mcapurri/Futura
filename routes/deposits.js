@@ -43,7 +43,7 @@ router.post('/add', async (req, res, next) => {
         console.log('addDeposit', addDeposit);
         res.status(200).json({ message: 'Deposit successfully added' });
     } catch (err) {
-        return res.status(400).json({ message: "User doesn't exist" });
+        return res.status(400).json({ message: 'User doesn't exist' });
     }
 });
 

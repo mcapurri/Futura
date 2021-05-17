@@ -3,17 +3,17 @@ const { CloudinaryStorage } = require('multer-storage-cloudinary');
 const multer = require('multer');
 
 cloudinary.config({
-    cloud_name: process.env.CLOUDINARY_Name,
-    api_key: process.env.CLOUDINARY_Key,
-    api_secret: process.env.CLOUDINARY_Secret,
+   cloud_name: process.env.CLOUDINARY_Name,
+   api_key: process.env.CLOUDINARY_Key,
+   api_secret: process.env.CLOUDINARY_Secret,
 });
 
 const storage = new CloudinaryStorage({
-    cloudinary,
-    params: {
-        folder: 'user-avatars',
-        allowed_formats: 'jpg, png',
-    },
+   cloudinary,
+   params: {
+      folder: 'user-avatars',
+      allowed_formats: 'jpg, png',
+   },
 });
 
 const uploader = multer({ storage });

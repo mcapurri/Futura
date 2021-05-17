@@ -7,9 +7,9 @@ import ProtectedRoute from '../../utils/ProtectedRoute';
 // import { TiThMenu as MenuIcon } from 'react-icons/ti';
 
 const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
-    return (
-        <div className={style.Home}>
-            {/* {user !== '' && (
+   return (
+      <div className={style.Home}>
+         {/* {user !== '' && (
                 <header>
                     <MenuIcon
                         style={{
@@ -33,8 +33,8 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                     >
                         <div className={style.Logo}>
                             <img
-                                src="assets/africa-recycle-logo.png"
-                                alt="recycle-logo"
+                                src='assets/africa-recycle-logo.png'
+                                alt='recycle-logo'
                             />
                             <h1>!</h1>
                         </div>
@@ -51,23 +51,23 @@ const Home = ({ user, setUser, handleLogout, toggleDrawer, ...props }) => {
                 </header>
             )} */}
 
-            {!user ? (
-                <Route
-                    exact
-                    path="/"
-                    render={(props) => <Login {...props} setUser={setUser} />}
-                />
-            ) : (
-                <ProtectedRoute
-                    exact
-                    path="/"
-                    component={Profile}
-                    user={user}
-                    setUser={setUser}
-                />
-            )}
-        </div>
-    );
+         {!user ? (
+            <Route
+               exact
+               path='/'
+               render={(props) => <Login {...props} setUser={setUser} />}
+            />
+         ) : (
+            <ProtectedRoute
+               exact
+               path='/'
+               component={Profile}
+               user={user}
+               setUser={setUser}
+            />
+         )}
+      </div>
+   );
 };
 
 export default Home;

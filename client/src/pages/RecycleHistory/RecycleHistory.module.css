@@ -1,59 +1,59 @@
 .Container {
-    width: 100vw;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background-image: linear-gradient(white, green);
-    overflow-y: auto;
+   width: 100vw;
+   height: 100vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background-image: linear-gradient(white, green);
+   /* overflow-y: auto; */
 }
 .Container header {
-    height: 27vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    color: rgb(5, 58, 32);
-    border-bottom: 5px solid rgb(0, 128, 0);
+   height: 27vh;
+   width: 100%;
+   display: flex;
+   align-items: center;
+   color: rgb(5, 58, 32);
+   border-bottom: 5px solid rgb(0, 128, 0);
 }
 .Container header img {
-    filter: drop-shadow(10px 10px 0 #eee);
+   filter: drop-shadow(10px 10px 0 #eee);
 }
 .Container .Logo {
-    display: flex;
-    align-items: flex-end;
-    margin-left: 10%;
-    margin-top: -5%;
-    padding-bottom: 3%;
+   display: flex;
+   align-items: flex-end;
+   margin-left: 10%;
+   margin-top: -5%;
+   padding-bottom: 3%;
 }
 .Container h1:nth-child(2) {
-    font-size: 9rem;
-    color: #000;
+   font-size: 9rem;
+   color: #000;
 }
 .Container p {
-    color: #000;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-left: 10%;
+   color: #000;
+   font-family: 'Dancing Script', cursive;
+   font-size: 2.5rem;
+   font-weight: bold;
+   margin-left: 10%;
 }
 .Card {
-    width: 90vw;
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #fff;
-    margin: 5% 0;
-    border-radius: 10px;
+   width: 90vw;
+   min-height: 70vh;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   color: #fff;
+   margin: 5% 0;
+   border-radius: 10px;
 }
 .Deposit {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    border: 2px solid #eee;
-    font-size: 0.9rem;
-    border-radius: 20px;
-    background-color: rgba(35, 145, 77, 0.963);
-    padding: 5% 5%;
-    margin-bottom: 5%;
+   display: flex;
+   flex-direction: column;
+   align-items: flex-start;
+   border: 2px solid #eee;
+   font-size: 0.9rem;
+   border-radius: 20px;
+   background-color: rgba(35, 145, 77, 0.963);
+   padding: 5% 5%;
+   margin-bottom: 5%;
 }
