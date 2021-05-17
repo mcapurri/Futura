@@ -1,43 +1,42 @@
 .News {
-  width: 100vw;
-  /* height: 100vh; */
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  /* overflow: auto; */
-  padding: 0 10%;
-  background-image: linear-gradient(white, green);
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* overflow: auto; */
+    padding: 0 10%;
+    background-image: linear-gradient(white, green);
 }
 .News .Col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .News h1 {
-  /* font-family: 'Prata', serif; */
-  font-family: "Dancing Script", cursive;
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-top: 5%;
-  margin-left: 5%;
-  color: rgb(5, 58, 32);
+    /* font-family: 'Prata', serif; */
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-top: 5%;
+    margin-left: 5%;
+    color: rgb(5, 58, 32);
 }
 .Card {
-  width: 21rem;
-  border: 1px solid rgb(5, 58, 32);
-  margin: 10% 3%;
+    width: 21rem;
+    border: 1px solid rgb(5, 58, 32);
+    margin: 10% 3%;
 }
 
 @media only screen and (min-width: 435px) {
-  .News .Col {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    justify-content: space-around;
-  }
+    .News .Col {
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        justify-content: space-around;
+    }
 }
 @media only screen and (max-width: 825px) {
-  .Card {
-    width: 70vw;
-  }
+    .Card {
+        width: 70vw;
+    }
 }

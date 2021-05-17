@@ -148,9 +148,8 @@ const Map = ({ setIsMapPage }) => {
         <MapBox
             className={style.Container}
             style={MapBoxStyle}
-            center={[13.4, 52.52]}
+            // center={[13.4, 52.52]}
             zoom={[15]}
-            height={'100%'}
             onStyleLoad={onLoadMap}
         >
             {displayMarkers}
