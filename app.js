@@ -174,6 +174,7 @@ io.on('connection', (socket) => {
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
 require('./error-handling')(app);
 
+const path = require('path');
 app.use(express.static(path.join(__dirname, '/client/build')));
 
 app.use((req, res) => {
