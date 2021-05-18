@@ -29,7 +29,7 @@ const Profile = ({ user, setUser, ...props }) => {
     };
 
     return (
-        <div className={style.Profile}>
+        <div className={style.Container}>
             <section className={style.Showcase}>
                 <div
                     style={{

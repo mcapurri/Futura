@@ -1,50 +1,49 @@
 .Home {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  background-color: #fff;
-  color: #fff;
-  /* overflow-y: auto; */
-  margin: 0 auto;
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    color: #fff;
+    margin: 0 auto;
 }
 .Home .Logo {
-  display: flex;
-  align-items: flex-end;
-  margin-left: 10%;
+    display: flex;
+    align-items: flex-end;
+    margin-left: 10%;
 }
 .Home header {
-  height: 33vh;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  color: rgb(5, 58, 32);
-  border-bottom: 5px solid rgb(0, 128, 0);
-  justify-content: space-between;
+    height: 33vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    color: rgb(5, 58, 32);
+    border-bottom: 5px solid rgb(0, 128, 0);
+    justify-content: space-between;
 }
 .Home h1:nth-child(2) {
-  font-size: 9rem;
-  color: #000;
+    font-size: 9rem;
+    color: #000;
 }
 .Home header p {
-  color: #000;
-  font-family: "Dancing Script", cursive;
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-left: 10%;
+    color: #000;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-left: 10%;
 }
 @media screen and (min-width: 435px) {
-  .Home .Logo {
-    margin-left: 10%;
-    transform: scale(1.2);
-  }
-  .Home header {
-    min-height: 25vh;
-  }
+    .Home .Logo {
+        margin-left: 10%;
+        transform: scale(1.2);
+    }
+    .Home header {
+        min-height: 25vh;
+    }
 }
 
 @media screen and (min-width: 960px) {
-  .Home header {
-    min-height: 27vh;
-  }
+    .Home header {
+        min-height: 27vh;
+    }
 }
