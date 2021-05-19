@@ -1,13 +1,9 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-// router.get('/', (req, res, next) => {
-//     res.json('All good in here');
+// router.get('*', function (req, res) {
+//     res.redirect('/');
 // });
-
-router.get('*', function (req, res) {
-    res.redirect('/');
-});
 
 // Routes
 
@@ -22,5 +18,9 @@ router.use('/dropoffs', dropoffs);
 
 const deposits = require('./deposits');
 router.use('/deposits', deposits);
+
+router.get('/', (req, res, next) => {
+    res.json('Happy coding!');
+});
 
 module.exports = router;
