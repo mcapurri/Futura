@@ -15,6 +15,7 @@ button {
 
 .mapboxgl-popup-tip {
     border-top-color: #79ca92 !important ;
+    margin-bottom: 20%;
 }
 
 .mapboxgl-marker {
