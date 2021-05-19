@@ -1,0 +1,17 @@
+.mapboxgl-popup-content {
+    background-color: #79ca92 !important;
+    padding: 0 10%;
+    padding-top: 10%;
+}
+
+button {
+    float: right;
+    background-color: transparent;
+    border: none;
+    font-size: 1.1rem;
+    color: #eee;
+}
+
+.mapboxgl-popup-tip {
+    border-top-color: #79ca92 !important ;
+}

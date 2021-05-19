@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import './Map.css';
 import style from './Map.module.css';
 
 import * as MapBoxGL from 'mapbox-gl';
@@ -21,6 +22,7 @@ const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 
 const Map = ({ setIsMapPage }) => {
     const [map, setMap] = useState();
+    const [zoom, setZoom] = useState([12]);
     const [dropOffs, setDropOffs] = useState([]);
     const [geojson, setGeojson] = useState({});
     console.log('geojson', geojson);
@@ -75,12 +77,22 @@ const Map = ({ setIsMapPage }) => {
                             onClose={closePopup}
                             closeButton={true}
                             closeOnClick={true}
-                            style={{
-                                borderRadius: '10px',
-                                backgroundColor: 'rgb(5, 58, 32)',
-                            }}
                         >
-                            <p style={{ fontWeight: '500' }}>
+                            <div>
+                                <button
+                                    color="secondary"
+                                    onClick={() => closePopup()}
+                                >
+                                    x
+                                </button>
+                            </div>
+                            <p
+                                style={{
+                                    fontWeight: '800',
+                                    fontFamily: "'Dancing Script', cursive",
+                                    fontSize: '1.2rem',
+                                }}
+                            >
                                 {el.properties.name}
                             </p>{' '}
                             <p>
@@ -88,8 +100,9 @@ const Map = ({ setIsMapPage }) => {
                                 {el.properties.houseNumber} -{' '}
                                 {el.properties.zipCode}{' '}
                             </p>{' '}
+                            <p style={{ fontWeight: '500' }}>Opening hours:</p>
                             <p>
-                                Opening hours: {el?.properties.openingTime} /{' '}
+                                {el?.properties.openingTime} /{' '}
                                 {el?.properties.closingTime}{' '}
                             </p>
                         </Popup>
@@ -123,6 +136,7 @@ const Map = ({ setIsMapPage }) => {
                         coords: { longitude: lng, latitude: lat },
                     } = data;
                     map?.setCenter([lng, lat]);
+                    setZoom([15]);
                 },
                 (err) => {
                     console.log('err: ', err);
@@ -148,7 +162,7 @@ const Map = ({ setIsMapPage }) => {
             className={style.Container}
             style={MapBoxStyle}
             // center={[14.9, 52.52]}
-            // zoom={[15]}
+            zoom={zoom}
             onStyleLoad={onLoadMap}
         >
             {displayMarkers}
