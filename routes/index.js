@@ -6,7 +6,7 @@ const passport = require('passport');
 // });
 
 router.get('*', function (req, res) {
-    res.redirect('/Home');
+    res.redirect('/');
 });
 
 // Routes
