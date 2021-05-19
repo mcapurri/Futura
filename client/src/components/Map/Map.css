@@ -2,6 +2,7 @@
     background-color: #79ca92 !important;
     padding: 0 10%;
     padding-top: 10%;
+    z-index: 10;
 }
 
 button {
@@ -14,4 +15,8 @@ button {
 
 .mapboxgl-popup-tip {
     border-top-color: #79ca92 !important ;
+}
+
+.mapboxgl-marker {
+    z-index: 0;
 }

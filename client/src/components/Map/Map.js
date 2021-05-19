@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import './Map.css';
 import style from './Map.module.css';
-
+import './Map.css';
 import * as MapBoxGL from 'mapbox-gl';
 import ReactMapboxGl, { Marker, Popup } from 'react-mapbox-gl';
-
 import axios from '../../utils/axios';
 
 import { mapboxtoken } from '../../utils/config.json';
