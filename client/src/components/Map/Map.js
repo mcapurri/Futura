@@ -23,7 +23,7 @@ const Map = ({ setIsMapPage }) => {
     const [zoom, setZoom] = useState([12]);
     const [dropOffs, setDropOffs] = useState([]);
     const [geojson, setGeojson] = useState({});
-    console.log('geojson', geojson);
+    // console.log('geojson', geojson);
     const [selectedIndex, setSelectedIndex] = useState(null);
 
     useEffect(() => {
@@ -61,13 +61,11 @@ const Map = ({ setIsMapPage }) => {
             geojson.data &&
             geojson.data.map((el, index) => (
                 <div key={el.key}>
-                    {/* {console.log('el', el)} */}
                     <Marker
                         coordinates={el.geometry.coordinates}
                         className={style.Marker}
                         onClick={() => openPopup(el.key)}
                     />
-                    {console.log(selectedIndex === el.key)}
                     {selectedIndex !== null && selectedIndex === el.key && (
                         <Popup
                             visible={selectedIndex === el.key}

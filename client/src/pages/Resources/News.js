@@ -47,7 +47,7 @@ const News = (props) => {
         fetchData();
     }, []);
 
-    console.log('newsList', newsList);
+    // console.log('newsList', newsList);
 
     const displayNews = (newsArr) => {
         return newsArr.map((news) => {

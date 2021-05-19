@@ -5,7 +5,7 @@ import axios from '../../utils/axios';
 const RecycleHistory = (props) => {
     const [depositsList, setDepositslist] = useState([]);
 
-    console.log('depositsList', depositsList);
+    // console.log('depositsList', depositsList);
 
     const fetchData = async () => {
         try {

@@ -8,7 +8,7 @@ import { jwtSecret } from './utils/config.json';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
-import axios from 'axios';
+import axios from './utils/axios';
 
 const token = localStorage.getItem('token');
 jwt.verify(token, jwtSecret, async (err, decoded) => {

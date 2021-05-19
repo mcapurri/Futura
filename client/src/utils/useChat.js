@@ -20,7 +20,7 @@ const useChat = (props) => {
         socketRef.current = ioClient(ENDPOINT, {
             query: { name, room },
         });
-        console.log('socketRef', socketRef.current);
+        // console.log('socketRef', socketRef.current);
 
         socketRef.current.on(
             NEW_CHAT_MESSAGE_EVENT,
