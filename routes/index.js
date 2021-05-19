@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const passport = require('passport');
 
-router.get('/', (req, res, next) => {
-    res.json('All good in here');
-});
+// router.get('/', (req, res, next) => {
+//     res.json('All good in here');
+// });
 
 router.get('*', function (req, res) {
-    res.redirect('/');
+    res.redirect('/Home');
 });
 
 // Routes
