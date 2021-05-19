@@ -122,7 +122,6 @@ const Map = ({ setIsMapPage }) => {
                     const {
                         coords: { longitude: lng, latitude: lat },
                     } = data;
-
                     map?.setCenter([lng, lat]);
                 },
                 (err) => {
@@ -148,8 +147,8 @@ const Map = ({ setIsMapPage }) => {
         <MapBox
             className={style.Container}
             style={MapBoxStyle}
-            // center={[13.4, 52.52]}
-            zoom={[15]}
+            // center={[14.9, 52.52]}
+            // zoom={[15]}
             onStyleLoad={onLoadMap}
         >
             {displayMarkers}
