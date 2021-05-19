@@ -5,6 +5,10 @@ router.get('/', (req, res, next) => {
     res.json('All good in here');
 });
 
+router.get('*', function (req, res) {
+    res.redirect('/');
+});
+
 // Routes
 
 const auth = require('./auth');
