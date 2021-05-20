@@ -19,8 +19,8 @@ router.use('/dropoffs', dropoffs);
 const deposits = require('./deposits');
 router.use('/deposits', deposits);
 
-router.get('/', (req, res, next) => {
-    res.json('Happy coding!');
-});
+// router.get('/', (req, res, next) => {
+//     res.json('Happy coding!');
+// });
 
 module.exports = router;
