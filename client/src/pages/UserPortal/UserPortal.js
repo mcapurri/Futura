@@ -3,12 +3,12 @@ import style from './UserPortal.module.css';
 import { ImUserPlus } from 'react-icons/im';
 import { Form, Button } from 'bootstrap-4-react';
 import axios from '../../utils/axios';
-// import useInput from '../../utils/useInput';
+import useInput from '../../utils/useInput';
 import { useForm } from 'react-hook-form';
 
 const UserPortal = ({ user, setUser, ...props }) => {
     const [message, setMessage] = useState('');
-    // const [transferAmount, setTransferAmount] = useInput("");
+    const [transferAmount, setTransferAmount] = useInput('');
     const {
         register,
         handleSubmit,
@@ -27,6 +27,9 @@ const UserPortal = ({ user, setUser, ...props }) => {
         setUser(update);
         setMessage(data.message);
         console.log('responseDB', data);
+        setTimeout(() => {
+            setTransferAmount('');
+        });
     };
 
     return (
@@ -107,9 +110,9 @@ const UserPortal = ({ user, setUser, ...props }) => {
                                     minLength: 1,
                                 })}
                                 className={style.Display}
-                                // value={transferAmount}
+                                value={transferAmount}
                                 placeholder={'$$$'}
-                                // onChange={setTransferAmount}
+                                onChange={setTransferAmount}
                             />
                             <span style={{ marginLeft: '3%' }}>,00</span>
                         </div>
