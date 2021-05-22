@@ -143,10 +143,10 @@ app.use('/api', allRoutes);
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
     cors: {
-        // origin: 'http://localhost:3000',
-        // methods: ['GET', 'POST'],
-        // credentials: true,
-        origin: '*',
+        origin: process.env.ORIGIN,
+        methods: ['GET', 'POST'],
+        credentials: true,
+        // origin: '*',
     },
 });
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
