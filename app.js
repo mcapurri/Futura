@@ -143,11 +143,9 @@ app.use('/api', allRoutes);
 const server = require('http').createServer(app);
 const io = require('socket.io')(server, {
     cors: {
-        // origin: process.env.ORIGIN,
-        origin: 'https://futura-recycling.herokuapp.com/',
+        origin: process.env.ORIGIN,
         methods: ['GET', 'POST'],
         credentials: true,
-        // origin: '*',
     },
 });
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
