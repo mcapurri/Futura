@@ -32,7 +32,7 @@ app.use(
         resave: true,
         store: new MongoStore({
             mongooseConnection: mongoose.connection,
-            mongoUrl: 'mongodb://localhost/recycling-app',
+            mongoUrl: process.env.MONGODB_URI,
         }),
     })
 );
