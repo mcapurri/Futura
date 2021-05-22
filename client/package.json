@@ -1,7 +1,7 @@
 {
     "name": "client",
     "version": "0.1.0",
-    "proxy": "https://futura-recycling.herokuapp.com/",
+    "proxy": "http://localhost:5005",
     "private": true,
     "dependencies": {
         "@azure/cognitiveservices-websearch": "^3.0.1",

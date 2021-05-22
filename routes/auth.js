@@ -120,7 +120,7 @@ router.post('/forgotpassword', (req, res, next) => {
                 // Get reset token
                 const resetToken = await user.getResetPasswordToken(user);
                 // Create reset url
-                const resetUrl = `http://localhost:3000/resetpassword/${resetToken}`;
+                const resetUrl = `${process.env.ORIGIN}/resetpassword/${resetToken}`;
 
                 const message = `We received a request to reset your password for your account. We're here to help! \n\n 
                 Simply click the link below to reset your password: \n\n ${resetUrl} \n
