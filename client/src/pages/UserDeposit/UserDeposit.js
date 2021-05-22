@@ -25,9 +25,10 @@ const UserDeposit = (props) => {
         // credit is 1$ /kg
         const creditSum =
             ((+depositedGr + +depositedKg * 1000) / 1000).toFixed(2) * 1;
-
-        setCredit(creditSum);
-    }, [depositedGr, depositedKg]);
+        console.log('creditsum', typeof creditSum);
+        console.log('credit', typeof credit, depositedGr, depositedKg);
+        setCredit(+creditSum);
+    }, [depositedGr, depositedKg, credit]);
 
     useEffect(() => {
         fetchData();
@@ -59,19 +60,23 @@ const UserDeposit = (props) => {
             1000
         ).toFixed(2);
         try {
-            const deposit = await axios.post('/api/deposits/add', {
-                location,
-                deposited: +kgDeposited,
-                credit,
-                email,
-            });
-            console.log('deposit', deposit);
-            await setMessage(deposit.message);
-            setLocation('');
-            setEmail('');
-            setDepositedGr(0);
-            setDepositedKg(0);
-            props.history.go(0);
+            await axios
+                .post('/api/deposits/add', {
+                    location,
+                    deposited: +kgDeposited,
+                    credit,
+                    email,
+                })
+                .then((response) => {
+                    console.log('response', response);
+                    setMessage(response.data.message);
+                    setLocation('');
+                    setEmail('');
+                    setDepositedGr('');
+                    setDepositedKg('');
+                    setCredit(0);
+                    props.history.go(0);
+                });
         } catch (err) {
             throw err;
         }
@@ -157,8 +162,7 @@ const UserDeposit = (props) => {
                                 })}
                                 type="text"
                                 placeholder="Deposit Kg."
-                                value={credit}
-                                // onChange={setDeposited}
+                                value={credit || 0}
                                 disable={email}
                             />
                         </Form.Group>
