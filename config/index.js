@@ -26,15 +26,6 @@ module.exports = (app) => {
             origin: process.env.ORIGIN || 'http://localhost:3000',
         })
     );
-    // app.use((req, res, next) => {
-    //     res.setHeader('Access-Control-Allow-Origin', '*');
-    //     res.setHeader('Access-Control-Allow-Methods', 'GET, POST');
-    //     res.setHeader(
-    //         'Access-Control-Allow-Headers',
-    //         'Content-Type, Authorization'
-    //     );
-    //     next();
-    // });
 
     // In development environment the app logs
     app.use(logger('dev'));

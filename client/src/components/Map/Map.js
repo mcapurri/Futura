@@ -9,10 +9,9 @@ import axios from '../../utils/axios';
 
 import { mapboxtoken } from '../../utils/config.json';
 
-// import 'mapbox-gl/dist/mapbox-gl.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 import { getBounds, getGeoJson } from '../../utils/map';
-// import MapBoxGL from 'worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker';
 
 MapBoxGL.workerClass =
     require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
@@ -20,7 +19,7 @@ MapBoxGL.workerClass =
 const MapBox = ReactMapboxGl({
     accessToken: mapboxtoken,
     // className: style.Canvas,
-    style: 'mapbox://styles/mapbox/streets-v11',
+    // style: 'mapbox://styles/mapbox/streets-v11',
 });
 const MapBoxStyle = 'mapbox://styles/mapbox/streets-v11';
 

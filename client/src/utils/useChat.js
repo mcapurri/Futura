@@ -3,7 +3,7 @@ import ioClient from 'socket.io-client';
 import queryString from 'query-string';
 
 const NEW_CHAT_MESSAGE_EVENT = 'newChatMessage';
-const ENDPOINT = 'http://localhost:5005';
+const ENDPOINT = process.env.ORIGIN;
 
 const useChat = (props) => {
     const [name, setName] = useState('');
