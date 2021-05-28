@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import style from './RecycleHistory.module.css';
 import axios from '../../utils/axios';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const RecycleHistory = (props) => {
     const [depositsList, setDepositslist] = useState([]);
@@ -38,6 +39,8 @@ const RecycleHistory = (props) => {
             </tr>
         );
     });
+
+    if (!depositsList) return <Spinner />;
 
     return (
         <div className={style.Container}>

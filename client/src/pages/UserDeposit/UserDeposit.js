@@ -4,6 +4,7 @@ import { useForm } from 'react-hook-form';
 import useInput from '../../utils/useInput';
 import { Form, Button } from 'bootstrap-4-react';
 import axios from '../../utils/axios';
+import Spinner from '../../components/UI/Spinner/Spinner';
 
 const UserDeposit = (props) => {
     const {
@@ -25,8 +26,6 @@ const UserDeposit = (props) => {
         // credit is 1$ /kg
         const creditSum =
             ((+depositedGr + +depositedKg * 1000) / 1000).toFixed(2) * 1;
-        console.log('creditsum', typeof creditSum);
-        console.log('credit', typeof credit, depositedGr, depositedKg);
         setCredit(+creditSum);
     }, [depositedGr, depositedKg, credit]);
 
@@ -81,6 +80,8 @@ const UserDeposit = (props) => {
             throw err;
         }
     };
+
+    if (!locationsList) return <Spinner />;
 
     return (
         <div className={style.Container}>
