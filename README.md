@@ -11,7 +11,7 @@
 Node.js, Express.js, React, Bootstrap, JWT, 	Passport, Mongoose, Cloudinary, Mapbox GL, Socket.io
 
 ## How to use:
-If you don't want to go through the whole authentication process use the following credentials:<br/>
+If you don't want to go through the whole authentication process use the following credentials to login:<br/>
 ◽  jack@gmail.com   ◽123
 
 ## Author
